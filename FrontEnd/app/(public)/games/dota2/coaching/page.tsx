@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import GameHero from '@/components/shared/GameHero';
+import { GameHero } from '@/components/shared/GameHero';
 import GameNavigation from '@/components/shared/GameNavigation';
 import PriceSummary from '@/components/shared/PriceSummary';
 import { FAQ } from '@/components/shared/FAQ';

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import GameHero from '@/components/shared/GameHero';
+import { GameHero } from '@/components/shared/GameHero';
 import GameNavigation from '@/components/shared/GameNavigation';
 import PriceSummary from '@/components/shared/PriceSummary';
-import RankSelector from '@/components/shared/RankSelector';
+import { RankSelector } from '@/features/boost/components/RankSelector';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 

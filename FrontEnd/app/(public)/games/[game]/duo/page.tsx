@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { GameHero } from '@/components/shared/GameHero';
-import { GameNav } from '@/components/shared/GameNav';
+import GameNavigation from '@/components/shared/GameNavigation';
 import { OrderForm } from '@/features/order/components/OrderForm';
 import { DuoGamesSelector } from '@/features/boost/components/DuoGamesSelector';
 import { RankSelector } from '@/features/boost/components/RankSelector';
-import { PriceSummary } from '@/components/shared/PriceSummary';
+import PriceSummary from '@/components/shared/PriceSummary';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 
