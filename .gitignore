@@ -10,6 +10,11 @@
 /FrontEnd/.next/
 /FrontEnd/out/
 
+# NestJS (BackEnd)
+node_modules
+/BackEnd/dist/
+/BackEnd/.env
+
 # Production
 /build
 
