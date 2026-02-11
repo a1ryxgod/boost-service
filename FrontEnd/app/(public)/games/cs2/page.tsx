@@ -2,54 +2,54 @@ import Link from 'next/link';
 import './GameOverview.css';
 
 const gameData = {
-  name: 'Valorant',
-  description: 'Climb from Iron to Radiant with our expert Valorant boosters. Get the rank you deserve.'
+  name: 'Counter-Strike 2',
+  description: 'Professional CS2 boosting services to help you reach your desired rank. Fast, secure, and reliable.'
 };
 
 const services = [
   {
     title: 'Win Boosting',
-    href: '/games/valorant/boost/wins',
+    href: '/games/cs2/boost/wins',
     icon: '🎯',
-    description: 'Order a specific number of wins. Perfect for completing battle pass missions.',
+    description: 'Order a specific number of wins. Perfect for completing missions or climbing steadily.',
     features: ['Choose number of wins', 'Play solo or duo', 'Fast completion'],
     popular: true,
   },
   {
     title: 'Rank Boosting',
-    href: '/games/valorant/boost/rank',
+    href: '/games/cs2/boost/rank',
     icon: '🏆',
-    description: 'Boost from your current rank to your desired rank. Climb the ladder efficiently.',
-    features: ['Iron to Radiant', 'Manual boosting', 'Stream available'],
+    description: 'Boost from your current rank to your desired rank. The most efficient way to climb.',
+    features: ['Silver to Global', 'Manual boosting', 'Stream available'],
     popular: false,
   },
   {
     title: 'Placement Matches',
-    href: '/games/valorant/boost/placements',
+    href: '/games/cs2/boost/placements',
     icon: '⚡',
-    description: 'Get the best possible start to your act with placement match boosting.',
-    features: ['All 5 placement games', 'Highest calibration', 'Quick turnaround'],
+    description: 'Get the best possible start to your season with placement match boosting.',
+    features: ['All 10 placement games', 'Highest calibration', 'Quick turnaround'],
     popular: false,
   },
   {
     title: 'Coaching',
-    href: '/games/valorant/coaching',
+    href: '/games/cs2/coaching',
     icon: '🎓',
-    description: 'One-on-one coaching sessions with professional Valorant players.',
-    features: ['Personalized lessons', 'VOD reviews', 'Agent-specific coaching'],
+    description: 'One-on-one coaching sessions with professional CS2 players to improve your gameplay.',
+    features: ['Personalized lessons', 'Demo reviews', 'Live gameplay analysis'],
     popular: false,
   },
   {
     title: 'Duo Boosting',
-    href: '/games/valorant/duo',
+    href: '/games/cs2/duo',
     icon: '👥',
-    description: 'Play alongside a professional booster. Learn agents and strategies while climbing.',
+    description: 'Play alongside a professional booster. Learn while you climb. No account sharing.',
     features: ['Play together', 'Learn from pros', 'Safest method'],
     popular: false,
   },
 ];
 
-export default function ValorantOverviewPage() {
+export default function CS2OverviewPage() {
   return (
     <div className="game-overview">
       <div className="game-overview__header">

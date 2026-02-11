@@ -8,21 +8,21 @@ import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
 
 export const metadata: Metadata = {
-  title: 'Valorant Rank Boost Service | Fast & Secure',
+  title: 'CS2 Rank Boost Service | Fast & Secure',
   description:
-    'Professional Valorant rank boosting service. Fast delivery, secure process, experienced boosters.',
+    'Professional CS2 rank boosting service. Fast delivery, secure process, experienced boosters.',
 };
 
-export default function ValorantRankBoostPage() {
+export default function CS2RankBoostPage() {
   return (
     <div className="service">
       <div className="service__container">
         <div className="service__header">
           <h1 className="service__title">
-            Valorant Rank Boost
+            CS2 Rank Boost
           </h1>
           <p className="service__description">
-            Select your current and desired rank. Our professional Valorant players will handle the rest through manual progression.
+            Select your current and desired rank. Our professional CS2 players will handle the rest through manual progression.
           </p>
         </div>
 
@@ -47,14 +47,14 @@ export default function ValorantRankBoostPage() {
               How It Works
             </h2>
             <p className="service__description">
-              A simple and transparent process to get you to your desired Valorant rank.
+              A simple and transparent process to get you to your desired CS2 rank.
             </p>
           </div>
           <div className="service__steps">
             <div className="service__step">
               <div className="service__step-number">1</div>
               <h3 className="service__step-title">Configure Order</h3>
-              <p className="service__step-description">Choose your current and desired Valorant ranks and any extra options.</p>
+              <p className="service__step-description">Choose your current and desired CS2 ranks and any extra options.</p>
             </div>
             <div className="service__step">
               <div className="service__step-number">2</div>
@@ -64,12 +64,12 @@ export default function ValorantRankBoostPage() {
             <div className="service__step">
               <div className="service__step-number">3</div>
               <h3 className="service__step-title">Booster In Action</h3>
-              <p className="service__step-description">An experienced Valorant player starts working on your account progression.</p>
+              <p className="service__step-description">An experienced CS2 player starts working on your account progression.</p>
             </div>
             <div className="service__step">
               <div className="service__step-number">4</div>
               <h3 className="service__step-title">Enjoy Your Rank</h3>
-              <p className="service__step-description">We'll notify you once the order is complete. Enjoy your new Valorant rank!</p>
+              <p className="service__step-description">We'll notify you once the order is complete. Enjoy your new CS2 rank!</p>
             </div>
           </div>
         </section>
@@ -80,7 +80,7 @@ export default function ValorantRankBoostPage() {
               Frequently Asked Questions
             </h2>
             <p className="service__description">
-              Answers to common questions about our Valorant boosting services.
+              Answers to common questions about our CS2 boosting services.
             </p>
           </div>
           <div className="service__faq-content">

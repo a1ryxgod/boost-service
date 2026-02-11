@@ -7,12 +7,14 @@ import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 
 export const metadata: Metadata = {
-  title: 'Valorant Duo Boosting | Play with a Radiant',
-  description: 'Queue up with a Radiant-level player and climb the Valorant ranks together. Safe, fun, and effective.',
+  title: 'Valorant Duo Boosting | Play with a Pro',
+  description: 'Climb the ranks in Valorant by playing alongside a professional booster. The safest way to improve your rank.',
 };
 
+// Placeholder components for demonstration.
 const DuoGamesSelector = () => <div className="p-6 bg-gray-800 rounded-lg"><h3 className="text-lg font-semibold">Number of Games</h3><p className="text-sm text-gray-400 mt-2">Game Quantity Selector Placeholder</p></div>;
 const OrderForm = ({ children }: { children: React.ReactNode }) => <div className="space-y-6">{children}</div>;
+
 
 const ValorantDuoPage = () => {
   const game = 'valorant';
@@ -26,12 +28,14 @@ const ValorantDuoPage = () => {
       <section className="container mx-auto px-4 py-12">
         <div className="grid lg:grid-cols-3 gap-8 items-start">
           <div className="lg:col-span-2">
-            <h1 className="text-3xl font-bold mb-6">Configure Your Duo Queue Boost</h1>
+            <h1 className="text-3xl font-bold mb-6">Configure Your Duo Boost</h1>
             <OrderForm>
-              <RankSelector />
-              <DuoGamesSelector />
+                {/* Duo could be by rank or by number of games */}
+                <RankSelector />
+                <DuoGamesSelector />
             </OrderForm>
           </div>
+
           <aside className="lg:col-span-1 sticky top-24">
             <PriceSummary />
           </aside>

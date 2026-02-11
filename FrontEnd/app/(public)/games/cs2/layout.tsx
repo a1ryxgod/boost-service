@@ -3,13 +3,13 @@ import GameNavigation from '@/components/shared/GameNavigation';
 import './GamePage.css';
 
 const gameData = {
-  name: 'League of Legends',
-  description: 'Conquer the Summoner\'s Rift and achieve your desired division.',
-  accentColorClass: 'game-layout--lol',
-  heroStyle: { backgroundImage: "url('/images/Lol-image.jpg')" }
+  name: 'Counter-Strike 2',
+  description: 'Rise through the ranks with our professional CS2 boosting services.',
+  accentColorClass: 'game-layout--cs2',
+  heroStyle: { backgroundImage: "url('/images/CS2image.jpg')" }
 };
 
-export default function LoLLayout({ children }: { children: React.ReactNode }) {
+export default function CS2Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className={`game-layout ${gameData.accentColorClass}`}>
       <GameHero
@@ -18,7 +18,7 @@ export default function LoLLayout({ children }: { children: React.ReactNode }) {
         style={gameData.heroStyle}
       />
       <GameNavigation
-        gameSlug="lol"
+        gameSlug="cs2"
         className="game-nav"
       />
       <main className="game-content">

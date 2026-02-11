@@ -1,51 +1,90 @@
 import type { Metadata } from 'next';
-import { GameHero } from '@/components/shared/GameHero';
-import GameNavigation from '@/components/shared/GameNavigation';
-import PriceSummary from '@/components/shared/PriceSummary';
+import { OrderForm } from '@/features/order/components/OrderForm';
+import { DuoGamesSelector } from '@/features/boost/components/DuoGamesSelector';
 import { RankSelector } from '@/features/boost/components/RankSelector';
+import PriceSummary from '@/components/shared/PriceSummary';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
+import '../ServicePage.css';
 
 export const metadata: Metadata = {
   title: 'CS2 Duo Boosting | Play with a Pro',
-  description: 'Climb the ranks in CS2 by playing alongside a professional booster. The safest way to improve your rank.',
+  description: 'Queue up with a professional CS2 player and climb the ranks together. The safest way to boost your CS2 rank.',
 };
 
-// Placeholder components for demonstration.
-const DuoGamesSelector = () => <div className="p-6 bg-gray-800 rounded-lg"><h3 className="text-lg font-semibold">Number of Games</h3><p className="text-sm text-gray-400 mt-2">Game Quantity Selector Placeholder</p></div>;
-const OrderForm = ({ children }: { children: React.ReactNode }) => <div className="space-y-6">{children}</div>;
-
-
-const CS2DuoPage = () => {
-  const game = 'cs2';
-  const service = 'duo';
-
+export default function CS2DuoBoostPage() {
   return (
-    <main>
-      <GameHero game={game} />
-      <GameNavigation game={game} activeService={service} />
+    <div className="service">
+      <div className="service__container">
+        <div className="service__header">
+          <h1 className="service__title">
+            CS2 Duo Boosting
+          </h1>
+          <p className="service__description">
+            Play alongside one of our experienced CS2 boosters. Learn from the best and improve your own gameplay while ranking up. No account sharing required.
+          </p>
+        </div>
 
-      <section className="container mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-3 gap-8 items-start">
-          <div className="lg:col-span-2">
-            <h1 className="text-3xl font-bold mb-6">Configure Your Duo Boost</h1>
+        <div className="service__grid">
+          <section className="service__form-section">
             <OrderForm>
-                {/* Duo could be by rank or by number of games */}
+              <div className="service__form-content">
                 <RankSelector />
                 <DuoGamesSelector />
+              </div>
             </OrderForm>
-          </div>
+          </section>
 
-          <aside className="lg:col-span-1 sticky top-24">
+          <aside className="service__summary">
             <PriceSummary />
           </aside>
         </div>
-      </section>
 
-      <FAQ />
-      <CTA />
-    </main>
+        <section className="service__how-it-works">
+          <div className="service__how-it-works-header">
+            <h2 className="service__how-it-works-title">
+              How CS2 Duo Boosting Works
+            </h2>
+          </div>
+          <div className="service__steps">
+            <div className="service__step">
+              <div className="service__step-number">1</div>
+              <h3 className="service__step-title">Configure Your Order</h3>
+              <p className="service__step-description">Select your CS2 rank and the number of games you want to play.</p>
+            </div>
+            <div className="service__step">
+              <div className="service__step-number">2</div>
+              <h3 className="service__step-title">Schedule & Pay</h3>
+              <p className="service__step-description">Choose a time that works for you and complete the secure payment.</p>
+            </div>
+            <div className="service__step">
+              <div className="service__step-number">3</div>
+              <h3 className="service__step-title">Play with a Pro</h3>
+              <p className="service__step-description">We'll invite you to the lobby at your scheduled time. Let the CS2 climbing begin!</p>
+            </div>
+            <div className="service__step">
+              <div className="service__step-number">4</div>
+              <h3 className="service__step-title">Achieve Your Goal</h3>
+              <p className="service__step-description">Enjoy the wins and the lessons learned along the way.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="service__faq">
+          <div className="service__faq-header">
+            <h2 className="service__faq-title">
+              Duo Boosting FAQ
+            </h2>
+          </div>
+          <div className="service__faq-content">
+            <FAQ />
+          </div>
+        </section>
+
+        <div className="service__cta">
+          <CTA />
+        </div>
+      </div>
+    </div>
   );
-};
-
-export default CS2DuoPage;
+}

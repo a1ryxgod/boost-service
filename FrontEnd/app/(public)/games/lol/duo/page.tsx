@@ -8,13 +8,15 @@ import { CTA } from '@/components/shared/CTA';
 
 export const metadata: Metadata = {
   title: 'League of Legends Duo Boosting | Play with a Pro',
-  description: 'Team up with a professional player to climb the ranks together in League of Legends. A safe and educational experience.',
+  description: 'Climb the ranks in League of Legends by playing alongside a professional booster. The safest way to improve your rank.',
 };
 
+// Placeholder components for demonstration.
 const DuoGamesSelector = () => <div className="p-6 bg-gray-800 rounded-lg"><h3 className="text-lg font-semibold">Number of Games</h3><p className="text-sm text-gray-400 mt-2">Game Quantity Selector Placeholder</p></div>;
 const OrderForm = ({ children }: { children: React.ReactNode }) => <div className="space-y-6">{children}</div>;
 
-const LolDuoPage = () => {
+
+const LoLDuoPage = () => {
   const game = 'lol';
   const service = 'duo';
 
@@ -26,12 +28,14 @@ const LolDuoPage = () => {
       <section className="container mx-auto px-4 py-12">
         <div className="grid lg:grid-cols-3 gap-8 items-start">
           <div className="lg:col-span-2">
-            <h1 className="text-3xl font-bold mb-6">Configure Your Duo Queue Boost</h1>
+            <h1 className="text-3xl font-bold mb-6">Configure Your Duo Boost</h1>
             <OrderForm>
-              <RankSelector />
-              <DuoGamesSelector />
+                {/* Duo could be by rank or by number of games */}
+                <RankSelector />
+                <DuoGamesSelector />
             </OrderForm>
           </div>
+
           <aside className="lg:col-span-1 sticky top-24">
             <PriceSummary />
           </aside>
@@ -44,4 +48,4 @@ const LolDuoPage = () => {
   );
 };
 
-export default LolDuoPage;
+export default LoLDuoPage;

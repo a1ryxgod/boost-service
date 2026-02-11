@@ -1,0 +1,230 @@
+/* ================================
+   GAME OVERVIEW PAGE
+   ================================ */
+
+.game-overview {
+    font-family: 'Inter', sans-serif;
+    color: #EAEAEA;
+}
+
+/* Header */
+.game-overview__header {
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.game-overview__title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@media (min-width: 768px) {
+    .game-overview__title {
+        font-size: 2.5rem;
+    }
+}
+
+.game-overview__description {
+    font-size: 1.125rem;
+    color: #A0A0A0;
+    line-height: 1.6;
+}
+
+/* Services Grid */
+.game-overview__services {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+}
+
+.game-overview__services-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .game-overview__services-title {
+        font-size: 2rem;
+        text-align: left;
+    }
+}
+
+.game-overview__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .game-overview__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .game-overview__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Service Card */
+.game-overview__card {
+    background-color: #1A1A1A;
+    border: 1px solid #282828;
+    border-radius: 12px;
+    padding: 2rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-overview__card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent-color, #4A90E2);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.game-overview__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent-color, #4A90E2);
+}
+
+.game-overview__card:hover::before {
+    transform: scaleX(1);
+}
+
+.game-overview__card-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent-color, #4A90E2) 0%, rgba(74, 144, 226, 0.7) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.game-overview__card-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.game-overview__card:hover .game-overview__card-title {
+    color: var(--accent-color, #4A90E2);
+}
+
+.game-overview__card-description {
+    font-size: 0.9375rem;
+    color: #A0A0A0;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.game-overview__card-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.game-overview__card-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #EAEAEA;
+}
+
+.game-overview__card-feature::before {
+    content: '✓';
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background-color: rgba(74, 144, 226, 0.2);
+    color: var(--accent-color, #4A90E2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.game-overview__card-cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--accent-color, #4A90E2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.game-overview__card:hover .game-overview__card-cta {
+    gap: 0.75rem;
+}
+
+.game-overview__card-cta::after {
+    content: '→';
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.game-overview__card:hover .game-overview__card-cta::after {
+    transform: translateX(4px);
+}
+
+/* Popular Badge */
+.game-overview__card--popular {
+    border-color: var(--accent-color, #4A90E2);
+    box-shadow: 0 0 0 1px var(--accent-color, #4A90E2);
+}
+
+.game-overview__card--popular::before {
+    transform: scaleX(1);
+}
+
+.game-overview__card-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    background: var(--accent-color, #4A90E2);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 20px;
+}

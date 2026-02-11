@@ -1,48 +1,90 @@
 import type { Metadata } from 'next';
-import { GameHero } from '@/components/shared/GameHero';
-import GameNavigation from '@/components/shared/GameNavigation';
+import { OrderForm } from '@/features/order/components/OrderForm';
+import { CoachSelector } from '@/features/boost/components/CoachSelector';
+import { HoursSelector } from '@/features/boost/components/HoursSelector';
 import PriceSummary from '@/components/shared/PriceSummary';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
+import '../ServicePage.css';
 
 export const metadata: Metadata = {
-  title: 'CS2 Coaching | Learn from Professional Players',
-  description: 'Improve your CS2 skills with personalized coaching from top-tier players. One-on-one sessions available.',
+  title: 'CS2 Coaching | Personalized Gameplay Improvement',
+  description: 'Book a session with a professional CS2 coach. Get personalized feedback and live instruction to elevate your game.',
 };
 
-// Placeholder components for demonstration.
-const CoachingSelector = () => <div className="p-6 bg-gray-800 rounded-lg"><h3 className="text-lg font-semibold">Coaching Hours</h3><p className="text-sm text-gray-400 mt-2">Coaching Options Placeholder</p></div>;
-const OrderForm = ({ children }: { children: React.ReactNode }) => <div className="space-y-6">{children}</div>;
-
-
-const CS2CoachingPage = () => {
-  const game = 'cs2';
-  const service = 'coaching';
-
+export default function CS2CoachingPage() {
   return (
-    <main>
-      <GameHero game={game} />
-      <GameNavigation game={game} activeService={service} />
+    <div className="service">
+      <div className="service__container">
+        <div className="service__header">
+          <h1 className="service__title">
+            CS2 Coaching
+          </h1>
+          <p className="service__description">
+            The fastest way to improve is to learn from the best. Book a one-on-one CS2 coaching session with a verified professional player.
+          </p>
+        </div>
 
-      <section className="container mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-3 gap-8 items-start">
-          <div className="lg:col-span-2">
-            <h1 className="text-3xl font-bold mb-6">Book a Coaching Session</h1>
+        <div className="service__grid">
+          <section className="service__form-section">
             <OrderForm>
-              <CoachingSelector />
+              <div className="service__form-content">
+                <CoachSelector />
+                <HoursSelector />
+              </div>
             </OrderForm>
-          </div>
+          </section>
 
-          <aside className="lg:col-span-1 sticky top-24">
+          <aside className="service__summary">
             <PriceSummary />
           </aside>
         </div>
-      </section>
 
-      <FAQ />
-      <CTA />
-    </main>
+        <section className="service__how-it-works">
+          <div className="service__how-it-works-header">
+            <h2 className="service__how-it-works-title">
+              How CS2 Coaching Works
+            </h2>
+          </div>
+          <div className="service__steps">
+            <div className="service__step">
+              <div className="service__step-number">1</div>
+              <h3 className="service__step-title">Choose Your Coach</h3>
+              <p className="service__step-description">Select a CS2 coach and the number of hours for your session.</p>
+            </div>
+            <div className="service__step">
+              <div className="service__step-number">2</div>
+              <h3 className="service__step-title">Schedule & Pay</h3>
+              <p className="service__step-description">Find a time that fits your schedule and complete the payment.</p>
+            </div>
+            <div className="service__step">
+              <div className="service__step-number">3</div>
+              <h3 className="service__step-title">Live Session</h3>
+              <p className="service__step-description">Join your CS2 coach for live gameplay analysis or demo review.</p>
+            </div>
+            <div className="service__step">
+              <div className="service__step-number">4</div>
+              <h3 className="service__step-title">Improve Your Play</h3>
+              <p className="service__step-description">Apply the lessons and see a real difference in your CS2 performance.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="service__faq">
+          <div className="service__faq-header">
+            <h2 className="service__faq-title">
+              Coaching FAQ
+            </h2>
+          </div>
+          <div className="service__faq-content">
+            <FAQ />
+          </div>
+        </section>
+
+        <div className="service__cta">
+          <CTA />
+        </div>
+      </div>
+    </div>
   );
-};
-
-export default CS2CoachingPage;
+}
