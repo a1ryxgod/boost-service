@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import '../AdminDashboard.css';
 
 export const metadata: Metadata = {
   title: 'Admin Dashboard',
@@ -7,20 +8,28 @@ export const metadata: Metadata = {
 
 const AdminDashboardPage = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
-      <div className="grid md:grid-cols-3 gap-8">
-        <div className="p-6 bg-gray-800 rounded-lg">
-          <h2 className="text-xl font-semibold text-gray-400">Active Orders</h2>
-          <p className="text-5xl font-bold mt-2">12</p>
+    <div className="admin-dashboard">
+      <div className="admin-dashboard__header">
+        <h1 className="admin-dashboard__title">Admin Dashboard</h1>
+      </div>
+
+      <div className="admin-dashboard__stats">
+        <div className="admin-dashboard__stat-card">
+          <h2 className="admin-dashboard__stat-label">Active Orders</h2>
+          <p className="admin-dashboard__stat-value">12</p>
+          <p className="admin-dashboard__stat-sublabel">Currently being processed</p>
         </div>
-        <div className="p-6 bg-gray-800 rounded-lg">
-          <h2 className="text-xl font-semibold text-gray-400">Completed Today</h2>
-          <p className="text-5xl font-bold mt-2">5</p>
+
+        <div className="admin-dashboard__stat-card">
+          <h2 className="admin-dashboard__stat-label">Completed Today</h2>
+          <p className="admin-dashboard__stat-value">5</p>
+          <p className="admin-dashboard__stat-sublabel">Successfully finished</p>
         </div>
-        <div className="p-6 bg-gray-800 rounded-lg">
-          <h2 className="text-xl font-semibold text-gray-400">New Users Today</h2>
-          <p className="text-5xl font-bold mt-2">8</p>
+
+        <div className="admin-dashboard__stat-card">
+          <h2 className="admin-dashboard__stat-label">New Users Today</h2>
+          <p className="admin-dashboard__stat-value">8</p>
+          <p className="admin-dashboard__stat-sublabel">Registrations today</p>
         </div>
       </div>
     </div>

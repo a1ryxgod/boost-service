@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import '../../OrdersPage.css';
 
 export const metadata: Metadata = {
   title: 'Order Details',
   description: 'View the details and progress of a specific order.',
 };
-
 
 const OrderDetailsPage = ({ params }: { params: { orderId: string } }) => {
   const order = {
@@ -16,43 +16,123 @@ const OrderDetailsPage = ({ params }: { params: { orderId: string } }) => {
     date: '2024-03-01',
     details: '5 Wins, Duo Queue',
     progress: 60,
+    price: '$49.99',
   };
 
   return (
-    <div>
-      <Link href="/orders" className="text-purple-400 hover:underline mb-8 block">&larr; Back to all orders</Link>
-      
-      <div className="bg-gray-800 p-8 rounded-lg shadow-md">
-        <div className="flex justify-between items-start mb-6">
-          <div>
-            <h1 className="text-3xl font-bold">Order #{order.id}</h1>
-            <p className="text-gray-400 mt-1">{order.game} - {order.service}</p>
-          </div>
-          <span className="px-3 py-1 text-sm font-bold rounded-full bg-yellow-500/20 text-yellow-300">
-            {order.status}
-          </span>
+    <div className="order-detail">
+      <Link href="/orders" className="auth__footer-link" style={{ display: 'inline-block', marginBottom: '2rem' }}>
+        &larr; Back to all orders
+      </Link>
+
+      <div className="order-detail__header">
+        <div className="order-detail__title-section">
+          <h1 className="order-detail__title">Order #{order.id}</h1>
+          <p className="order-detail__subtitle">
+            {order.game} - {order.service}
+          </p>
         </div>
-        
-        <div className="space-y-6">
-          <div>
-            <h2 className="text-lg font-semibold">Details</h2>
-            <p className="text-gray-300">{order.details}</p>
+        <span className="orders__status orders__status--in-progress">
+          {order.status}
+        </span>
+      </div>
+
+      {/* Order Info Card */}
+      <div className="order-detail__card">
+        <h2 className="order-detail__card-title">Order Information</h2>
+        <div className="order-detail__info-grid">
+          <div className="order-detail__info-item">
+            <span className="order-detail__info-label">Game</span>
+            <span className="order-detail__info-value">{order.game}</span>
           </div>
-          <div>
-            <h2 className="text-lg font-semibold">Progress</h2>
-            <div className="w-full bg-gray-700 rounded-full h-4 mt-2">
-              <div className="bg-purple-600 h-4 rounded-full text-center text-xs text-white" style={{ width: `${order.progress}%` }}>
-                {order.progress}%
-              </div>
+          <div className="order-detail__info-item">
+            <span className="order-detail__info-label">Service</span>
+            <span className="order-detail__info-value">{order.service}</span>
+          </div>
+          <div className="order-detail__info-item">
+            <span className="order-detail__info-label">Details</span>
+            <span className="order-detail__info-value">{order.details}</span>
+          </div>
+          <div className="order-detail__info-item">
+            <span className="order-detail__info-label">Total Price</span>
+            <span className="order-detail__info-value">{order.price}</span>
+          </div>
+          <div className="order-detail__info-item">
+            <span className="order-detail__info-label">Order Date</span>
+            <span className="order-detail__info-value">{order.date}</span>
+          </div>
+          <div className="order-detail__info-item">
+            <span className="order-detail__info-label">Status</span>
+            <span className="order-detail__info-value">{order.status}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Progress Tracker */}
+      <div className="order-detail__progress">
+        <h2 className="order-detail__progress-title">Order Progress</h2>
+        <div className="order-detail__progress-steps">
+          <div className="order-detail__progress-step">
+            <div className="order-detail__progress-icon order-detail__progress-icon--completed">
+              ✓
+            </div>
+            <div className="order-detail__progress-content">
+              <h3 className="order-detail__progress-step-title">Order Placed</h3>
+              <p className="order-detail__progress-step-description">
+                Your order has been received and confirmed
+              </p>
             </div>
           </div>
-          {/* Placeholder for booster chat */}
-          <div>
-            <h2 className="text-lg font-semibold">Chat with your Booster</h2>
-            <div className="mt-2 p-4 bg-gray-900 rounded-lg h-40 flex items-center justify-center">
-              <p className="text-gray-500">Chat component placeholder.</p>
+
+          <div className="order-detail__progress-step">
+            <div className="order-detail__progress-icon order-detail__progress-icon--completed">
+              ✓
+            </div>
+            <div className="order-detail__progress-content">
+              <h3 className="order-detail__progress-step-title">Booster Assigned</h3>
+              <p className="order-detail__progress-step-description">
+                A professional booster has been assigned to your order
+              </p>
             </div>
           </div>
+
+          <div className="order-detail__progress-step">
+            <div className="order-detail__progress-icon order-detail__progress-icon--current">
+              {order.progress}%
+            </div>
+            <div className="order-detail__progress-content">
+              <h3 className="order-detail__progress-step-title">In Progress</h3>
+              <p className="order-detail__progress-step-description">
+                Your booster is actively working on your order
+              </p>
+            </div>
+          </div>
+
+          <div className="order-detail__progress-step">
+            <div className="order-detail__progress-icon order-detail__progress-icon--pending">
+              4
+            </div>
+            <div className="order-detail__progress-content">
+              <h3 className="order-detail__progress-step-title">Completed</h3>
+              <p className="order-detail__progress-step-description">
+                Order will be marked as complete when finished
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Chat Section Placeholder */}
+      <div className="order-detail__card">
+        <h2 className="order-detail__card-title">Chat with Your Booster</h2>
+        <div style={{
+          padding: '2rem',
+          backgroundColor: '#111',
+          borderRadius: '8px',
+          textAlign: 'center',
+          color: '#707070'
+        }}>
+          Chat component placeholder
         </div>
       </div>
     </div>

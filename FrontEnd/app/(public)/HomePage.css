@@ -1,0 +1,255 @@
+/* General Page Styles */
+.home {
+    font-family: 'Inter', sans-serif; /* A clean sans-serif font */
+    color: #EAEAEA;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+/* Hero Section */
+.home__hero {
+    text-align: center;
+    padding: 5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.home__hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    max-width: 800px;
+}
+
+.home__hero-subtitle {
+    font-size: 1.25rem;
+    color: #A0A0A0;
+    max-width: 600px;
+}
+
+.home__hero-cta .button--primary {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+}
+
+
+/* Games Section */
+.home__games {
+    max-width: 1280px;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+}
+
+.home__games-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .home__games-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .home__games-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.home__game-card {
+    background-color: #1A1A1A;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #282828;
+}
+
+.home__game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.home__game-card-image {
+    height: 200px;
+    background-color: #282828;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #707070;
+    font-style: italic;
+}
+
+.home__game-card-content {
+    padding: 1rem;
+}
+
+.home__game-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.home__game-card:hover .home__game-card-title {
+    color: #4A90E2; /* Example accent color */
+}
+
+
+/* Why Choose Us Section */
+.home__features {
+    text-align: center;
+    max-width: 1280px;
+    margin: 6rem auto;
+    padding: 0 1.5rem;
+}
+
+.home__features-header {
+    margin-bottom: 3rem;
+}
+
+.home__features-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.home__features-subtitle {
+    font-size: 1.1rem;
+    color: #A0A0A0;
+    margin-top: 0.5rem;
+}
+
+.home__features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.home__feature-item {
+    background-color: rgba(26, 26, 26, 0.7);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #282828;
+}
+
+.home__feature-item-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.home__feature-item-description {
+    color: #A0A0A0;
+    margin-top: 0.5rem;
+}
+
+/* Testimonials Section */
+.home__testimonials {
+    text-align: center;
+    max-width: 800px;
+    margin: 6rem auto;
+    padding: 0 1.5rem;
+}
+
+.home__testimonials-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.home__testimonial-card {
+    background-color: #1A1A1A;
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid #282828;
+}
+
+.home__testimonial-quote {
+    font-size: 1.1rem;
+    color: #C0C0C0;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.home__testimonial-author {
+    margin-top: 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+
+/* Final CTA Section */
+.home__cta {
+    text-align: center;
+    max-width: 1280px;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+}
+
+.home__cta-box {
+    background-color: #3566D1; /* Using LoL Blue as primary CTA */
+    border-radius: 16px;
+    padding: 3rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.home__cta-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.home__cta-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 500px;
+}
+
+.home__cta-button .button--light {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+}
+
+/* Generic Component Styles (Can be moved to a global file later) */
+.button {
+    display: inline-block;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.button--primary {
+    background-color: #3566D1;
+    color: white;
+}
+
+.button--primary:hover {
+    background-color: #4A90E2;
+}
+
+.button--light {
+    background-color: white;
+    color: #3566D1;
+}
+
+.button--light:hover {
+    background-color: #f0f0f0;
+}
+
+.button--lg {
+    padding: 0.9rem 2.2rem;
+    font-size: 1.1rem;
+}

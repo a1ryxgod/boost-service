@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
+import './HomePage.css'; // Import the stylesheet
 
 // Let's define our games here for easy mapping.
 // In a real app, this would come from a CMS or a config file.
@@ -20,90 +19,75 @@ const features = [
 
 export default function HomePage() {
   return (
-    <div className="space-y-24 md:space-y-32">
+    <div className="home">
       {/* Hero Section */}
-      <section className="text-center pt-20 pb-12">
-        <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
-            Reach Your Desired Rank in Your Favorite Games
-          </h1>
-          <p className="mt-6 text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto">
-            Professional and reliable boosting services by experienced players. Select your game and start climbing today.
-          </p>
-          <div className="mt-8">
-            <Link href="/games">
-              <Button size="lg" variant="primary">
-                Browse Games
-              </Button>
-            </Link>
-          </div>
+      <section className="home__hero">
+        <h1 className="home__hero-title">
+          Reach Your Desired Rank in Your Favorite Games
+        </h1>
+        <p className="home__hero-subtitle">
+          Professional and reliable boosting services by experienced players. Select your game and start climbing today.
+        </p>
+        <div className="home__hero-cta">
+          <Link href="/games" className="button button--primary button--lg">
+            Browse Games
+          </Link>
         </div>
       </section>
 
       {/* Games Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="home__games">
+        <div className="home__games-grid">
           {games.map((game) => (
-            <Link href={game.href} key={game.name}>
-                <Card className="overflow-hidden group">
-                    {/* Placeholder for an image */}
-                    <div className="h-48 bg-neutral-800 flex items-center justify-center">
-                        <span className="text-neutral-500 italic">{game.name} Image</span>
-                    </div>
-                    <div className="p-4">
-                        <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
-                            {game.name}
-                        </h3>
-                    </div>
-                </Card>
+            <Link href={game.href} key={game.name} className="home__game-card">
+              <div className="home__game-card-image">
+                  <span>{game.name} Image</span>
+              </div>
+              <div className="home__game-card-content">
+                  <h3 className="home__game-card-title">
+                      {game.name}
+                  </h3>
+              </div>
             </Link>
           ))}
         </div>
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Why Choose Us?</h2>
-          <p className="mt-4 text-lg text-neutral-300">A professional service you can trust.</p>
+      <section className="home__features">
+        <div className="home__features-header">
+          <h2 className="home__features-title">Why Choose Us?</h2>
+          <p className="home__features-subtitle">A professional service you can trust.</p>
         </div>
-        <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="home__features-grid">
             {features.map((feature) => (
-                <div key={feature.name} className="p-6 bg-neutral-800/50 rounded-lg">
-                    <h3 className="text-xl font-semibold text-white">{feature.name}</h3>
-                    <p className="mt-2 text-neutral-400">{feature.description}</p>
+                <div key={feature.name} className="home__feature-item">
+                    <h3 className="home__feature-item-title">{feature.name}</h3>
+                    <p className="home__feature-item-description">{feature.description}</p>
                 </div>
             ))}
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">What Our Customers Say</h2>
-        <div className="mt-8 flow-root">
-            <div className="-m-2">
-                <div className="p-2">
-                    <Card className="p-6">
-                        <blockquote className="text-neutral-300">
-                            <p>"The service was incredibly fast and professional. I was kept updated throughout the entire process. Highly recommend!"</p>
-                        </blockquote>
-                        <figcaption className="mt-4 font-semibold text-white">- Alex_P, CS2 Rank Boost</figcaption>
-                    </Card>
-                </div>
-            </div>
+      <section className="home__testimonials">
+        <h2 className="home__testimonials-title">What Our Customers Say</h2>
+        <div className="home__testimonial-card">
+            <blockquote>
+                <p className="home__testimonial-quote">"The service was incredibly fast and professional. I was kept updated throughout the entire process. Highly recommend!"</p>
+            </blockquote>
+            <figcaption className="home__testimonial-author">- Alex_P, CS2 Rank Boost</figcaption>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-16">
-        <div className="bg-blue-600 rounded-lg p-8 md:p-12">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Ready to Climb the Ranks?</h2>
-            <p className="mt-4 text-lg text-blue-100">Don't let the grind hold you back. Let our experts help you achieve your goals.</p>
-            <div className="mt-8">
-                <Link href="/games">
-                  <Button size="lg" variant="light">
-                    Start Your Order
-                  </Button>
+      <section className="home__cta">
+        <div className="home__cta-box">
+            <h2 className="home__cta-title">Ready to Climb the Ranks?</h2>
+            <p className="home__cta-subtitle">Don't let the grind hold you back. Let our experts help you achieve your goals.</p>
+            <div className="home__cta-button">
+                <Link href="/games" className="button button--light button--lg">
+                  Start Your Order
                 </Link>
             </div>
         </div>

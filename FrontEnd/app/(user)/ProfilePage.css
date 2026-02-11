@@ -1,0 +1,348 @@
+/* Profile/Settings Page Layout */
+.profile {
+    font-family: 'Inter', sans-serif;
+    color: #EAEAEA;
+}
+
+/* Profile Header */
+.profile__header {
+    margin-bottom: 2.5rem;
+}
+
+.profile__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .profile__title {
+        font-size: 2.5rem;
+    }
+}
+
+.profile__subtitle {
+    font-size: 1rem;
+    color: #A0A0A0;
+}
+
+/* Profile Grid */
+.profile__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .profile__grid {
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+/* Profile Card */
+.profile__card {
+    background-color: #1A1A1A;
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid #282828;
+}
+
+.profile__card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #282828;
+}
+
+/* Profile Info */
+.profile__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile__avatar {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    background-color: #3566D1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+.profile__name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.profile__email {
+    font-size: 1rem;
+    color: #A0A0A0;
+    margin-bottom: 1.5rem;
+}
+
+.profile__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #282828;
+}
+
+.profile__stat {
+    text-align: center;
+}
+
+.profile__stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.25rem;
+}
+
+.profile__stat-label {
+    font-size: 0.875rem;
+    color: #A0A0A0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Settings Form */
+.profile__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.profile__form-section {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #282828;
+}
+
+.profile__form-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.profile__form-section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.profile__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.profile__form-group:last-child {
+    margin-bottom: 0;
+}
+
+.profile__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #EAEAEA;
+}
+
+.profile__input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: #EAEAEA;
+    background-color: #111;
+    border: 1px solid #282828;
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile__input:focus {
+    outline: none;
+    border-color: #4A90E2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.profile__input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.profile__textarea {
+    width: 100%;
+    min-height: 8rem;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: #EAEAEA;
+    background-color: #111;
+    border: 1px solid #282828;
+    border-radius: 8px;
+    resize: vertical;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile__textarea:focus {
+    outline: none;
+    border-color: #4A90E2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.profile__select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: #EAEAEA;
+    background-color: #111;
+    border: 1px solid #282828;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.profile__select:focus {
+    outline: none;
+    border-color: #4A90E2;
+}
+
+.profile__help-text {
+    font-size: 0.875rem;
+    color: #707070;
+}
+
+/* Profile Actions */
+.profile__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.profile__button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.profile__button--primary {
+    background-color: #3566D1;
+    color: white;
+}
+
+.profile__button--primary:hover {
+    background-color: #4A90E2;
+    transform: translateY(-2px);
+}
+
+.profile__button--secondary {
+    background-color: transparent;
+    color: #A0A0A0;
+    border: 1px solid #282828;
+}
+
+.profile__button--secondary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.profile__button--danger {
+    background-color: rgba(220, 38, 38, 0.15);
+    color: #FCA5A5;
+    border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+.profile__button--danger:hover {
+    background-color: rgba(220, 38, 38, 0.25);
+}
+
+/* Toggle Switch */
+.profile__toggle-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.profile__toggle-label-container {
+    flex: 1;
+}
+
+.profile__toggle-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.profile__toggle-description {
+    font-size: 0.875rem;
+    color: #A0A0A0;
+}
+
+.profile__toggle {
+    position: relative;
+    width: 3.5rem;
+    height: 2rem;
+    background-color: #282828;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile__toggle--active {
+    background-color: #3566D1;
+}
+
+.profile__toggle-slider {
+    position: absolute;
+    top: 0.25rem;
+    left: 0.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.profile__toggle--active .profile__toggle-slider {
+    transform: translateX(1.5rem);
+}
+
+/* Success/Error Messages */
+.profile__message {
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile__message--success {
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #86EFAC;
+}
+
+.profile__message--error {
+    background-color: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    color: #FCA5A5;
+}
