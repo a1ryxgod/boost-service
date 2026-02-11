@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import { DiscordIcon, TwitterIcon, InstagramIcon, YoutubeIcon } from './SocialIcons';
 import './Footer.css';
 
 export const Footer = () => {
@@ -14,14 +16,41 @@ export const Footer = () => {
               Fast, secure, and reliable boosting by top-tier players.
             </p>
             <div className="footer__social">
-              <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="footer__social-link" aria-label="Discord">
-                𝕏
+              <a
+                href="https://discord.gg/yourserver"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer__social-link"
+                aria-label="Discord"
+              >
+                <DiscordIcon />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="footer__social-link" aria-label="Twitter">
-                𝕏
+              <a
+                href="https://twitter.com/yourhandle"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer__social-link"
+                aria-label="Twitter"
+              >
+                <TwitterIcon />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer__social-link" aria-label="Instagram">
-                IG
+              <a
+                href="https://instagram.com/yourhandle"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer__social-link"
+                aria-label="Instagram"
+              >
+                <InstagramIcon />
+              </a>
+              <a
+                href="https://youtube.com/@yourchannel"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer__social-link"
+                aria-label="YouTube"
+              >
+                <YoutubeIcon />
               </a>
             </div>
           </div>
@@ -31,19 +60,51 @@ export const Footer = () => {
             <h3 className="footer__section-title">Games</h3>
             <nav className="footer__games">
               <Link href="/games/cs2" className="footer__game-link">
-                <span className="footer__game-icon">🎯</span>
+                <span className="footer__game-icon-wrapper">
+                  <Image
+                    src="/images/cs2icon.jpg"
+                    alt="CS2"
+                    width={20}
+                    height={20}
+                    className="footer__game-icon-img"
+                  />
+                </span>
                 Counter-Strike 2
               </Link>
               <Link href="/games/dota2" className="footer__game-link">
-                <span className="footer__game-icon">⚔️</span>
+                <span className="footer__game-icon-wrapper">
+                  <Image
+                    src="/images/dota2icon.png"
+                    alt="Dota 2"
+                    width={20}
+                    height={20}
+                    className="footer__game-icon-img"
+                  />
+                </span>
                 Dota 2
               </Link>
               <Link href="/games/valorant" className="footer__game-link">
-                <span className="footer__game-icon">🔫</span>
+                <span className="footer__game-icon-wrapper">
+                  <Image
+                    src="/images/valoranticon.png"
+                    alt="Valorant"
+                    width={20}
+                    height={20}
+                    className="footer__game-icon-img"
+                  />
+                </span>
                 Valorant
               </Link>
               <Link href="/games/lol" className="footer__game-link">
-                <span className="footer__game-icon">⚡</span>
+                <span className="footer__game-icon-wrapper">
+                  <Image
+                    src="/images/League_of_Legends_icon.png"
+                    alt="League of Legends"
+                    width={20}
+                    height={20}
+                    className="footer__game-icon-img"
+                  />
+                </span>
                 League of Legends
               </Link>
             </nav>

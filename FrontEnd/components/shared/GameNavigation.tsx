@@ -1,12 +1,40 @@
-import React from 'react';
-import Link from 'next/link';
+'use client';
 
-const GameNavigation = ({ game }) => {
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+interface GameNavigationProps {
+  gameSlug: string;
+  className?: string;
+}
+
+const GameNavigation = ({ gameSlug, className }: GameNavigationProps) => {
+  const pathname = usePathname();
+
+  const isActive = (path: string) => {
+    return pathname?.includes(path);
+  };
+
   return (
-    <nav>
-      <Link href={`/games/${game}/boost`}>Boost</Link>
-      <Link href={`/games/${game}/coaching`}>Coaching</Link>
-      <Link href={`/games/${game}/duo`}>Duo</Link>
+    <nav className={className}>
+      <Link
+        href={`/games/${gameSlug}/boost/wins`}
+        className={`game-nav__link ${isActive('/boost') ? 'game-nav__link--active' : ''}`}
+      >
+        Boost
+      </Link>
+      <Link
+        href={`/games/${gameSlug}/coaching`}
+        className={`game-nav__link ${isActive('/coaching') ? 'game-nav__link--active' : ''}`}
+      >
+        Coaching
+      </Link>
+      <Link
+        href={`/games/${gameSlug}/duo`}
+        className={`game-nav__link ${isActive('/duo') ? 'game-nav__link--active' : ''}`}
+      >
+        Duo
+      </Link>
     </nav>
   );
 };

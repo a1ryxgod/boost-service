@@ -1,0 +1,195 @@
+/* ================================
+   GAMES LIST PAGE
+   ================================ */
+
+.games-list {
+    font-family: 'Inter', sans-serif;
+    color: #EAEAEA;
+    padding: 4rem 1.5rem;
+    min-height: 60vh;
+}
+
+.games-list__container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* Header */
+.games-list__header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.games-list__title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff 0%, #A0A0A0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@media (min-width: 768px) {
+    .games-list__title {
+        font-size: 3.5rem;
+    }
+}
+
+.games-list__subtitle {
+    font-size: 1.125rem;
+    color: #A0A0A0;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+    .games-list__subtitle {
+        font-size: 1.25rem;
+    }
+}
+
+/* Grid */
+.games-list__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+@media (min-width: 640px) {
+    .games-list__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .games-list__grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2.5rem;
+    }
+}
+
+/* Game Card */
+.games-list__card {
+    background-color: #1A1A1A;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #282828;
+    display: flex;
+    flex-direction: column;
+}
+
+.games-list__card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(74, 144, 226, 0.3);
+}
+
+.games-list__card-image {
+    position: relative;
+    height: 200px;
+    background-color: #282828;
+    overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+    .games-list__card-image {
+        height: 240px;
+    }
+}
+
+.games-list__card-img {
+    transition: transform 0.5s ease;
+}
+
+.games-list__card:hover .games-list__card-img {
+    transform: scale(1.1);
+}
+
+.games-list__card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+    z-index: 1;
+    transition: background 0.3s ease;
+}
+
+.games-list__card:hover .games-list__card-overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(74, 144, 226, 0.5) 100%
+    );
+}
+
+.games-list__card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.games-list__card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.75rem;
+    transition: color 0.3s ease;
+}
+
+@media (min-width: 1024px) {
+    .games-list__card-title {
+        font-size: 1.375rem;
+    }
+}
+
+.games-list__card:hover .games-list__card-title {
+    color: #4A90E2;
+}
+
+.games-list__card-description {
+    font-size: 0.875rem;
+    color: #A0A0A0;
+    line-height: 1.6;
+    flex-grow: 1;
+    margin-bottom: 1rem;
+}
+
+.games-list__card-cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #4A90E2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.games-list__card:hover .games-list__card-cta {
+    gap: 0.75rem;
+    color: #5BA3F5;
+}
+
+.games-list__card-cta::after {
+    content: '→';
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.games-list__card:hover .games-list__card-cta::after {
+    transform: translateX(4px);
+}

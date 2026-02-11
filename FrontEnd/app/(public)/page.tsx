@@ -1,13 +1,14 @@
 import Link from 'next/link';
-import './HomePage.css'; // Import the stylesheet
+import Image from 'next/image';
+import './HomePage.css';
 
 // Let's define our games here for easy mapping.
 // In a real app, this would come from a CMS or a config file.
 const games = [
-  { name: 'Counter-Strike 2', href: '/games/cs2', img: '/images/cs2-card.jpg' },
-  { name: 'Valorant', href: '/games/valorant', img: '/images/valorant-card.jpg' },
-  { name: 'League of Legends', href: '/games/lol', img: '/images/lol-card.jpg' },
-  { name: 'Dota 2', href: '/games/dota2', img: '/images/dota2-card.jpg' },
+  { name: 'Counter-Strike 2', href: '/games/cs2', img: '/images/CS2image.jpg' },
+  { name: 'Valorant', href: '/games/valorant', img: '/images/Valorantimage.jpg' },
+  { name: 'League of Legends', href: '/games/lol', img: '/images/Lol-image.jpg' },
+  { name: 'Dota 2', href: '/games/dota2', img: '/images/Dota2-image.jpg' },
 ];
 
 const features = [
@@ -37,16 +38,31 @@ export default function HomePage() {
 
       {/* Games Section */}
       <section className="home__games">
+        <div className="home__games-header">
+          <h2 className="home__games-title">Choose Your Game</h2>
+          <p className="home__games-subtitle">
+            We offer professional boosting services for the world's top competitive titles.
+          </p>
+        </div>
         <div className="home__games-grid">
           {games.map((game) => (
             <Link href={game.href} key={game.name} className="home__game-card">
               <div className="home__game-card-image">
-                  <span>{game.name} Image</span>
-              </div>
-              <div className="home__game-card-content">
+                <Image
+                  src={game.img}
+                  alt={game.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="home__game-card-img"
+                  style={{ objectFit: 'cover' }}
+                />
+                <div className="home__game-card-overlay"></div>
+                <div className="home__game-card-content">
                   <h3 className="home__game-card-title">
-                      {game.name}
+                    {game.name}
                   </h3>
+                  <span className="home__game-card-cta">View Services →</span>
+                </div>
               </div>
             </Link>
           ))}
