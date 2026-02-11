@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrdersModule } from './orders/orders.module';
+import { UsersModule } from './users.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { OrdersModule } from './orders/orders.module';
       synchronize: process.env.NODE_ENV !== 'production',
     }),
     OrdersModule,
+    UsersModule,
   ],
 })
 export class AppModule {}
