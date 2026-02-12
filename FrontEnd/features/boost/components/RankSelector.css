@@ -1,0 +1,90 @@
+/* Rank Selector */
+.rank-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.rank-selector__row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    align-items: end;
+}
+
+@media (max-width: 639px) {
+    .rank-selector__row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.rank-selector__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.rank-selector__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #A0A0A0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.rank-selector__dropdown {
+    width: 100%;
+    padding: 0.875rem 2.5rem 0.875rem 1rem;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    color: #EAEAEA;
+    background-color: #111;
+    border: 1px solid #282828;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5' stroke='%23A0A0A0' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px;
+}
+
+.rank-selector__dropdown:focus {
+    outline: none;
+    border-color: var(--accent-color, #4A90E2);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+.rank-selector__dropdown:hover {
+    border-color: #3a3a3a;
+}
+
+.rank-selector__dropdown option {
+    background-color: #1A1A1A;
+    color: #EAEAEA;
+    padding: 0.5rem;
+}
+
+.rank-selector__dropdown optgroup {
+    font-weight: 700;
+    color: var(--accent-color, #4A90E2);
+    font-style: normal;
+}
+
+.rank-selector__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color, #4A90E2);
+    padding: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+@media (max-width: 639px) {
+    .rank-selector__arrow {
+        transform: rotate(90deg);
+        justify-self: center;
+        padding-bottom: 0;
+    }
+}

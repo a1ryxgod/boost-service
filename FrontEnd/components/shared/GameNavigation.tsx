@@ -35,6 +35,14 @@ const GameNavigation = ({ gameSlug, className }: GameNavigationProps) => {
       >
         Duo
       </Link>
+      {gameSlug === 'cs2' && (
+        <Link
+          href={`/games/cs2/boost/faceit`}
+          className={`game-nav__link ${isActive('/faceit') ? 'game-nav__link--active' : ''}`}
+        >
+          FACEIT
+        </Link>
+      )}
     </nav>
   );
 };

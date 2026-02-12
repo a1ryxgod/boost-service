@@ -47,6 +47,14 @@ const services = [
     features: ['Play together', 'Learn from pros', 'Safest method'],
     popular: false,
   },
+  {
+    title: 'FACEIT Boost',
+    href: '/games/cs2/boost/faceit',
+    icon: '🔥',
+    description: 'Boost your FACEIT level from 1 to 10. Professional FACEIT players with high ELO.',
+    features: ['Levels 1-10', 'ELO-based pricing', 'Fast turnaround'],
+    popular: false,
+  },
 ];
 
 export default function CS2OverviewPage() {

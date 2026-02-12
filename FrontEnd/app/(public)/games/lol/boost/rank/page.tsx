@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
-import { OrderForm } from '@/features/order/components/OrderForm';
-import { RankSelector } from '@/features/boost/components/RankSelector';
-import { DuoToggle } from '@/features/boost/components/DuoToggle';
-import PriceSummary from '@/components/shared/PriceSummary';
+import { RankBoostCalculator } from '@/features/boost/components/RankBoostCalculator';
+import { LOL_RANKS } from '@/features/boost/config/lol';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
@@ -26,20 +24,7 @@ export default function LoLRankBoostPage() {
           </p>
         </div>
 
-        <div className="service__grid">
-          <section className="service__form-section">
-            <OrderForm>
-              <div className="service__form-content">
-                <RankSelector />
-                <DuoToggle />
-              </div>
-            </OrderForm>
-          </section>
-
-          <aside className="service__summary">
-            <PriceSummary />
-          </aside>
-        </div>
+        <RankBoostCalculator config={LOL_RANKS} />
 
         <section className="service__how-it-works">
           <div className="service__how-it-works-header">

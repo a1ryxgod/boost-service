@@ -1,0 +1,202 @@
+/* FACEIT ELO Selector */
+.faceit-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.faceit-selector__section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.faceit-selector__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #A0A0A0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Control row: icon + inputs */
+.faceit-selector__elo-control {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Level icon — big colored circle */
+.faceit-selector__level-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.15), transparent 60%),
+                linear-gradient(135deg, var(--level-color), color-mix(in srgb, var(--level-color) 60%, #000));
+    border: 3px solid var(--level-color);
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.25rem;
+    font-family: 'Inter', sans-serif;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3),
+                0 0 20px color-mix(in srgb, var(--level-color) 25%, transparent);
+    transition: all 0.3s ease;
+}
+
+/* Inputs column */
+.faceit-selector__elo-inputs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Range slider */
+.faceit-selector__slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #282828;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+.faceit-selector__slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #FF5500;
+    cursor: pointer;
+    border: 2px solid #1A1A1A;
+    transition: box-shadow 0.2s ease;
+}
+
+.faceit-selector__slider::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 0 4px rgba(255, 85, 0, 0.2);
+}
+
+.faceit-selector__slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #FF5500;
+    cursor: pointer;
+    border: 2px solid #1A1A1A;
+    transition: box-shadow 0.2s ease;
+}
+
+.faceit-selector__slider::-moz-range-thumb:hover {
+    box-shadow: 0 0 0 4px rgba(255, 85, 0, 0.2);
+}
+
+.faceit-selector__slider::-moz-range-track {
+    background: #282828;
+    height: 6px;
+    border-radius: 3px;
+}
+
+/* ELO info row */
+.faceit-selector__elo-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Number input */
+.faceit-selector__input {
+    width: 100px;
+    padding: 0.5rem 0.625rem;
+    background-color: #111;
+    border: 2px solid #282828;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s ease;
+    -moz-appearance: textfield;
+}
+
+.faceit-selector__input::-webkit-outer-spin-button,
+.faceit-selector__input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.faceit-selector__input:focus {
+    border-color: #FF5500;
+}
+
+/* ELO range label */
+.faceit-selector__elo-range {
+    font-size: 0.75rem;
+    color: #666;
+    white-space: nowrap;
+}
+
+/* ── Level Scale Bar ── */
+.faceit-selector__scale {
+    display: flex;
+    justify-content: center;
+    gap: 0.375rem;
+    padding: 0.75rem 0;
+}
+
+.faceit-selector__scale-item {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background-color: #1A1A1A;
+    border: 2px solid #282828;
+    color: #555;
+    font-weight: 700;
+    font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.25s ease;
+}
+
+.faceit-selector__scale-item--active {
+    background-color: color-mix(in srgb, var(--level-color) 18%, #1A1A1A);
+    border-color: var(--level-color);
+    color: var(--level-color);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--level-color) 20%, transparent);
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+    .faceit-selector__level-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+    }
+
+    .faceit-selector__input {
+        width: 80px;
+        font-size: 0.875rem;
+        padding: 0.4rem 0.5rem;
+    }
+
+    .faceit-selector__scale-item {
+        width: 28px;
+        height: 28px;
+        font-size: 0.7rem;
+    }
+
+    .faceit-selector__scale {
+        gap: 0.25rem;
+    }
+}
