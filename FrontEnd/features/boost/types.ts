@@ -23,3 +23,14 @@ export interface FaceitConfig {
   currency: string;
   levels: { level: number; eloMin: number; eloMax: number }[];
 }
+
+export interface MmrConfig {
+  gameCode: string;
+  gameName: string;
+  minMmr: number;
+  maxMmr: number;
+  mmrStep: number;
+  pricePerMmrPoint: number;
+  currency: string;
+  ranks: { name: string; mmrMin: number; mmrMax: number }[];
+}

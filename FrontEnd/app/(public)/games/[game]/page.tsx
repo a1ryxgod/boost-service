@@ -54,14 +54,6 @@ const services = [
     features: ['Personalized lessons', 'VOD reviews', 'Live gameplay analysis'],
     popular: false,
   },
-  {
-    title: 'Duo Boosting',
-    href: '/duo',
-    icon: '👥',
-    description: 'Play alongside a professional booster. Learn while you climb. No account sharing.',
-    features: ['Play together', 'Learn from pros', 'Safest method'],
-    popular: false,
-  },
 ];
 
 export default function GameOverviewPage({ params }: { params: { game: string } }) {

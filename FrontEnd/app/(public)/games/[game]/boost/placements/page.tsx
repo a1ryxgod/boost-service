@@ -1,16 +1,12 @@
 import type { Metadata } from 'next';
-import { OrderForm } from '@/features/order/components/OrderForm';
-import { PlacementGamesSelector } from '@/features/boost/components/PlacementGamesSelector';
-import { DuoToggle } from '@/features/boost/components/DuoToggle';
-import PriceSummary from '@/components/shared/PriceSummary';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
 
 export const metadata: Metadata = {
-  title: 'CS2 Placement Matches Boosting | Start Strong',
+  title: 'Placement Matches Boosting | Start Strong',
   description:
-    'Have your CS2 placement matches played by professionals. Secure a high starting rank for the new season.',
+    'Have your placement matches played by professionals. Secure a high starting rank for the new season.',
 };
 
 export default function PlacementsBoostPage({ params }: { params: { game: string } }) {
@@ -19,7 +15,6 @@ export default function PlacementsBoostPage({ params }: { params: { game: string
   return (
     <div className="service">
       <div className="service__container">
-        {/* Service Header */}
         <div className="service__header">
           <h1 className="service__title">
             {gameName} Placement Matches
@@ -29,22 +24,10 @@ export default function PlacementsBoostPage({ params }: { params: { game: string
           </p>
         </div>
 
-        {/* Service Grid */}
         <div className="service__grid">
-          {/* Order Form Section */}
           <section className="service__form-section">
-            <OrderForm>
-              <div className="service__form-content">
-                <PlacementGamesSelector />
-                <DuoToggle />
-              </div>
-            </OrderForm>
+            <p style={{ color: '#A0A0A0', padding: '2rem' }}>Placement selector coming soon</p>
           </section>
-
-          {/* Price Summary Section */}
-          <aside className="service__summary">
-            <PriceSummary />
-          </aside>
         </div>
 
         {/* How It Works Section */}

@@ -1,0 +1,103 @@
+/* Reviews Section */
+.reviews__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin: 0 0 2rem;
+}
+
+.reviews__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+    .reviews__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Review Card */
+.reviews__card {
+    background-color: #1A1A1A;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s ease;
+}
+
+.reviews__card:hover {
+    border-color: #333;
+}
+
+.reviews__card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+/* Avatar */
+.reviews__card-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #282828;
+    color: #888;
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Info */
+.reviews__card-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.reviews__card-name {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.reviews__card-game {
+    font-size: 0.75rem;
+    color: #666;
+}
+
+/* Stars */
+.reviews__card-stars {
+    display: flex;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.reviews__star {
+    color: #F1C40F;
+}
+
+/* Review text */
+.reviews__card-text {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: #999;
+    margin: 0;
+}
+
+@media (max-width: 480px) {
+    .reviews__title {
+        font-size: 1.5rem;
+    }
+
+    .reviews__card {
+        padding: 1.25rem;
+    }
+}

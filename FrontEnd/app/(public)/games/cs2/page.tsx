@@ -40,14 +40,6 @@ const services = [
     popular: false,
   },
   {
-    title: 'Duo Boosting',
-    href: '/games/cs2/duo',
-    icon: '👥',
-    description: 'Play alongside a professional booster. Learn while you climb. No account sharing.',
-    features: ['Play together', 'Learn from pros', 'Safest method'],
-    popular: false,
-  },
-  {
     title: 'FACEIT Boost',
     href: '/games/cs2/boost/faceit',
     icon: '🔥',

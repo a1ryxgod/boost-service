@@ -1,4 +1,4 @@
-import { GameRankConfig, FaceitConfig } from '../types';
+import { GameRankConfig, FaceitConfig, MmrConfig } from '../types';
 
 const DUO_MULTIPLIER = 1.4;
 
@@ -51,4 +51,37 @@ export function getEloLevel(config: FaceitConfig, elo: number): number {
     }
   }
   return 1;
+}
+
+const DUO_MMR_MULTIPLIER = 1.4;
+
+export function calculateMmrBoostPrice(
+  config: MmrConfig,
+  currentMmr: number,
+  desiredMmr: number,
+  isDuo: boolean = false,
+): number {
+  if (desiredMmr <= currentMmr) return 0;
+
+  const mmrDiff = desiredMmr - currentMmr;
+  let basePrice = mmrDiff * config.pricePerMmrPoint;
+
+  const avgMmr = (currentMmr + desiredMmr) / 2;
+  const tierMultiplier = 1 + (avgMmr / config.maxMmr) * 1.2;
+  basePrice *= tierMultiplier;
+
+  if (isDuo) {
+    basePrice *= DUO_MMR_MULTIPLIER;
+  }
+
+  return Math.round(basePrice * 100) / 100;
+}
+
+export function getMmrRank(config: MmrConfig, mmr: number): string {
+  for (const rank of config.ranks) {
+    if (mmr >= rank.mmrMin && mmr <= rank.mmrMax) {
+      return rank.name;
+    }
+  }
+  return config.ranks[config.ranks.length - 1].name;
 }

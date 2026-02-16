@@ -39,14 +39,6 @@ const services = [
     features: ['Personalized lessons', 'VOD reviews', 'Agent-specific coaching'],
     popular: false,
   },
-  {
-    title: 'Duo Boosting',
-    href: '/games/valorant/duo',
-    icon: '👥',
-    description: 'Play alongside a professional booster. Learn agents and strategies while climbing.',
-    features: ['Play together', 'Learn from pros', 'Safest method'],
-    popular: false,
-  },
 ];
 
 export default function ValorantOverviewPage() {

@@ -15,10 +15,14 @@ const GameNavigation = ({ gameSlug, className }: GameNavigationProps) => {
     return pathname?.includes(path);
   };
 
+  const boostHref = gameSlug === 'dota2'
+    ? `/games/${gameSlug}/boost/rank`
+    : `/games/${gameSlug}/boost/wins`;
+
   return (
     <nav className={className}>
       <Link
-        href={`/games/${gameSlug}/boost/wins`}
+        href={boostHref}
         className={`game-nav__link ${isActive('/boost') ? 'game-nav__link--active' : ''}`}
       >
         Boost
@@ -28,12 +32,6 @@ const GameNavigation = ({ gameSlug, className }: GameNavigationProps) => {
         className={`game-nav__link ${isActive('/coaching') ? 'game-nav__link--active' : ''}`}
       >
         Coaching
-      </Link>
-      <Link
-        href={`/games/${gameSlug}/duo`}
-        className={`game-nav__link ${isActive('/duo') ? 'game-nav__link--active' : ''}`}
-      >
-        Duo
       </Link>
       {gameSlug === 'cs2' && (
         <Link

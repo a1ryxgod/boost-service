@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { RankBoostCalculator } from '@/features/boost/components/RankBoostCalculator';
-import { DOTA2_RANKS } from '@/features/boost/config/dota2';
+import { MmrBoostCalculator } from '@/features/boost/components/MmrBoostCalculator';
+import { DOTA2_MMR } from '@/features/boost/config/dota2';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     'Professional Dota 2 MMR boosting service. Fast delivery, secure process, experienced boosters.',
 };
 
-export default function Dota2RankBoostPage() {
+export default function Dota2MmrBoostPage() {
   return (
     <div className="service">
       <div className="service__container">
@@ -20,11 +20,11 @@ export default function Dota2RankBoostPage() {
             Dota 2 MMR Boosting
           </h1>
           <p className="service__description">
-            Select your current and desired MMR. Our professional Dota 2 players will handle the rest through manual progression.
+            Select your current and desired MMR. Choose party boost to play alongside our professional players.
           </p>
         </div>
 
-        <RankBoostCalculator config={DOTA2_RANKS} />
+        <MmrBoostCalculator config={DOTA2_MMR} />
 
         <section className="service__how-it-works">
           <div className="service__how-it-works-header">
@@ -39,7 +39,7 @@ export default function Dota2RankBoostPage() {
             <div className="service__step">
               <div className="service__step-number">1</div>
               <h3 className="service__step-title">Configure Order</h3>
-              <p className="service__step-description">Choose your current and desired Dota 2 MMR and any extra options.</p>
+              <p className="service__step-description">Choose your current and desired MMR. Enable party boost if you want to play together.</p>
             </div>
             <div className="service__step">
               <div className="service__step-number">2</div>
@@ -49,12 +49,12 @@ export default function Dota2RankBoostPage() {
             <div className="service__step">
               <div className="service__step-number">3</div>
               <h3 className="service__step-title">Booster In Action</h3>
-              <p className="service__step-description">An experienced Dota 2 player starts working on your account progression.</p>
+              <p className="service__step-description">An experienced Dota 2 player starts working on your MMR progression.</p>
             </div>
             <div className="service__step">
               <div className="service__step-number">4</div>
               <h3 className="service__step-title">Enjoy Your MMR</h3>
-              <p className="service__step-description">We'll notify you once the order is complete. Enjoy your new Dota 2 MMR!</p>
+              <p className="service__step-description">We notify you once complete. Enjoy your new Dota 2 rank!</p>
             </div>
           </div>
         </section>

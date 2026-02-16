@@ -8,43 +8,19 @@ const gameData = {
 
 const services = [
   {
-    title: 'Win Boosting',
-    href: '/games/dota2/boost/wins',
-    icon: '🎯',
-    description: 'Order a specific number of wins. Perfect for climbing MMR steadily.',
-    features: ['Choose number of wins', 'Play solo or party', 'Fast completion'],
-    popular: true,
-  },
-  {
     title: 'MMR Boosting',
     href: '/games/dota2/boost/rank',
-    icon: '🏆',
-    description: 'Boost your MMR to the desired target. The most efficient way to climb.',
-    features: ['Herald to Immortal', 'Manual boosting', 'Stream available'],
-    popular: false,
-  },
-  {
-    title: 'Calibration Matches',
-    href: '/games/dota2/boost/calibration',
-    icon: '⚡',
-    description: 'Get the best possible start with professional calibration match boosting.',
-    features: ['All calibration games', 'Highest MMR calibration', 'Quick turnaround'],
-    popular: false,
+    icon: '\u{1F3C6}',
+    description: 'Boost your MMR to the desired target. Solo or party \u2014 choose your preferred method.',
+    features: ['Herald to Immortal', 'Solo or Party boost', 'Manual play only'],
+    popular: true,
   },
   {
     title: 'Coaching',
     href: '/games/dota2/coaching',
-    icon: '🎓',
+    icon: '\u{1F393}',
     description: 'One-on-one coaching sessions with professional Dota 2 players.',
     features: ['Personalized lessons', 'Replay analysis', 'Live gameplay coaching'],
-    popular: false,
-  },
-  {
-    title: 'Party Boosting',
-    href: '/games/dota2/duo',
-    icon: '👥',
-    description: 'Play alongside a professional booster. Learn while you climb MMR.',
-    features: ['Play together', 'Learn from pros', 'Safest method'],
     popular: false,
   },
 ];

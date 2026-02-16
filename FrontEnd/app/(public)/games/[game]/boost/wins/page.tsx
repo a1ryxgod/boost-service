@@ -1,27 +1,20 @@
 import type { Metadata } from 'next';
-import { OrderForm } from '@/features/order/components/OrderForm';
-import { WinsSelector } from '@/features/boost/components/WinsSelector';
-import { DuoToggle } from '@/features/boost/components/DuoToggle';
-import PriceSummary from '@/components/shared/PriceSummary';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
-import '../ServicePage.css';
+import '../../ServicePage.css';
 
-// This metadata would be dynamically generated based on the game parameter
 export const metadata: Metadata = {
-  title: 'CS2 Win Boosting | Fast & Secure Net Wins',
+  title: 'Win Boosting | Fast & Secure Net Wins',
   description:
-    'Purchase CS2 wins, played by professional boosters. Secure, fast, and reliable service to improve your stats.',
+    'Purchase wins, played by professional boosters. Secure, fast, and reliable service to improve your stats.',
 };
 
-// This page component will receive params for the specific game
 export default function WinBoostPage({ params }: { params: { game: string } }) {
-  const gameName = params.game.toUpperCase(); // e.g., CS2
+  const gameName = params.game.toUpperCase();
 
   return (
     <div className="service">
       <div className="service__container">
-        {/* Service Header */}
         <div className="service__header">
           <h1 className="service__title">
             {gameName} Win Boosting
@@ -31,22 +24,10 @@ export default function WinBoostPage({ params }: { params: { game: string } }) {
           </p>
         </div>
 
-        {/* Service Grid */}
         <div className="service__grid">
-          {/* Order Form Section */}
           <section className="service__form-section">
-            <OrderForm>
-              <div className="service__form-content">
-                <WinsSelector />
-                <DuoToggle />
-              </div>
-            </OrderForm>
+            <p style={{ color: '#A0A0A0', padding: '2rem' }}>Win selector coming soon</p>
           </section>
-
-          {/* Price Summary Section */}
-          <aside className="service__summary">
-            <PriceSummary />
-          </aside>
         </div>
 
         {/* How It Works Section */}

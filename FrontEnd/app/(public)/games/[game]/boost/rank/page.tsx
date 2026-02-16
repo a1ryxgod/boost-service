@@ -4,7 +4,7 @@ import { getGameConfig } from '@/features/boost/config/games';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import { notFound } from 'next/navigation';
-import '../ServicePage.css';
+import '../../ServicePage.css';
 
 export const metadata: Metadata = {
   title: 'Rank Boost Service | Fast & Secure',

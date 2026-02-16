@@ -39,14 +39,6 @@ const services = [
     features: ['Personalized lessons', 'VOD reviews', 'Role-specific coaching'],
     popular: false,
   },
-  {
-    title: 'Duo Boosting',
-    href: '/games/lol/duo',
-    icon: '👥',
-    description: 'Play alongside a professional booster. Learn champions and macro while climbing.',
-    features: ['Play together', 'Learn from pros', 'Safest method'],
-    popular: false,
-  },
 ];
 
 export default function LoLOverviewPage() {
