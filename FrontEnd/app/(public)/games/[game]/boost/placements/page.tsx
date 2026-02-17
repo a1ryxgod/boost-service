@@ -9,28 +9,23 @@ export const metadata: Metadata = {
     'Have your placement matches played by professionals. Secure a high starting rank for the new season.',
 };
 
-export default function PlacementsBoostPage({ params }: { params: { game: string } }) {
-  const gameName = params.game.toUpperCase();
-
+export default function PlacementsBoostPage() {
   return (
     <div className="service">
       <div className="service__container">
         <div className="service__header">
           <h1 className="service__title">
-            {gameName} Placement Matches
+            Placement Matches
           </h1>
           <p className="service__description">
             Start the season with a strong advantage. Our pro players will play your placement matches to aim for the best possible start.
           </p>
         </div>
 
-        <div className="service__grid">
-          <section className="service__form-section">
-            <p style={{ color: '#A0A0A0', padding: '2rem' }}>Placement selector coming soon</p>
-          </section>
+        <div className="service__placeholder">
+          <p>Placement matches calculator coming soon...</p>
         </div>
 
-        {/* How It Works Section */}
         <section className="service__how-it-works">
           <div className="service__how-it-works-header">
             <h2 className="service__how-it-works-title">
@@ -61,7 +56,6 @@ export default function PlacementsBoostPage({ params }: { params: { game: string
           </div>
         </section>
 
-        {/* FAQ Section */}
         <section className="service__faq">
           <div className="service__faq-header">
             <h2 className="service__faq-title">
@@ -73,7 +67,6 @@ export default function PlacementsBoostPage({ params }: { params: { game: string
           </div>
         </section>
 
-        {/* CTA Footer */}
         <div className="service__cta">
           <CTA />
         </div>

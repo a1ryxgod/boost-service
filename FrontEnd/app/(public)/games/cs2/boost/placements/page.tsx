@@ -1,8 +1,4 @@
 import type { Metadata } from 'next';
-import { OrderForm } from '@/features/order/components/OrderForm';
-import { PlacementGamesSelector } from '@/features/boost/components/PlacementGamesSelector';
-import { DuoToggle } from '@/features/boost/components/DuoToggle';
-import PriceSummary from '@/components/shared/PriceSummary';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
@@ -26,19 +22,8 @@ export default function CS2PlacementsBoostPage() {
           </p>
         </div>
 
-        <div className="service__grid">
-          <section className="service__form-section">
-            <OrderForm>
-              <div className="service__form-content">
-                <PlacementGamesSelector />
-                <DuoToggle />
-              </div>
-            </OrderForm>
-          </section>
-
-          <aside className="service__summary">
-            <PriceSummary />
-          </aside>
+        <div className="service__placeholder">
+          <p>Placement matches calculator coming soon...</p>
         </div>
 
         <section className="service__how-it-works">

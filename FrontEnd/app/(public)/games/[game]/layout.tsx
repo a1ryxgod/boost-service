@@ -30,8 +30,9 @@ const gameData = {
   },
 };
 
-export default function GameLayout({ children, params }: { children: React.ReactNode, params: { game: string } }) {
-  const game = gameData[params.game];
+export default async function GameLayout({ children, params }: { children: React.ReactNode, params: Promise<{ game: string }> }) {
+  const { game: gameSlug } = await params;
+  const game = gameData[gameSlug];
 
   if (!game) {
     notFound();
@@ -39,13 +40,13 @@ export default function GameLayout({ children, params }: { children: React.React
 
   return (
     <div className={`game-layout ${game.accentColorClass}`}>
-      <GameHero 
+      <GameHero
         game={game}
         className="game-hero"
         style={game.heroStyle}
       />
       <GameNavigation
-        gameSlug={params.game}
+        gameSlug={gameSlug}
         className="game-nav"
       />
       <main className="game-content">

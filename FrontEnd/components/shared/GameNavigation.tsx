@@ -15,7 +15,7 @@ const GameNavigation = ({ gameSlug, className }: GameNavigationProps) => {
     return pathname?.includes(path);
   };
 
-  const boostHref = gameSlug === 'dota2'
+  const boostHref = (gameSlug === 'dota2' || gameSlug === 'valorant')
     ? `/games/${gameSlug}/boost/rank`
     : `/games/${gameSlug}/boost/wins`;
 

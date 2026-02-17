@@ -8,11 +8,11 @@ const gameData = {
 
 const services = [
   {
-    title: 'Win Boosting',
-    href: '/games/cs2/boost/wins',
-    icon: '🎯',
-    description: 'Order a specific number of wins. Perfect for completing missions or climbing steadily.',
-    features: ['Choose number of wins', 'Play solo or duo', 'Fast completion'],
+    title: 'FACEIT Boost',
+    href: '/games/cs2/boost/faceit',
+    icon: '🔥',
+    description: 'Boost your FACEIT level from 1 to 10. Professional FACEIT players with high ELO.',
+    features: ['Levels 1-10', 'ELO-based pricing', 'Fast turnaround'],
     popular: true,
   },
   {
@@ -21,6 +21,14 @@ const services = [
     icon: '🏆',
     description: 'Boost from your current rank to your desired rank. The most efficient way to climb.',
     features: ['Silver to Global', 'Manual boosting', 'Stream available'],
+    popular: false,
+  },
+  {
+    title: 'Win Boosting',
+    href: '/games/cs2/boost/wins',
+    icon: '🎯',
+    description: 'Order a specific number of wins. Perfect for completing missions or climbing steadily.',
+    features: ['Choose number of wins', 'Play solo or duo', 'Fast completion'],
     popular: false,
   },
   {
@@ -37,14 +45,6 @@ const services = [
     icon: '🎓',
     description: 'One-on-one coaching sessions with professional CS2 players to improve your gameplay.',
     features: ['Personalized lessons', 'Demo reviews', 'Live gameplay analysis'],
-    popular: false,
-  },
-  {
-    title: 'FACEIT Boost',
-    href: '/games/cs2/boost/faceit',
-    icon: '🔥',
-    description: 'Boost your FACEIT level from 1 to 10. Professional FACEIT players with high ELO.',
-    features: ['Levels 1-10', 'ELO-based pricing', 'Fast turnaround'],
     popular: false,
   },
 ];

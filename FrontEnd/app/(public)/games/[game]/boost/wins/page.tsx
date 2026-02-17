@@ -9,28 +9,23 @@ export const metadata: Metadata = {
     'Purchase wins, played by professional boosters. Secure, fast, and reliable service to improve your stats.',
 };
 
-export default function WinBoostPage({ params }: { params: { game: string } }) {
-  const gameName = params.game.toUpperCase();
-
+export default function WinBoostPage() {
   return (
     <div className="service">
       <div className="service__container">
         <div className="service__header">
           <h1 className="service__title">
-            {gameName} Win Boosting
+            Win Boosting
           </h1>
           <p className="service__description">
             Select the number of wins you want. Our professionals will secure them for you.
           </p>
         </div>
 
-        <div className="service__grid">
-          <section className="service__form-section">
-            <p style={{ color: '#A0A0A0', padding: '2rem' }}>Win selector coming soon</p>
-          </section>
+        <div className="service__placeholder">
+          <p>Win boosting calculator coming soon...</p>
         </div>
 
-        {/* How It Works Section */}
         <section className="service__how-it-works">
           <div className="service__how-it-works-header">
             <h2 className="service__how-it-works-title">
@@ -61,7 +56,6 @@ export default function WinBoostPage({ params }: { params: { game: string } }) {
           </div>
         </section>
 
-        {/* FAQ Section */}
         <section className="service__faq">
           <div className="service__faq-header">
             <h2 className="service__faq-title">
@@ -73,7 +67,6 @@ export default function WinBoostPage({ params }: { params: { game: string } }) {
           </div>
         </section>
 
-        {/* CTA Footer */}
         <div className="service__cta">
           <CTA />
         </div>

@@ -1,8 +1,4 @@
 import type { Metadata } from 'next';
-import { OrderForm } from '@/features/order/components/OrderForm';
-import { WinsSelector } from '@/features/boost/components/WinsSelector';
-import { DuoToggle } from '@/features/boost/components/DuoToggle';
-import PriceSummary from '@/components/shared/PriceSummary';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
@@ -17,7 +13,6 @@ export default function CS2WinBoostPage() {
   return (
     <div className="service">
       <div className="service__container">
-        {/* Service Header */}
         <div className="service__header">
           <h1 className="service__title">
             CS2 Win Boosting
@@ -27,25 +22,10 @@ export default function CS2WinBoostPage() {
           </p>
         </div>
 
-        {/* Service Grid */}
-        <div className="service__grid">
-          {/* Order Form Section */}
-          <section className="service__form-section">
-            <OrderForm>
-              <div className="service__form-content">
-                <WinsSelector />
-                <DuoToggle />
-              </div>
-            </OrderForm>
-          </section>
-
-          {/* Price Summary Section */}
-          <aside className="service__summary">
-            <PriceSummary />
-          </aside>
+        <div className="service__placeholder">
+          <p>Win boosting calculator coming soon...</p>
         </div>
 
-        {/* How It Works Section */}
         <section className="service__how-it-works">
           <div className="service__how-it-works-header">
             <h2 className="service__how-it-works-title">
@@ -76,7 +56,6 @@ export default function CS2WinBoostPage() {
           </div>
         </section>
 
-        {/* FAQ Section */}
         <section className="service__faq">
           <div className="service__faq-header">
             <h2 className="service__faq-title">
@@ -88,7 +67,6 @@ export default function CS2WinBoostPage() {
           </div>
         </section>
 
-        {/* CTA Footer */}
         <div className="service__cta">
           <CTA />
         </div>

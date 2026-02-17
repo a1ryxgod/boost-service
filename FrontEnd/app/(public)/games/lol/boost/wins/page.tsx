@@ -1,23 +1,18 @@
 import type { Metadata } from 'next';
-import { OrderForm } from '@/features/order/components/OrderForm';
-import { WinsSelector } from '@/features/boost/components/WinsSelector';
-import { DuoToggle } from '@/features/boost/components/DuoToggle';
-import PriceSummary from '@/components/shared/PriceSummary';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
 
 export const metadata: Metadata = {
-  title: 'League of Legends Win Boosting | Fast & Secure Net Wins',
+  title: 'LoL Win Boosting | Fast & Secure Net Wins',
   description:
-    'Purchase LoL wins, played by professional boosters. Secure, fast, and reliable service to improve your stats.',
+    'Purchase League of Legends wins, played by professional boosters. Secure, fast, and reliable service to improve your stats.',
 };
 
 export default function LoLWinBoostPage() {
   return (
     <div className="service">
       <div className="service__container">
-        {/* Service Header */}
         <div className="service__header">
           <h1 className="service__title">
             League of Legends Win Boosting
@@ -27,25 +22,10 @@ export default function LoLWinBoostPage() {
           </p>
         </div>
 
-        {/* Service Grid */}
-        <div className="service__grid">
-          {/* Order Form Section */}
-          <section className="service__form-section">
-            <OrderForm>
-              <div className="service__form-content">
-                <WinsSelector />
-                <DuoToggle />
-              </div>
-            </OrderForm>
-          </section>
-
-          {/* Price Summary Section */}
-          <aside className="service__summary">
-            <PriceSummary />
-          </aside>
+        <div className="service__placeholder">
+          <p>Win boosting calculator coming soon...</p>
         </div>
 
-        {/* How It Works Section */}
         <section className="service__how-it-works">
           <div className="service__how-it-works-header">
             <h2 className="service__how-it-works-title">
@@ -66,7 +46,7 @@ export default function LoLWinBoostPage() {
             <div className="service__step">
               <div className="service__step-number">3</div>
               <h3 className="service__step-title">Booster In Action</h3>
-              <p className="service__step-description">An experienced League of Legends player starts playing on your account.</p>
+              <p className="service__step-description">An experienced LoL player starts playing on your account.</p>
             </div>
             <div className="service__step">
               <div className="service__step-number">4</div>
@@ -76,7 +56,6 @@ export default function LoLWinBoostPage() {
           </div>
         </section>
 
-        {/* FAQ Section */}
         <section className="service__faq">
           <div className="service__faq-header">
             <h2 className="service__faq-title">
@@ -88,7 +67,6 @@ export default function LoLWinBoostPage() {
           </div>
         </section>
 
-        {/* CTA Footer */}
         <div className="service__cta">
           <CTA />
         </div>

@@ -8,20 +8,12 @@ const gameData = {
 
 const services = [
   {
-    title: 'Win Boosting',
-    href: '/games/valorant/boost/wins',
-    icon: '🎯',
-    description: 'Order a specific number of wins. Perfect for completing battle pass missions.',
-    features: ['Choose number of wins', 'Play solo or duo', 'Fast completion'],
-    popular: true,
-  },
-  {
     title: 'Rank Boosting',
     href: '/games/valorant/boost/rank',
     icon: '🏆',
     description: 'Boost from your current rank to your desired rank. Climb the ladder efficiently.',
-    features: ['Iron to Radiant', 'Manual boosting', 'Stream available'],
-    popular: false,
+    features: ['Iron to Radiant', 'Manual boosting', 'Duo Queue available'],
+    popular: true,
   },
   {
     title: 'Placement Matches',

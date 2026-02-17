@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { RankBoostCalculator } from '@/features/boost/components/RankBoostCalculator';
+import { ValorantBoostCalculator } from '@/features/boost/components/ValorantBoostCalculator';
 import { VALORANT_RANKS } from '@/features/boost/config/valorant';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
@@ -24,7 +24,7 @@ export default function ValorantRankBoostPage() {
           </p>
         </div>
 
-        <RankBoostCalculator config={VALORANT_RANKS} />
+        <ValorantBoostCalculator config={VALORANT_RANKS} />
 
         <section className="service__how-it-works">
           <div className="service__how-it-works-header">

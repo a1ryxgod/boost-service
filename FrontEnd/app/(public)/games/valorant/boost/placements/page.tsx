@@ -1,8 +1,4 @@
 import type { Metadata } from 'next';
-import { OrderForm } from '@/features/order/components/OrderForm';
-import { PlacementGamesSelector } from '@/features/boost/components/PlacementGamesSelector';
-import { DuoToggle } from '@/features/boost/components/DuoToggle';
-import PriceSummary from '@/components/shared/PriceSummary';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
@@ -10,7 +6,7 @@ import '../../ServicePage.css';
 export const metadata: Metadata = {
   title: 'Valorant Placement Matches Boosting | Start Strong',
   description:
-    'Have your Valorant placement matches played by professionals. Secure a high starting rank for the new season.',
+    'Have your Valorant placement matches played by professionals. Secure a high starting rank for the new act.',
 };
 
 export default function ValorantPlacementsBoostPage() {
@@ -22,23 +18,12 @@ export default function ValorantPlacementsBoostPage() {
             Valorant Placement Matches
           </h1>
           <p className="service__description">
-            Start the season with a strong advantage. Our pro Valorant players will play your placement matches to aim for the best possible start.
+            Start the act with a strong advantage. Our pro Valorant players will play your placement matches to aim for the best possible start.
           </p>
         </div>
 
-        <div className="service__grid">
-          <section className="service__form-section">
-            <OrderForm>
-              <div className="service__form-content">
-                <PlacementGamesSelector />
-                <DuoToggle />
-              </div>
-            </OrderForm>
-          </section>
-
-          <aside className="service__summary">
-            <PriceSummary />
-          </aside>
+        <div className="service__placeholder">
+          <p>Placement matches calculator coming soon...</p>
         </div>
 
         <section className="service__how-it-works">

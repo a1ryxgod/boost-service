@@ -1,8 +1,4 @@
 import type { Metadata } from 'next';
-import { OrderForm } from '@/features/order/components/OrderForm';
-import { PlacementGamesSelector } from '@/features/boost/components/PlacementGamesSelector';
-import { DuoToggle } from '@/features/boost/components/DuoToggle';
-import PriceSummary from '@/components/shared/PriceSummary';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
@@ -22,23 +18,12 @@ export default function LoLPlacementsBoostPage() {
             League of Legends Placement Matches
           </h1>
           <p className="service__description">
-            Start the season with a strong advantage. Our pro League of Legends players will play your placement matches to aim for the best possible start.
+            Start the season with a strong advantage. Our pro LoL players will play your placement matches to aim for the best possible start.
           </p>
         </div>
 
-        <div className="service__grid">
-          <section className="service__form-section">
-            <OrderForm>
-              <div className="service__form-content">
-                <PlacementGamesSelector />
-                <DuoToggle />
-              </div>
-            </OrderForm>
-          </section>
-
-          <aside className="service__summary">
-            <PriceSummary />
-          </aside>
+        <div className="service__placeholder">
+          <p>Placement matches calculator coming soon...</p>
         </div>
 
         <section className="service__how-it-works">
@@ -51,7 +36,7 @@ export default function LoLPlacementsBoostPage() {
             <div className="service__step">
               <div className="service__step-number">1</div>
               <h3 className="service__step-title">Select Games</h3>
-              <p className="service__step-description">Choose the number of League of Legends placement games you need played.</p>
+              <p className="service__step-description">Choose the number of LoL placement games you need played.</p>
             </div>
             <div className="service__step">
               <div className="service__step-number">2</div>
@@ -61,12 +46,12 @@ export default function LoLPlacementsBoostPage() {
             <div className="service__step">
               <div className="service__step-number">3</div>
               <h3 className="service__step-title">Pro Player Assigned</h3>
-              <p className="service__step-description">A top-tier League of Legends player starts on your placement matches.</p>
+              <p className="service__step-description">A top-tier LoL player starts on your placement matches.</p>
             </div>
             <div className="service__step">
               <div className="service__step-number">4</div>
               <h3 className="service__step-title">Get Your Rank</h3>
-              <p className="service__step-description">We notify you once done. Discover your new starting League of Legends rank!</p>
+              <p className="service__step-description">We notify you once done. Discover your new starting LoL rank!</p>
             </div>
           </div>
         </section>
