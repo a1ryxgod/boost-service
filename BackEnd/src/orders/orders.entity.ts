@@ -7,8 +7,11 @@ import {
   DeleteDateColumn,
   Index,
   ValueTransformer,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { OrderStatus, PaymentStatus, GameCode, ServiceType } from '../enums';
+import { UserEntity } from '../users.entity';
 
 const MoneyTransformer: ValueTransformer = {
   to(value: number): number {
@@ -21,15 +24,24 @@ const MoneyTransformer: ValueTransformer = {
 
 @Entity('orders')
 @Index(['userId', 'status'])
+@Index(['boosterId', 'status'])
 export class OrderEntity {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({ type: 'uuid' })
+  @Column({ type: 'uuid', name: 'user_id' })
   userId!: string;
 
-  @Column({ type: 'uuid', nullable: true, default: null })
+  @ManyToOne(() => UserEntity, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'user_id' })
+  user!: UserEntity;
+
+  @Column({ type: 'uuid', name: 'booster_id', nullable: true, default: null })
   boosterId!: string | null;
+
+  @ManyToOne(() => UserEntity, { nullable: true, onDelete: 'SET NULL' })
+  @JoinColumn({ name: 'booster_id' })
+  booster!: UserEntity | null;
 
   @Column({ type: 'enum', enum: GameCode })
   gameCode!: GameCode;
