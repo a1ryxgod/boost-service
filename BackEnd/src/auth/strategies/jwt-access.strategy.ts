@@ -4,12 +4,22 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserEntity } from '../../users.entity';
+import { UserRole } from '../../enums/index';
 
 export interface JwtPayload {
   sub: string; // user id
   email: string;
   role: string;
   type: 'access' | 'refresh';
+}
+
+export interface JwtRequest extends Request {
+  user: {
+    id: string;
+    email: string;
+    role: UserRole;
+    sessionId: string;
+  };
 }
 
 @Injectable()

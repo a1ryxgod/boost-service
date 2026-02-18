@@ -4,6 +4,12 @@ export enum UserRole {
   ADMIN = 'ADMIN',
 }
 
+export enum UserStatus {
+  ACTIVE = 'ACTIVE',
+  SUSPENDED = 'SUSPENDED',
+  BANNED = 'BANNED',
+}
+
 export enum OrderStatus {
   PENDING = 'PENDING',
   PAID = 'PAID',
