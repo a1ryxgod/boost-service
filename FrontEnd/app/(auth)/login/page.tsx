@@ -1,13 +1,33 @@
-import type { Metadata } from 'next';
+'use client';
+
 import Link from 'next/link';
+import { useState } from 'react';
+import { useAuth } from '../../../context/AuthContext';
 import '../AuthPage.css';
 
-export const metadata: Metadata = {
-  title: 'Login',
-  description: 'Access your account dashboard.',
-};
-
 const LoginPage = () => {
+  const { login } = useAuth();
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: { preventDefault(): void; currentTarget: HTMLFormElement }) => {
+    e.preventDefault();
+    setError('');
+    setIsLoading(true);
+
+    const form = e.currentTarget;
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+    const password = (form.elements.namedItem('password') as HTMLInputElement).value;
+
+    try {
+      await login(email, password);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Login failed. Check your credentials.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="auth">
       <div className="auth__container">
@@ -18,7 +38,13 @@ const LoginPage = () => {
           </p>
         </div>
 
-        <form className="auth__form">
+        <form className="auth__form" onSubmit={handleSubmit}>
+          {error && (
+            <div className="auth__error" role="alert">
+              {error}
+            </div>
+          )}
+
           <div className="auth__form-group">
             <label htmlFor="email" className="auth__label">
               Email Address
@@ -31,6 +57,7 @@ const LoginPage = () => {
               required
               placeholder="you@example.com"
               className="auth__input"
+              disabled={isLoading}
             />
           </div>
 
@@ -46,11 +73,12 @@ const LoginPage = () => {
               required
               placeholder="••••••••"
               className="auth__input"
+              disabled={isLoading}
             />
           </div>
 
-          <button type="submit" className="auth__button">
-            Sign In
+          <button type="submit" className="auth__button" disabled={isLoading}>
+            {isLoading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
 

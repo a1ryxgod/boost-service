@@ -1,13 +1,45 @@
-import type { Metadata } from 'next';
+'use client';
+
 import Link from 'next/link';
+import { useState } from 'react';
+import { useAuth } from '../../../context/AuthContext';
 import '../AuthPage.css';
 
-export const metadata: Metadata = {
-  title: 'Register',
-  description: 'Create a new account.',
-};
-
 const RegisterPage = () => {
+  const { register } = useAuth();
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: { preventDefault(): void; currentTarget: HTMLFormElement }) => {
+    e.preventDefault();
+    setError('');
+
+    const form = e.currentTarget;
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+    const password = (form.elements.namedItem('password') as HTMLInputElement).value;
+    const confirm = (form.elements.namedItem('confirm-password') as HTMLInputElement).value;
+
+    if (password !== confirm) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    if (password.length < 8) {
+      setError('Password must be at least 8 characters');
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      await register(email, password);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Registration failed. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="auth">
       <div className="auth__container">
@@ -18,7 +50,13 @@ const RegisterPage = () => {
           </p>
         </div>
 
-        <form className="auth__form">
+        <form className="auth__form" onSubmit={handleSubmit}>
+          {error && (
+            <div className="auth__error" role="alert">
+              {error}
+            </div>
+          )}
+
           <div className="auth__form-group">
             <label htmlFor="email" className="auth__label">
               Email Address
@@ -31,6 +69,7 @@ const RegisterPage = () => {
               required
               placeholder="you@example.com"
               className="auth__input"
+              disabled={isLoading}
             />
           </div>
 
@@ -43,8 +82,10 @@ const RegisterPage = () => {
               name="password"
               type="password"
               required
-              placeholder="••••••••"
+              minLength={8}
+              placeholder="At least 8 characters"
               className="auth__input"
+              disabled={isLoading}
             />
           </div>
 
@@ -59,11 +100,12 @@ const RegisterPage = () => {
               required
               placeholder="••••••••"
               className="auth__input"
+              disabled={isLoading}
             />
           </div>
 
-          <button type="submit" className="auth__button">
-            Create Account
+          <button type="submit" className="auth__button" disabled={isLoading}>
+            {isLoading ? 'Creating account...' : 'Create Account'}
           </button>
         </form>
 

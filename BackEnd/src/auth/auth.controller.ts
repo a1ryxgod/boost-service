@@ -17,7 +17,7 @@ import { JwtAccessAuthGuard } from './guards/jwt-access-auth.guard';
 import { JwtRefreshAuthGuard } from './guards/jwt-refresh-auth.guard';
 
 @ApiTags('Authentication')
-@Controller('auth')
+@Controller({ path: 'auth', version: '1' })
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 

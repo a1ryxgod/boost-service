@@ -1,42 +1,168 @@
-import type { Metadata } from 'next';
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { use } from 'react';
+import { adminApi } from '../../../../lib/api';
+import { ORDER_STATUS_COLORS, ORDER_STATUS_LABELS, GAME_LABELS } from '../../../../lib/constants';
+import type { User, Order } from '../../../../types';
 
-export const metadata: Metadata = {
-  title: 'View User',
-  description: 'View user details and their order history.',
-};
+const UserDetailsPage = ({ params }: { params: Promise<{ userId: string }> }) => {
+  const { userId } = use(params);
+  const [user, setUser] = useState<User | null>(null);
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [updatingStatus, setUpdatingStatus] = useState(false);
 
-const UserDetailsPage = ({ params }: { params: { userId: string } }) => {
-  const user = {
-    id: params.userId,
-    email: 'user2@example.com',
-    joinDate: '2024-02-20',
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const [userData, ordersData] = await Promise.all([
+          adminApi.getUserById(userId),
+          adminApi.getOrders(),
+        ]);
+        setUser(userData);
+        setOrders(ordersData.filter((o) => o.userId === userId));
+      } catch {
+        // handle error
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    load();
+  }, [userId]);
+
+  const handleStatusChange = async (newStatus: string) => {
+    if (!user) return;
+    setUpdatingStatus(true);
+    try {
+      const updated = await adminApi.updateUserStatus(user.id, newStatus);
+      setUser(updated);
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : 'Failed to update user status');
+    } finally {
+      setUpdatingStatus(false);
+    }
   };
 
-  const userOrders = [
-    { id: 'ORD-002', service: 'Valorant Wins Boost', status: 'In Progress' },
-    { id: 'ORD-005', service: 'CS2 Rank Boost', status: 'Completed' },
-  ];
+  if (isLoading) return <div><p style={{ color: '#707070' }}>Loading...</p></div>;
+  if (!user) return <div><p style={{ color: '#ef4444' }}>User not found</p></div>;
+
+  const STATUS_COLORS: Record<string, string> = {
+    ACTIVE: '#10b981',
+    SUSPENDED: '#f59e0b',
+    BANNED: '#ef4444',
+  };
 
   return (
     <div>
+      <Link href="/admin/users" style={{ color: '#3566D1', display: 'inline-block', marginBottom: '1.5rem' }}>
+        &larr; Back to users
+      </Link>
+
       <h1 className="text-3xl font-bold mb-2">User Details</h1>
-      <p className="text-gray-400 mb-8">Email: {user.email} | Joined: {user.joinDate}</p>
-      
-      <div className="bg-gray-800 p-8 rounded-lg shadow-md">
-        <h2 className="text-xl font-semibold mb-4">Order History for this User</h2>
-        <ul className="divide-y divide-gray-700">
-          {userOrders.map(order => (
-            <li key={order.id} className="py-3 flex justify-between items-center">
-              <Link href={`/admin/orders/${order.id}`} className="font-medium hover:underline">
-                {order.id} - {order.service}
-              </Link>
-              <span className={`px-3 py-1 text-xs font-bold rounded-full ${order.status === 'Completed' ? 'bg-green-500/20 text-green-300' : 'bg-yellow-500/20 text-yellow-300'}`}>
-                {order.status}
-              </span>
-            </li>
-          ))}
-        </ul>
+
+      {/* User Info */}
+      <div className="bg-gray-800 p-6 rounded-lg mb-6">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
+          <div>
+            <p style={{ margin: 0, fontSize: '1.1rem', fontWeight: 600 }}>
+              {user.firstName || user.lastName
+                ? `${user.firstName ?? ''} ${user.lastName ?? ''}`.trim()
+                : user.email}
+            </p>
+            <p style={{ margin: '4px 0', color: '#9ca3af' }}>{user.email}</p>
+            <p style={{ margin: '4px 0', color: '#6b7280', fontSize: '0.85rem' }}>
+              Role: <strong style={{ color: '#eaeaea' }}>{user.role}</strong> &middot;{' '}
+              Joined: {new Date(user.createdAt).toLocaleDateString()}
+            </p>
+            {user.role === 'BOOSTER' && (
+              <p style={{ margin: '4px 0', color: '#6b7280', fontSize: '0.85rem' }}>
+                Rating: {user.boosterRating ? `★ ${Number(user.boosterRating).toFixed(1)}` : 'No rating'} &middot;{' '}
+                Completed orders: {user.completedOrdersCount}
+              </p>
+            )}
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <span
+              style={{
+                backgroundColor: STATUS_COLORS[user.status] + '22',
+                color: STATUS_COLORS[user.status],
+                padding: '4px 12px',
+                borderRadius: '9999px',
+                fontWeight: 600,
+                fontSize: '0.9rem',
+              }}
+            >
+              {user.status}
+            </span>
+            <select
+              disabled={updatingStatus}
+              defaultValue=""
+              onChange={(e) => { if (e.target.value) handleStatusChange(e.target.value); }}
+              style={{
+                backgroundColor: '#1e1e2e',
+                color: '#eaeaea',
+                border: '1px solid #333',
+                borderRadius: '8px',
+                padding: '6px 12px',
+                cursor: 'pointer',
+              }}
+            >
+              <option value="" disabled>Change status</option>
+              {['ACTIVE', 'SUSPENDED', 'BANNED']
+                .filter((s) => s !== user.status)
+                .map((s) => (
+                  <option key={s} value={s}>{s}</option>
+                ))}
+            </select>
+          </div>
+        </div>
+      </div>
+
+      {/* Orders */}
+      <div className="bg-gray-800 p-6 rounded-lg">
+        <h2 className="text-xl font-semibold mb-4">Orders ({orders.length})</h2>
+        {orders.length === 0 ? (
+          <p style={{ color: '#707070' }}>No orders found for this user.</p>
+        ) : (
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            {orders.map((order) => (
+              <li
+                key={order.id}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  padding: '12px 0',
+                  borderBottom: '1px solid #1e1e1e',
+                }}
+              >
+                <div>
+                  <Link
+                    href={`/admin/orders/${order.id}`}
+                    style={{ fontWeight: 500, color: '#eaeaea' }}
+                  >
+                    {GAME_LABELS[order.gameCode] ?? order.gameCode} — {order.currentRank} → {order.targetRank}
+                  </Link>
+                  <p style={{ margin: '2px 0 0', fontSize: '0.8rem', color: '#707070' }}>
+                    {new Date(order.createdAt).toLocaleDateString()} &middot; ${Number(order.price).toFixed(2)}
+                  </p>
+                </div>
+                <span
+                  style={{
+                    color: ORDER_STATUS_COLORS[order.status],
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                  }}
+                >
+                  {ORDER_STATUS_LABELS[order.status]}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
