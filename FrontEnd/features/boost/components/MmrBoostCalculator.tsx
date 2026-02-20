@@ -6,6 +6,7 @@ import { DuoToggle } from './DuoToggle';
 import { OrderForm } from '@/features/order/components/OrderForm';
 import PriceSummary from '@/components/shared/PriceSummary';
 import { MmrConfig } from '../types';
+import { GameCode, ServiceType } from '@/types';
 
 interface MmrBoostCalculatorProps {
   config: MmrConfig;
@@ -14,10 +15,20 @@ interface MmrBoostCalculatorProps {
 export function MmrBoostCalculator({ config }: MmrBoostCalculatorProps) {
   const calculator = useMmrCalculator(config);
 
+  const orderData = {
+    gameCode: config.gameCode as GameCode,
+    serviceType: ServiceType.RANK_BOOST,
+    currentRank: calculator.currentRank,
+    targetRank: calculator.desiredRank,
+    isDuo: calculator.isDuo,
+    price: calculator.price,
+    currency: config.currency,
+  };
+
   return (
     <div className="service__grid">
       <section className="service__form-section">
-        <OrderForm>
+        <OrderForm orderData={orderData}>
           <div className="service__form-content">
             <MmrSelector
               config={config}

@@ -6,6 +6,7 @@ import { DuoToggle } from './DuoToggle';
 import { OrderForm } from '@/features/order/components/OrderForm';
 import PriceSummary from '@/components/shared/PriceSummary';
 import { GameRankConfig } from '../types';
+import { GameCode, ServiceType } from '@/types';
 
 interface ValorantBoostCalculatorProps {
   config: GameRankConfig;
@@ -14,10 +15,23 @@ interface ValorantBoostCalculatorProps {
 export function ValorantBoostCalculator({ config }: ValorantBoostCalculatorProps) {
   const calculator = useBoostCalculator(config);
 
+  const currentRank = config.ranks[calculator.currentRankIndex];
+  const desiredRank = config.ranks[calculator.desiredRankIndex];
+
+  const orderData = {
+    gameCode: config.gameCode as GameCode,
+    serviceType: ServiceType.RANK_BOOST,
+    currentRank: currentRank?.name ?? '',
+    targetRank: desiredRank?.name ?? '',
+    isDuo: calculator.isDuo,
+    price: calculator.price,
+    currency: config.currency,
+  };
+
   return (
     <div className="service__grid">
       <section className="service__form-section">
-        <OrderForm>
+        <OrderForm orderData={orderData}>
           <div className="service__form-content">
             <RankSelector
               config={config}

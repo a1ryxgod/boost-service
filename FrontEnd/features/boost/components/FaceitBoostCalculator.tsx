@@ -5,6 +5,7 @@ import { FaceitEloSelector } from './FaceitLevelSelector';
 import { OrderForm } from '@/features/order/components/OrderForm';
 import PriceSummary from '@/components/shared/PriceSummary';
 import { FaceitConfig } from '../types';
+import { GameCode, ServiceType } from '@/types';
 
 interface FaceitBoostCalculatorProps {
   config: FaceitConfig;
@@ -13,10 +14,19 @@ interface FaceitBoostCalculatorProps {
 export function FaceitBoostCalculator({ config }: FaceitBoostCalculatorProps) {
   const calculator = useFaceitCalculator(config);
 
+  const orderData = {
+    gameCode: GameCode.CS2,
+    serviceType: ServiceType.RANK_BOOST,
+    currentRank: `FACEIT Level ${calculator.currentLevel}`,
+    targetRank: `FACEIT Level ${calculator.desiredLevel}`,
+    price: calculator.price,
+    currency: config.currency,
+  };
+
   return (
     <div className="service__grid">
       <section className="service__form-section">
-        <OrderForm>
+        <OrderForm orderData={orderData}>
           <div className="service__form-content">
             <FaceitEloSelector
               config={config}
