@@ -168,6 +168,7 @@ export interface CreateOrderRequest {
   numberOfGames?: number;
   isDuo?: boolean;
   price: number;
+  currency: string;
   notes?: string;
 }
 

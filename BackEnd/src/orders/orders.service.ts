@@ -44,6 +44,7 @@ export class OrdersService {
       serviceType: dto.serviceType,
       currentRank: dto.currentRank,
       targetRank: dto.targetRank,
+      isDuo: dto.isDuo ?? false,
       price: dto.price,
       currency: dto.currency,
       notes: dto.notes ?? null,

@@ -61,6 +61,9 @@ export class OrderEntity {
   @Column({ type: 'varchar', length: 64 })
   targetRank!: string;
 
+  @Column({ type: 'boolean', name: 'is_duo', default: false })
+  isDuo!: boolean;
+
   @Column({ type: 'numeric', precision: 10, scale: 2, transformer: MoneyTransformer })
   price!: number;
 

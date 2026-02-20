@@ -1,4 +1,4 @@
-import { IsEnum, IsString, IsNumber, IsPositive, IsOptional, MinLength, MaxLength, Length } from 'class-validator';
+import { IsEnum, IsString, IsNumber, IsPositive, IsOptional, IsBoolean, MinLength, MaxLength, Length } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { GameCode, ServiceType } from '../../enums';
 
@@ -59,6 +59,11 @@ export class CreateOrderDto {
   @IsString()
   @Length(3, 3)
   currency!: string;
+
+  @ApiPropertyOptional({ description: 'Duo queue boost', example: false })
+  @IsOptional()
+  @IsBoolean()
+  isDuo?: boolean;
 
   @ApiPropertyOptional({
     description: 'Additional notes or special requests',
