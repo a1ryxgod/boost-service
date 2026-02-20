@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ordersApi } from '../../../lib/api';
 import { ORDER_STATUS_LABELS, ORDER_STATUS_COLORS, GAME_LABELS } from '../../../lib/constants';
 import type { Order } from '../../../types';
-import './OrdersPage.css';
+import '../OrdersPage.css';
 
 const OrdersPage = () => {
   const [orders, setOrders] = useState<Order[]>([]);

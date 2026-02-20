@@ -141,6 +141,23 @@
     transform: translateY(0);
 }
 
+.header__button--ghost {
+    background: none;
+    border: none;
+    color: #707070;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.2s;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+}
+
+.header__button--ghost:hover {
+    color: #ef4444;
+}
+
 /* Mobile Menu Toggle */
 .header__menu-toggle {
     display: flex;

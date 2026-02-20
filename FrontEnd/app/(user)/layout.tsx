@@ -1,4 +1,5 @@
-// import { DashboardSidebar } from '@/components/shared/DashboardSidebar';
+import { DashboardSidebar } from '../../components/shared/DashboardSidebar';
+import './Dashboard.css';
 
 export default function UserDashboardLayout({
   children,
@@ -6,11 +7,9 @@ export default function UserDashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen">
-      {/* <DashboardSidebar /> */}
-      <div className="flex-1 p-8">
-        {children}
-      </div>
+    <div className="dashboard">
+      <DashboardSidebar />
+      <main className="dashboard__main">{children}</main>
     </div>
   );
 }

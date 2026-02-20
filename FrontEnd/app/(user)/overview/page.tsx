@@ -6,6 +6,47 @@ import { useAuth } from '../../../context/AuthContext';
 import { profileApi, ordersApi } from '../../../lib/api';
 import { ORDER_STATUS_LABELS, ORDER_STATUS_COLORS, GAME_LABELS } from '../../../lib/constants';
 import type { UserStats, Order } from '../../../types';
+import './OverviewPage.css';
+
+const QUICK_SERVICES = [
+  {
+    game: 'CS2',
+    color: '#F5A623',
+    gradient: 'linear-gradient(135deg, #1a1200 0%, #2a1e00 100%)',
+    services: [
+      { label: 'Rank Boost', href: '/games/cs2/boost/rank' },
+      { label: 'FACEIT Boost', href: '/games/cs2/boost/faceit' },
+      { label: 'Wins Boost', href: '/games/cs2/boost/wins' },
+    ],
+  },
+  {
+    game: 'Valorant',
+    color: '#FF4655',
+    gradient: 'linear-gradient(135deg, #1a0508 0%, #2a080e 100%)',
+    services: [
+      { label: 'Rank Boost', href: '/games/valorant/boost/rank' },
+      { label: 'Wins Boost', href: '/games/valorant/boost/wins' },
+    ],
+  },
+  {
+    game: 'Dota 2',
+    color: '#C23C2A',
+    gradient: 'linear-gradient(135deg, #180a08 0%, #261208 100%)',
+    services: [
+      { label: 'Rank Boost', href: '/games/dota2/boost/rank' },
+      { label: 'Wins Boost', href: '/games/dota2/boost/wins' },
+    ],
+  },
+  {
+    game: 'LoL',
+    color: '#C89B3C',
+    gradient: 'linear-gradient(135deg, #181200 0%, #261c00 100%)',
+    services: [
+      { label: 'Rank Boost', href: '/games/lol/boost/rank' },
+      { label: 'Wins Boost', href: '/games/lol/boost/wins' },
+    ],
+  },
+];
 
 const OverviewPage = () => {
   const { user } = useAuth();
@@ -23,7 +64,7 @@ const OverviewPage = () => {
         setStats(statsData);
         setRecentOrders(ordersData.orders);
       } catch {
-        // silently fail — user sees empty state
+        // silently fail
       } finally {
         setIsLoading(false);
       }
@@ -31,133 +72,172 @@ const OverviewPage = () => {
     load();
   }, []);
 
-  if (isLoading) {
-    return (
-      <div>
-        <h1 className="text-3xl font-bold mb-8">Overview</h1>
-        <p style={{ color: '#707070' }}>Loading...</p>
-      </div>
-    );
-  }
-
   const activeOrder = recentOrders.find(
     (o) => o.status === 'IN_PROGRESS' || o.status === 'ASSIGNED',
   );
 
-  return (
-    <div>
-      <h1 className="text-3xl font-bold mb-8">
-        Welcome back{user?.firstName ? `, ${user.firstName}` : ''}!
-      </h1>
+  const greeting = () => {
+    const h = new Date().getHours();
+    if (h < 12) return 'Good morning';
+    if (h < 18) return 'Good afternoon';
+    return 'Good evening';
+  };
 
-      {/* Stats Grid */}
-      <div className="grid md:grid-cols-3 gap-6 mb-8">
-        <div className="p-6 bg-gray-800 rounded-lg">
-          <h2 className="text-sm text-gray-400 uppercase tracking-wide">Total Orders</h2>
-          <p className="text-4xl font-bold mt-2">{stats?.totalOrders ?? 0}</p>
-        </div>
-        <div className="p-6 bg-gray-800 rounded-lg">
-          <h2 className="text-sm text-gray-400 uppercase tracking-wide">Completed</h2>
-          <p className="text-4xl font-bold mt-2 text-green-400">{stats?.completedOrders ?? 0}</p>
-        </div>
-        <div className="p-6 bg-gray-800 rounded-lg">
-          <h2 className="text-sm text-gray-400 uppercase tracking-wide">Total Spent</h2>
-          <p className="text-4xl font-bold mt-2">${(stats?.totalSpent ?? 0).toFixed(2)}</p>
+  return (
+    <div className="overview">
+      {/* Header */}
+      <div className="overview__header">
+        <div>
+          <h1 className="overview__title">
+            {greeting()}{user?.firstName ? `, ${user.firstName}` : ''}
+          </h1>
+          <p className="overview__subtitle">Here&apos;s what&apos;s happening with your account.</p>
         </div>
       </div>
 
-      {/* Active Order */}
-      {activeOrder && (
-        <div className="p-6 bg-gray-800 rounded-lg mb-8">
-          <div className="flex justify-between items-start mb-4">
+      {/* Stats */}
+      <div className="overview__stats">
+        <div className="overview__stat-card">
+          <span className="overview__stat-label">Total Orders</span>
+          <span className="overview__stat-value">
+            {isLoading ? '—' : (stats?.totalOrders ?? 0)}
+          </span>
+        </div>
+        <div className="overview__stat-card overview__stat-card--green">
+          <span className="overview__stat-label">Completed</span>
+          <span className="overview__stat-value overview__stat-value--green">
+            {isLoading ? '—' : (stats?.completedOrders ?? 0)}
+          </span>
+        </div>
+        <div className="overview__stat-card">
+          <span className="overview__stat-label">Total Spent</span>
+          <span className="overview__stat-value">
+            ${isLoading ? '—' : (stats?.totalSpent ?? 0).toFixed(2)}
+          </span>
+        </div>
+      </div>
+
+      {/* Active order banner */}
+      {!isLoading && activeOrder && (
+        <Link href={`/orders/${activeOrder.id}`} className="overview__active-order">
+          <div className="overview__active-order-pulse" />
+          <div className="overview__active-order-body">
             <div>
-              <h2 className="text-xl font-semibold">Active Order</h2>
-              <p className="text-gray-400 mt-1">
+              <p className="overview__active-order-label">Active Order</p>
+              <p className="overview__active-order-title">
                 {GAME_LABELS[activeOrder.gameCode] ?? activeOrder.gameCode} &mdash;{' '}
                 {activeOrder.currentRank} → {activeOrder.targetRank}
               </p>
             </div>
             <span
-              style={{
-                backgroundColor: ORDER_STATUS_COLORS[activeOrder.status] + '22',
-                color: ORDER_STATUS_COLORS[activeOrder.status],
-                padding: '4px 12px',
-                borderRadius: '9999px',
-                fontSize: '0.85rem',
-                fontWeight: 600,
-              }}
+              className="overview__active-order-status"
+              style={{ color: ORDER_STATUS_COLORS[activeOrder.status] }}
             >
-              {ORDER_STATUS_LABELS[activeOrder.status]}
+              {ORDER_STATUS_LABELS[activeOrder.status]} →
             </span>
           </div>
-          <Link href={`/orders/${activeOrder.id}`} style={{ color: '#3566D1', fontSize: '0.9rem' }}>
-            View details →
-          </Link>
-        </div>
+        </Link>
       )}
 
-      {/* Recent Orders */}
-      <div className="p-6 bg-gray-800 rounded-lg mb-8">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold">Recent Orders</h2>
-          <Link href="/orders" style={{ color: '#3566D1', fontSize: '0.9rem' }}>
-            View all
-          </Link>
+      {/* Two-column row: Recent orders + Account */}
+      <div className="overview__row">
+        {/* Recent orders */}
+        <div className="overview__card overview__card--wide">
+          <div className="overview__card-header">
+            <h2 className="overview__card-title">Recent Orders</h2>
+            <Link href="/orders" className="overview__card-link">View all</Link>
+          </div>
+
+          {isLoading && <p className="overview__muted">Loading...</p>}
+
+          {!isLoading && recentOrders.length === 0 && (
+            <div className="overview__empty">
+              <p>No orders yet — place your first boost below.</p>
+            </div>
+          )}
+
+          {!isLoading && recentOrders.length > 0 && (
+            <ul className="overview__order-list">
+              {recentOrders.map((order) => (
+                <li key={order.id}>
+                  <Link href={`/orders/${order.id}`} className="overview__order-row">
+                    <div>
+                      <p className="overview__order-name">
+                        {GAME_LABELS[order.gameCode] ?? order.gameCode} &mdash; {order.currentRank} → {order.targetRank}
+                      </p>
+                      <p className="overview__order-meta">
+                        {new Date(order.createdAt).toLocaleDateString()} &middot; ${Number(order.price).toFixed(2)}
+                      </p>
+                    </div>
+                    <span
+                      className="overview__badge"
+                      style={{
+                        background: ORDER_STATUS_COLORS[order.status] + '22',
+                        color: ORDER_STATUS_COLORS[order.status],
+                      }}
+                    >
+                      {ORDER_STATUS_LABELS[order.status]}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
-        {recentOrders.length === 0 ? (
-          <p style={{ color: '#707070' }}>
-            No orders yet.{' '}
-            <Link href="/games" style={{ color: '#3566D1' }}>
-              Browse services →
-            </Link>
+        {/* Account card */}
+        <div className="overview__card">
+          <h2 className="overview__card-title">Account</h2>
+          <div className="overview__account-avatar">
+            {user?.firstName
+              ? `${user.firstName[0]}${user.lastName?.[0] ?? ''}`.toUpperCase()
+              : user?.email?.[0]?.toUpperCase() ?? 'U'}
+          </div>
+          <p className="overview__account-name">
+            {user?.firstName
+              ? `${user.firstName} ${user.lastName ?? ''}`.trim()
+              : 'No name set'}
           </p>
-        ) : (
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-            {recentOrders.map((order) => (
-              <li
-                key={order.id}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  padding: '12px 0',
-                  borderBottom: '1px solid #1e1e1e',
-                }}
-              >
-                <div>
-                  <p style={{ margin: 0, fontWeight: 500 }}>
-                    {GAME_LABELS[order.gameCode] ?? order.gameCode} — {order.currentRank} → {order.targetRank}
-                  </p>
-                  <p style={{ margin: 0, fontSize: '0.8rem', color: '#707070' }}>
-                    {new Date(order.createdAt).toLocaleDateString()} &middot; ${Number(order.price).toFixed(2)}
-                  </p>
-                </div>
-                <span
-                  style={{
-                    color: ORDER_STATUS_COLORS[order.status],
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                  }}
-                >
-                  {ORDER_STATUS_LABELS[order.status]}
-                </span>
-              </li>
-            ))}
-          </ul>
-        )}
+          <p className="overview__account-email">{user?.email}</p>
+          <p className="overview__account-since">
+            Member since{' '}
+            {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : '—'}
+          </p>
+          <Link href="/settings" className="overview__settings-link">
+            Manage settings →
+          </Link>
+        </div>
       </div>
 
-      {/* Account Info */}
-      <div className="p-6 bg-gray-800 rounded-lg">
-        <h2 className="text-xl font-semibold mb-3">Account</h2>
-        <p style={{ color: '#9ca3af', margin: 0 }}>{user?.email}</p>
-        <p style={{ color: '#6b7280', fontSize: '0.85rem', margin: '4px 0 0' }}>
-          Member since {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : '—'}
-        </p>
-        <Link href="/settings" style={{ display: 'inline-block', marginTop: '12px', color: '#3566D1', fontSize: '0.9rem' }}>
-          Manage settings →
-        </Link>
+      {/* Quick Boost section */}
+      <div className="overview__section">
+        <h2 className="overview__section-title">Order Boost</h2>
+        <p className="overview__section-sub">Select a service to get started instantly</p>
+
+        <div className="overview__games-grid">
+          {QUICK_SERVICES.map((g) => (
+            <div
+              key={g.game}
+              className="overview__game-card"
+              style={{ background: g.gradient, borderColor: g.color + '33' }}
+            >
+              <div className="overview__game-header">
+                <span className="overview__game-dot" style={{ backgroundColor: g.color }} />
+                <span className="overview__game-name" style={{ color: g.color }}>
+                  {g.game}
+                </span>
+              </div>
+              <div className="overview__game-services">
+                {g.services.map((s) => (
+                  <Link key={s.href} href={s.href} className="overview__game-service-btn">
+                    {s.label}
+                    <span className="overview__game-arrow">→</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 import { profileApi } from '../../../lib/api';
-import './ProfilePage.css';
+import '../ProfilePage.css';
 
 const SettingsPage = () => {
   const { user, refreshUser } = useAuth();

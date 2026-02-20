@@ -1,0 +1,21 @@
+/* Dashboard Shell */
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: #0d0d0d;
+}
+
+.dashboard__main {
+  flex: 1;
+  padding: 2.5rem 2.5rem;
+  min-width: 0;
+  overflow: auto;
+  font-family: 'Inter', sans-serif;
+  color: #EAEAEA;
+}
+
+@media (max-width: 768px) {
+  .dashboard__main {
+    padding: 5rem 1.25rem 2rem;
+  }
+}

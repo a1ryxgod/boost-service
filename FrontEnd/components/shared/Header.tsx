@@ -2,10 +2,12 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
 import './Header.css';
 
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, isLoading, logout } = useAuth();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -37,12 +39,30 @@ export const Header = () => {
         </nav>
 
         <div className="header__actions">
-          <Link href="/login" className="header__button header__button--secondary">
-            Login
-          </Link>
-          <Link href="/register" className="header__button header__button--primary">
-            Sign Up
-          </Link>
+          {!isLoading && (
+            user ? (
+              <>
+                <Link href="/overview" className="header__button header__button--secondary">
+                  Dashboard
+                </Link>
+                <button
+                  onClick={() => logout()}
+                  className="header__button header__button--ghost"
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link href="/login" className="header__button header__button--secondary">
+                  Login
+                </Link>
+                <Link href="/register" className="header__button header__button--primary">
+                  Sign Up
+                </Link>
+              </>
+            )
+          )}
 
           <button
             className={`header__menu-toggle ${isMobileMenuOpen ? 'header__menu-toggle--active' : ''}`}
