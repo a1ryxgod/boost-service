@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { adminApi } from '../../../lib/api';
 import type { AdminStats } from '../../../types';
-import './AdminDashboard.css';
+import '../AdminDashboard.css';
 
 const AdminDashboardPage = () => {
   const [stats, setStats] = useState<AdminStats | null>(null);

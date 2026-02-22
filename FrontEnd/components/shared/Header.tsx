@@ -42,7 +42,10 @@ export const Header = () => {
           {!isLoading && (
             user ? (
               <>
-                <Link href="/overview" className="header__button header__button--secondary">
+                <Link
+                  href={user.role === 'ADMIN' ? '/admin/dashboard' : '/overview'}
+                  className="header__button header__button--secondary"
+                >
                   Dashboard
                 </Link>
                 <button

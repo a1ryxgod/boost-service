@@ -66,12 +66,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [],
   );
 
+  const getRedirectPath = (role: string) =>
+    role === 'ADMIN' ? '/admin/dashboard' : '/overview';
+
   const login = useCallback(
     async (email: string, password: string) => {
       const data = await authApi.login(email, password);
       persistSession(data);
       setUser(data.user);
-      router.push('/overview');
+      router.push(getRedirectPath(data.user.role));
     },
     [router, persistSession],
   );
@@ -81,7 +84,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const data = await authApi.register(email, password);
       persistSession(data);
       setUser(data.user);
-      router.push('/overview');
+      router.push(getRedirectPath(data.user.role));
     },
     [router, persistSession],
   );

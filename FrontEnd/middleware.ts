@@ -35,7 +35,8 @@ export function middleware(request: NextRequest) {
   const isAuthRoute = AUTH_ROUTES.some((route) => pathname === route);
 
   if (isAuthRoute && isAuthenticated) {
-    return NextResponse.redirect(new URL('/overview', request.url));
+    const dest = isAdmin ? '/admin/dashboard' : '/overview';
+    return NextResponse.redirect(new URL(dest, request.url));
   }
 
   // Block non-admin from admin routes
@@ -52,9 +53,13 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    '/overview',
     '/overview/:path*',
+    '/orders',
     '/orders/:path*',
+    '/settings',
     '/settings/:path*',
+    '/admin',
     '/admin/:path*',
     '/login',
     '/register',

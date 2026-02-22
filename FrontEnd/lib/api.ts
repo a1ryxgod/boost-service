@@ -98,7 +98,12 @@ export async function apiRequest<T>(
       headers['Authorization'] = `Bearer ${newToken}`;
       response = await fetch(`${API_BASE_URL}${path}`, { ...init, headers });
     } else {
-      if (typeof window !== 'undefined') window.location.href = '/login';
+      if (typeof window !== 'undefined') {
+        // Clear auth cookies so middleware doesn't redirect back to protected routes
+        document.cookie = 'boost_access_token=; path=/; max-age=0';
+        document.cookie = 'boost_user_role=; path=/; max-age=0';
+        window.location.href = '/login';
+      }
       throw new Error('Session expired. Please log in again.');
     }
   }
@@ -214,6 +219,12 @@ export const adminApi = {
       body: { status },
     }),
 
+  updateUserRole: (id: string, role: string) =>
+    apiRequest<User>(`/admin/users/${id}/role`, {
+      method: 'PATCH',
+      body: { role },
+    }),
+
   getOrders: (status?: string) => {
     const params = new URLSearchParams();
     if (status) params.set('status', status);
@@ -222,9 +233,8 @@ export const adminApi = {
   },
 
   updateOrderStatus: (id: string, status: string) =>
-    apiRequest<Order>(`/admin/orders/${id}/status`, {
+    apiRequest<Order>(`/admin/orders/${id}/status?status=${status}`, {
       method: 'PATCH',
-      body: { status },
     }),
 
   assignOrder: (orderId: string, boosterId: string) =>

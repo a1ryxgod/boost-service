@@ -1,18 +1,16 @@
-// import { DashboardSidebar } from '@/components/shared/DashboardSidebar';
+import { AdminSidebar } from '../../components/shared/AdminSidebar';
 
-// This layout would likely use a shared Sidebar component but with
-// admin-specific navigation items.
 export default function AdminDashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen bg-neutral-950">
-      {/* <DashboardSidebar isAdmin={true} /> */}
-      <div className="flex-1 p-8">
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#0a0a0a' }}>
+      <AdminSidebar />
+      <main style={{ flex: 1, padding: '2rem', overflowY: 'auto' }}>
         {children}
-      </div>
+      </main>
     </div>
   );
 }

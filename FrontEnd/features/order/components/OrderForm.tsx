@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ordersApi } from '../../../lib/api';
-import { TokenStorage } from '../../../lib/tokens';
+import { useAuth } from '../../../context/AuthContext';
 import type { CreateOrderRequest } from '../../../types';
 
 interface OrderFormProps {
@@ -14,18 +14,17 @@ interface OrderFormProps {
 
 const OrderForm = ({ orderData, priceSummary, children }: OrderFormProps) => {
   const router = useRouter();
+  const { isAuthenticated } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleOrder = async () => {
-    setError('');
-
-    // Check authentication
-    if (!TokenStorage.getAccess()) {
+    if (!isAuthenticated) {
       router.push('/login');
       return;
     }
 
+    setError('');
     setIsLoading(true);
     try {
       const order = await ordersApi.create(orderData);
@@ -40,6 +39,12 @@ const OrderForm = ({ orderData, priceSummary, children }: OrderFormProps) => {
       setIsLoading(false);
     }
   };
+
+  const buttonLabel = isLoading
+    ? 'Placing Order...'
+    : isAuthenticated
+      ? 'Place Order'
+      : 'Войти для заказа';
 
   return (
     <div>
@@ -68,7 +73,7 @@ const OrderForm = ({ orderData, priceSummary, children }: OrderFormProps) => {
           transition: 'background-color 0.2s',
         }}
       >
-        {isLoading ? 'Placing Order...' : 'Place Order'}
+        {buttonLabel}
       </button>
     </div>
   );

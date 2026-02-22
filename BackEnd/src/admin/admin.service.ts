@@ -88,6 +88,28 @@ export class AdminService {
   }
 
   /**
+   * Update user role (promote/demote)
+   */
+  async updateUserRole(
+    userId: string,
+    role: UserRole,
+  ): Promise<UserEntity> {
+    const user = await this.usersRepository.findOne({
+      where: { id: userId },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    user.role = role;
+    const updatedUser = await this.usersRepository.save(user);
+
+    delete (updatedUser as any).password;
+    return updatedUser;
+  }
+
+  /**
    * Get all orders with filtering
    */
   async getOrders(

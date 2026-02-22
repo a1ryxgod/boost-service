@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { adminApi } from '../../../lib/api';
 import { ORDER_STATUS_LABELS, ORDER_STATUS_COLORS, GAME_LABELS } from '../../../lib/constants';
 import type { Order } from '../../../types';
-import './AdminDashboard.css';
+import '../AdminDashboard.css';
+
 
 const AdminOrdersPage = () => {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -14,6 +15,7 @@ const AdminOrdersPage = () => {
   const [updatingId, setUpdatingId] = useState<string | null>(null);
 
   useEffect(() => {
+    setIsLoading(true);
     adminApi.getOrders(filter || undefined)
       .then(setOrders)
       .catch(() => null)
@@ -46,6 +48,7 @@ const AdminOrdersPage = () => {
             borderRadius: '8px',
             padding: '8px 12px',
             cursor: 'pointer',
+            outline: 'none',
           }}
         >
           <option value="">All Statuses</option>
@@ -65,7 +68,7 @@ const AdminOrdersPage = () => {
                 <tr>
                   <th>ID</th>
                   <th>User</th>
-                  <th>Game / Service</th>
+                  <th>Game / Ranks</th>
                   <th>Price</th>
                   <th>Status</th>
                   <th>Date</th>
@@ -74,77 +77,75 @@ const AdminOrdersPage = () => {
               </thead>
               <tbody>
                 {orders.length === 0 && (
-                  <tr><td colSpan={7} style={{ textAlign: 'center', color: '#707070', padding: '2rem' }}>No orders found</td></tr>
+                  <tr>
+                    <td colSpan={7} style={{ textAlign: 'center', color: '#707070', padding: '2rem' }}>
+                      No orders found
+                    </td>
+                  </tr>
                 )}
-                {orders.map((order) => (
-                  <tr key={order.id}>
-                    <td className="admin-dashboard__table-cell--bold">
-                      {order.id.slice(0, 8).toUpperCase()}
-                    </td>
-                    <td className="admin-dashboard__table-cell--muted">
-                      {order.user?.email ?? order.userId}
-                    </td>
-                    <td>
-                      {GAME_LABELS[order.gameCode] ?? order.gameCode}<br />
-                      <span style={{ fontSize: '0.8rem', color: '#707070' }}>
-                        {order.currentRank} → {order.targetRank}
-                      </span>
-                    </td>
-                    <td>${Number(order.price).toFixed(2)}</td>
-                    <td>
-                      <span
-                        style={{
-                          backgroundColor: ORDER_STATUS_COLORS[order.status] + '22',
-                          color: ORDER_STATUS_COLORS[order.status],
-                          padding: '3px 10px',
-                          borderRadius: '9999px',
-                          fontSize: '0.8rem',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {ORDER_STATUS_LABELS[order.status]}
-                      </span>
-                    </td>
-                    <td className="admin-dashboard__table-cell--muted">
-                      {new Date(order.createdAt).toLocaleDateString()}
-                    </td>
-                    <td>
-                      <div className="admin-dashboard__actions">
+                {orders.map((order) => {
+                  const statusColor = ORDER_STATUS_COLORS[order.status] ?? '#707070';
+                  const isUpdating = updatingId === order.id;
+
+                  return (
+                    <tr key={order.id} style={{ opacity: isUpdating ? 0.6 : 1, transition: 'opacity 0.2s' }}>
+                      <td className="admin-dashboard__table-cell--bold">
+                        {order.id.slice(0, 8).toUpperCase()}
+                      </td>
+                      <td className="admin-dashboard__table-cell--muted">
+                        {order.user?.email ?? order.userId}
+                      </td>
+                      <td>
+                        {GAME_LABELS[order.gameCode] ?? order.gameCode}
+                        <br />
+                        <span style={{ fontSize: '0.8rem', color: '#707070' }}>
+                          {order.currentRank} → {order.targetRank}
+                        </span>
+                      </td>
+                      <td>${Number(order.price).toFixed(2)}</td>
+
+                      {/* Status — controlled select */}
+                      <td>
+                        <select
+                          value={order.status}
+                          disabled={isUpdating}
+                          onChange={(e) => {
+                            if (e.target.value !== order.status) {
+                              handleStatusChange(order.id, e.target.value);
+                            }
+                          }}
+                          style={{
+                            backgroundColor: statusColor + '18',
+                            color: statusColor,
+                            border: `1px solid ${statusColor}44`,
+                            borderRadius: '9999px',
+                            padding: '3px 10px',
+                            fontSize: '0.75rem',
+                            fontWeight: 600,
+                            cursor: isUpdating ? 'default' : 'pointer',
+                            outline: 'none',
+                          }}
+                        >
+                          {Object.entries(ORDER_STATUS_LABELS).map(([key, label]) => (
+                            <option key={key} value={key}>{label}</option>
+                          ))}
+                        </select>
+                      </td>
+
+                      <td className="admin-dashboard__table-cell--muted">
+                        {new Date(order.createdAt).toLocaleDateString()}
+                      </td>
+                      <td>
                         <Link
                           href={`/admin/orders/${order.id}`}
                           className="admin-dashboard__action-button admin-dashboard__action-button--primary"
                         >
                           View
                         </Link>
-                        {order.status !== 'COMPLETED' && order.status !== 'CANCELLED' && (
-                          <select
-                            disabled={updatingId === order.id}
-                            defaultValue=""
-                            onChange={(e) => {
-                              if (e.target.value) handleStatusChange(order.id, e.target.value);
-                            }}
-                            style={{
-                              backgroundColor: '#1e1e2e',
-                              color: '#eaeaea',
-                              border: '1px solid #333',
-                              borderRadius: '6px',
-                              padding: '4px 8px',
-                              fontSize: '0.8rem',
-                              cursor: 'pointer',
-                            }}
-                          >
-                            <option value="" disabled>Change status</option>
-                            {Object.entries(ORDER_STATUS_LABELS).map(([key, label]) => (
-                              key !== order.status && (
-                                <option key={key} value={key}>{label}</option>
-                              )
-                            ))}
-                          </select>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

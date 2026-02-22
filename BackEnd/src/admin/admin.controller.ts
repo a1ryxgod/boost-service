@@ -22,6 +22,7 @@ import {
 } from '@nestjs/swagger';
 import { AdminService } from './admin.service';
 import { UpdateUserStatusDto } from './dto/update-user-status.dto';
+import { UpdateUserRoleDto } from './dto/update-user-role.dto';
 import { AssignOrderDto } from './dto/assign-order.dto';
 import { UserEntity } from '../users.entity';
 import { OrderEntity } from '../orders/orders.entity';
@@ -95,6 +96,22 @@ export class AdminController {
     @Body() dto: UpdateUserStatusDto,
   ): Promise<UserEntity> {
     return this.adminService.updateUserStatus(id, dto.status);
+  }
+
+  @Patch('users/:id/role')
+  @ApiOperation({ summary: 'Update user role (promote/demote)' })
+  @ApiParam({ name: 'id', description: 'User ID' })
+  @ApiResponse({
+    status: 200,
+    description: 'User role updated successfully',
+    type: UserEntity,
+  })
+  @ApiResponse({ status: 404, description: 'User not found' })
+  async updateUserRole(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() dto: UpdateUserRoleDto,
+  ): Promise<UserEntity> {
+    return this.adminService.updateUserRole(id, dto.role);
   }
 
   @Get('orders')

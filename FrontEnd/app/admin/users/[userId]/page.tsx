@@ -13,6 +13,7 @@ const UserDetailsPage = ({ params }: { params: Promise<{ userId: string }> }) =>
   const [orders, setOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [updatingStatus, setUpdatingStatus] = useState(false);
+  const [updatingRole, setUpdatingRole] = useState(false);
 
   useEffect(() => {
     const load = async () => {
@@ -42,6 +43,19 @@ const UserDetailsPage = ({ params }: { params: Promise<{ userId: string }> }) =>
       alert(err instanceof Error ? err.message : 'Failed to update user status');
     } finally {
       setUpdatingStatus(false);
+    }
+  };
+
+  const handleRoleChange = async (newRole: string) => {
+    if (!user) return;
+    setUpdatingRole(true);
+    try {
+      const updated = await adminApi.updateUserRole(user.id, newRole);
+      setUser(updated);
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : 'Failed to update user role');
+    } finally {
+      setUpdatingRole(false);
     }
   };
 
@@ -115,6 +129,26 @@ const UserDetailsPage = ({ params }: { params: Promise<{ userId: string }> }) =>
                 .filter((s) => s !== user.status)
                 .map((s) => (
                   <option key={s} value={s}>{s}</option>
+                ))}
+            </select>
+            <select
+              disabled={updatingRole}
+              defaultValue=""
+              onChange={(e) => { if (e.target.value) handleRoleChange(e.target.value); }}
+              style={{
+                backgroundColor: '#1e1e2e',
+                color: '#eaeaea',
+                border: '1px solid #3566D1',
+                borderRadius: '8px',
+                padding: '6px 12px',
+                cursor: 'pointer',
+              }}
+            >
+              <option value="" disabled>Change role</option>
+              {['CUSTOMER', 'BOOSTER', 'ADMIN']
+                .filter((r) => r !== user.role)
+                .map((r) => (
+                  <option key={r} value={r}>{r}</option>
                 ))}
             </select>
           </div>
