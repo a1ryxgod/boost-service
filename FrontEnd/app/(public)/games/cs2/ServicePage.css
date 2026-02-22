@@ -1,4 +1,4 @@
-/* Service Page Layout */
+/* Service Page Layout — Purple Dark Theme */
 .service {
     font-family: 'Inter', sans-serif;
     color: #EAEAEA;
@@ -11,10 +11,7 @@
     padding: 0 1.5rem;
 }
 
-/* Service Header */
-.service__header {
-    margin-bottom: 2rem;
-}
+.service__header { margin-bottom: 2rem; }
 
 .service__title {
     font-size: 2.5rem;
@@ -23,19 +20,14 @@
     margin-bottom: 0.75rem;
 }
 
-@media (min-width: 640px) {
-    .service__title {
-        font-size: 3rem;
-    }
-}
+@media (min-width: 640px) { .service__title { font-size: 3rem; } }
 
 .service__description {
     font-size: 1.125rem;
-    color: #A0A0A0;
+    color: #888899;
     line-height: 1.6;
 }
 
-/* Service Grid Layout */
 .service__grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -43,30 +35,19 @@
 }
 
 @media (min-width: 1024px) {
-    .service__grid {
-        grid-template-columns: 2fr 1fr;
-        gap: 3rem;
-    }
+    .service__grid { grid-template-columns: 2fr 1fr; gap: 3rem; }
 }
 
-/* Service Form Section */
 .service__form-section {
-    background-color: #1A1A1A;
-    border-radius: 12px;
+    background: linear-gradient(145deg, #111118, #0d0d16);
+    border-radius: 14px;
     padding: 2rem;
-    border: 1px solid #282828;
+    border: 1px solid #1e1e2e;
 }
 
-.service__form-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
+.service__form-content { display: flex; flex-direction: column; gap: 2rem; }
 
-/* Service Selector */
-.service__selector {
-    margin-bottom: 1.5rem;
-}
+.service__selector { margin-bottom: 1.5rem; }
 
 .service__selector-label {
     display: block;
@@ -78,21 +59,17 @@
 
 .service__selector-description {
     font-size: 0.875rem;
-    color: #A0A0A0;
+    color: #888899;
     margin-bottom: 1rem;
 }
 
-/* Price Summary Sidebar */
-.service__summary {
-    position: sticky;
-    top: 2rem;
-}
+.service__summary { position: sticky; top: 2rem; }
 
 .service__summary-card {
-    background-color: #1A1A1A;
-    border-radius: 12px;
+    background: linear-gradient(145deg, #111118, #0d0d16);
+    border-radius: 14px;
     padding: 2rem;
-    border: 1px solid #282828;
+    border: 1px solid #1e1e2e;
 }
 
 .service__summary-title {
@@ -108,7 +85,7 @@
     gap: 1rem;
     margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid #282828;
+    border-bottom: 1px solid #1e1e2e;
 }
 
 .service__summary-item {
@@ -118,14 +95,8 @@
     font-size: 0.95rem;
 }
 
-.service__summary-item-label {
-    color: #A0A0A0;
-}
-
-.service__summary-item-value {
-    color: #fff;
-    font-weight: 600;
-}
+.service__summary-item-label { color: #888899; }
+.service__summary-item-value { color: #fff; font-weight: 600; }
 
 .service__summary-total {
     display: flex;
@@ -134,57 +105,41 @@
     margin-bottom: 1.5rem;
 }
 
-.service__summary-total-label {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #fff;
-}
+.service__summary-total-label { font-size: 1.25rem; font-weight: 700; color: #fff; }
 
 .service__summary-total-value {
     font-size: 1.75rem;
     font-weight: 700;
-    color: var(--accent-color, #4A90E2);
+    color: var(--accent-color, #A78BFA);
 }
 
 .service__summary-button {
     width: 100%;
     padding: 0.875rem 1.5rem;
-    background-color: var(--accent-color, #3566D1);
+    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 18px rgba(124, 58, 237, 0.4);
 }
 
 .service__summary-button:hover {
     transform: translateY(-2px);
-    filter: brightness(1.1);
+    filter: brightness(1.12);
+    box-shadow: 0 6px 26px rgba(124, 58, 237, 0.55);
 }
 
-/* How It Works Section */
-.service__how-it-works {
-    margin-top: 5rem;
-}
+.service__how-it-works { margin-top: 5rem; }
 
-.service__how-it-works-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
+.service__how-it-works-header { text-align: center; margin-bottom: 3rem; }
 
-.service__how-it-works-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #fff;
-}
+.service__how-it-works-title { font-size: 2.5rem; font-weight: 700; color: #fff; }
 
-@media (min-width: 640px) {
-    .service__how-it-works-title {
-        font-size: 3rem;
-    }
-}
+@media (min-width: 640px) { .service__how-it-works-title { font-size: 3rem; } }
 
 .service__steps {
     display: grid;
@@ -194,17 +149,8 @@
     margin: 0 auto;
 }
 
-@media (min-width: 640px) {
-    .service__steps {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .service__steps {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
+@media (min-width: 640px) { .service__steps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .service__steps { grid-template-columns: repeat(4, 1fr); } }
 
 .service__step {
     display: flex;
@@ -212,10 +158,13 @@
     align-items: center;
     text-align: center;
     padding: 1.5rem;
-    background-color: rgba(26, 26, 26, 0.5);
-    border-radius: 12px;
-    border: 1px solid #282828;
+    background: linear-gradient(145deg, #111118, #0d0d16);
+    border-radius: 14px;
+    border: 1px solid #1e1e2e;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
+
+.service__step:hover { transform: translateY(-4px); border-color: rgba(124, 58, 237, 0.35); }
 
 .service__step-number {
     display: flex;
@@ -224,53 +173,19 @@
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
-    background-color: var(--accent-color, #3566D1);
+    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
     color: white;
     font-weight: 700;
     font-size: 1.25rem;
+    box-shadow: 0 2px 14px rgba(124, 58, 237, 0.45);
 }
 
-.service__step-title {
-    margin-top: 1.25rem;
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #fff;
-}
+.service__step-title { margin-top: 1.25rem; font-size: 1.125rem; font-weight: 600; color: #fff; }
+.service__step-description { margin-top: 0.5rem; font-size: 0.875rem; color: #888899; }
 
-.service__step-description {
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    color: #A0A0A0;
-}
-
-/* FAQ Section */
-.service__faq {
-    margin-top: 5rem;
-}
-
-.service__faq-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.service__faq-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #fff;
-}
-
-@media (min-width: 640px) {
-    .service__faq-title {
-        font-size: 3rem;
-    }
-}
-
-.service__faq-content {
-    max-width: 1024px;
-    margin: 0 auto;
-}
-
-/* CTA Footer */
-.service__cta {
-    margin-top: 5rem;
-}
+.service__faq { margin-top: 5rem; }
+.service__faq-header { text-align: center; margin-bottom: 3rem; }
+.service__faq-title { font-size: 2.5rem; font-weight: 700; color: #fff; }
+@media (min-width: 640px) { .service__faq-title { font-size: 3rem; } }
+.service__faq-content { max-width: 1024px; margin: 0 auto; }
+.service__cta { margin-top: 5rem; }

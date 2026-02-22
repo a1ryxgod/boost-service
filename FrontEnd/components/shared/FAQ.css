@@ -1,4 +1,4 @@
-/* FAQ Accordion */
+/* FAQ Accordion — Purple Dark Theme */
 .faq {
     display: flex;
     flex-direction: column;
@@ -7,11 +7,11 @@
 
 /* Item */
 .faq__item {
-    border-bottom: 1px solid #1e1e1e;
+    border-bottom: 1px solid #1e1e2e;
 }
 
 .faq__item:first-child {
-    border-top: 1px solid #1e1e1e;
+    border-top: 1px solid #1e1e2e;
 }
 
 /* Question button */
@@ -34,7 +34,7 @@
 }
 
 .faq__question:hover {
-    color: var(--accent-color, #4A90E2);
+    color: var(--accent-color, #A78BFA);
 }
 
 .faq__question-text {
@@ -45,13 +45,13 @@
 /* Chevron icon */
 .faq__icon {
     flex-shrink: 0;
-    color: #555;
+    color: #55556A;
     transition: transform 0.3s ease, color 0.2s ease;
 }
 
 .faq__item--open .faq__icon {
     transform: rotate(180deg);
-    color: var(--accent-color, #4A90E2);
+    color: var(--accent-color, #7C3AED);
 }
 
 /* Answer wrapper — animated height */
@@ -69,7 +69,7 @@
     overflow: hidden;
     font-size: 0.9375rem;
     line-height: 1.7;
-    color: #999;
+    color: #888899;
     margin: 0;
     padding: 0;
     transition: padding 0.3s ease;

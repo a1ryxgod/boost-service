@@ -1,4 +1,4 @@
-/* Reviews Section */
+/* Reviews Section — Purple Dark Theme */
 .reviews__title {
     font-size: 2rem;
     font-weight: 700;
@@ -21,15 +21,16 @@
 
 /* Review Card */
 .reviews__card {
-    background-color: #1A1A1A;
-    border: 1px solid #1e1e1e;
-    border-radius: 12px;
+    background: linear-gradient(145deg, #111118, #0d0d16);
+    border: 1px solid #1e1e2e;
+    border-radius: 14px;
     padding: 1.5rem;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .reviews__card:hover {
-    border-color: #333;
+    border-color: rgba(124, 58, 237, 0.3);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.12);
 }
 
 .reviews__card-header {
@@ -44,8 +45,9 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #282828;
-    color: #888;
+    background: rgba(124, 58, 237, 0.2);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    color: #A78BFA;
     font-weight: 700;
     font-size: 1rem;
     display: flex;
@@ -70,7 +72,8 @@
 
 .reviews__card-game {
     font-size: 0.75rem;
-    color: #666;
+    color: #7C3AED;
+    font-weight: 600;
 }
 
 /* Stars */
@@ -81,15 +84,16 @@
 }
 
 .reviews__star {
-    color: #F1C40F;
+    color: #F59E0B;
 }
 
 /* Review text */
 .reviews__card-text {
     font-size: 0.875rem;
     line-height: 1.65;
-    color: #999;
+    color: #888899;
     margin: 0;
+    font-style: italic;
 }
 
 @media (max-width: 480px) {

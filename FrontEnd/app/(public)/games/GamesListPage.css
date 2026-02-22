@@ -1,5 +1,5 @@
 /* ================================
-   GAMES LIST PAGE
+   GAMES LIST PAGE — PURPLE DARK THEME
    ================================ */
 
 .games-list {
@@ -23,9 +23,8 @@
 .games-list__title {
     font-size: 2.5rem;
     font-weight: 800;
-    color: #fff;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, #fff 0%, #A0A0A0 100%);
+    background: linear-gradient(135deg, #fff 0%, #A78BFA 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -39,7 +38,7 @@
 
 .games-list__subtitle {
     font-size: 1.125rem;
-    color: #A0A0A0;
+    color: #888899;
     max-width: 700px;
     margin: 0 auto;
     line-height: 1.6;
@@ -74,26 +73,27 @@
 
 /* Game Card */
 .games-list__card {
-    background-color: #1A1A1A;
-    border-radius: 12px;
+    background-color: #0f0f18;
+    border-radius: 14px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     text-decoration: none;
     color: inherit;
-    border: 1px solid #282828;
+    border: 1px solid #1e1e2e;
     display: flex;
     flex-direction: column;
 }
 
 .games-list__card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(74, 144, 226, 0.3);
+    box-shadow: 0 14px 44px rgba(124, 58, 237, 0.35);
+    border-color: rgba(124, 58, 237, 0.4);
 }
 
 .games-list__card-image {
     position: relative;
     height: 200px;
-    background-color: #282828;
+    background-color: #1e1e2e;
     overflow: hidden;
 }
 
@@ -119,8 +119,8 @@
     bottom: 0;
     background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.4) 0%,
-        rgba(0, 0, 0, 0.8) 100%
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.75) 100%
     );
     z-index: 1;
     transition: background 0.3s ease;
@@ -129,8 +129,8 @@
 .games-list__card:hover .games-list__card-overlay {
     background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.5) 0%,
-        rgba(74, 144, 226, 0.5) 100%
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(92, 30, 180, 0.55) 100%
     );
 }
 
@@ -156,12 +156,12 @@
 }
 
 .games-list__card:hover .games-list__card-title {
-    color: #4A90E2;
+    color: #A78BFA;
 }
 
 .games-list__card-description {
     font-size: 0.875rem;
-    color: #A0A0A0;
+    color: #888899;
     line-height: 1.6;
     flex-grow: 1;
     margin-bottom: 1rem;
@@ -170,7 +170,7 @@
 .games-list__card-cta {
     font-size: 0.875rem;
     font-weight: 600;
-    color: #4A90E2;
+    color: #7C3AED;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     display: flex;
@@ -181,7 +181,7 @@
 
 .games-list__card:hover .games-list__card-cta {
     gap: 0.75rem;
-    color: #5BA3F5;
+    color: #C4B5FD;
 }
 
 .games-list__card-cta::after {

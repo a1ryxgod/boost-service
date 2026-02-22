@@ -1,16 +1,16 @@
-/* Game Page Layout */
+/* Game Page Layout — Purple Dark Theme */
 .game-layout {
-    --accent-color: #4A90E2; /* Default accent color (LoL blue/gold) */
+    --accent-color: #7C3AED;
 }
 
-.game-layout--cs2 { --accent-color: #F5A623; } /* Orange */
-.game-layout--dota2 { --accent-color: #D0021B; } /* Red */
-.game-layout--valorant { --accent-color: #FF4655; } /* Pink/Red */
-.game-layout--lol { --accent-color: #005A82; } /* Blue/Gold */
+.game-layout--cs2     { --accent-color: #8B5CF6; }
+.game-layout--dota2   { --accent-color: #7C3AED; }
+.game-layout--valorant { --accent-color: #A78BFA; }
+.game-layout--lol     { --accent-color: #9061F9; }
 
 /* Game Hero Section */
 .game-hero {
-    padding: 4rem 1.5rem;
+    padding: 5rem 1.5rem;
     text-align: center;
     background-size: cover;
     background-position: center;
@@ -24,7 +24,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+    background: linear-gradient(to bottom, rgba(10, 10, 20, 0.65) 0%, rgba(10, 10, 20, 0.92) 100%);
 }
 
 .game-hero__content {
@@ -40,11 +40,12 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #fff;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 .game-hero__description {
     font-size: 1.2rem;
-    color: #A0A0A0;
+    color: #B0B0C0;
     margin-top: 1rem;
     max-width: 600px;
     margin-left: auto;
@@ -53,8 +54,8 @@
 
 /* Game Navigation */
 .game-nav {
-    background-color: #111;
-    border-bottom: 1px solid #282828;
+    background-color: #0a0a14;
+    border-bottom: 1px solid #1e1e2e;
     padding: 0 1.5rem;
     display: flex;
     justify-content: center;
@@ -63,10 +64,10 @@
 
 .game-nav__link {
     padding: 1rem 1.5rem;
-    color: #A0A0A0;
+    color: #888899;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     border-bottom: 3px solid transparent;
