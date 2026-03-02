@@ -41,6 +41,14 @@ const GameNavigation = ({ gameSlug, className }: GameNavigationProps) => {
           FACEIT
         </Link>
       )}
+      {gameSlug === 'cs2' && (
+        <Link
+          href={`/games/cs2/accounts`}
+          className={`game-nav__link ${isActive('/accounts') ? 'game-nav__link--active' : ''}`}
+        >
+          Accounts
+        </Link>
+      )}
     </nav>
   );
 };

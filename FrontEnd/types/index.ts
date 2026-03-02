@@ -41,6 +41,7 @@ export enum ServiceType {
   WIN_GAMES = 'WIN_GAMES',
   COACHING = 'COACHING',
   DUO_BOOST = 'DUO_BOOST',
+  ACCOUNT_PURCHASE = 'ACCOUNT_PURCHASE',
 }
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────

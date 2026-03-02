@@ -16,6 +16,14 @@ const services = [
     popular: true,
   },
   {
+    title: 'Account Shop',
+    href: '/games/cs2/accounts',
+    icon: '🛒',
+    description: 'Buy pre-ranked CS2 accounts with Prime Status. Silver to SMFC — ready to play instantly.',
+    features: ['Prime Status included', 'Clean VAC history', 'Instant delivery'],
+    popular: false,
+  },
+  {
     title: 'Rank Boosting',
     href: '/games/cs2/boost/rank',
     icon: '🏆',
