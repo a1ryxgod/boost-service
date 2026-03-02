@@ -20,6 +20,8 @@ import type {
   ShopAccount,
   CreateShopAccountRequest,
   UpdateShopAccountRequest,
+  ChatMessage,
+  ChatRoom,
 } from '../types';
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
@@ -298,4 +300,14 @@ export const reviewsApi = {
     apiRequest<Review[]>(`/reviews/booster/${boosterId}`),
 
   list: () => apiRequest<Review[]>('/reviews'),
+};
+
+// ─── Chat ─────────────────────────────────────────────────────────────────────
+
+export const chatApi = {
+  getMessages: (roomId: string) =>
+    apiRequest<ChatMessage[]>(`/chat/messages?roomId=${roomId}`),
+
+  getRooms: () =>
+    apiRequest<ChatRoom[]>('/chat/rooms'),
 };

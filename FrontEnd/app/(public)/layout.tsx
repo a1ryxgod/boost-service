@@ -1,5 +1,6 @@
 import { Header } from '@/components/shared/Header';
 import { Footer } from '@/components/shared/Footer';
+import { ChatWidget } from '@/components/chat/ChatWidget';
 
 export default function PublicLayout({
   children,
@@ -11,6 +12,7 @@ export default function PublicLayout({
       <Header />
       <main className="flex-grow">{children}</main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 }

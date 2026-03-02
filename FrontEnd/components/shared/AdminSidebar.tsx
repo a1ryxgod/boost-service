@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { href: '/admin/accounts', label: 'Account Shop', icon: '🛒' },
   { href: '/admin/transactions', label: 'Transactions', icon: '💳' },
   { href: '/admin/reviews', label: 'Reviews', icon: '★' },
+  { href: '/admin/chat', label: 'Chat', icon: '💬' },
 ];
 
 export function AdminSidebar() {

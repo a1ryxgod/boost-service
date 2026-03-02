@@ -348,3 +348,23 @@ export interface OrderQuery extends PaginationQuery {
   gameCode?: GameCode;
   serviceType?: ServiceType;
 }
+
+// ─── Chat ─────────────────────────────────────────────────────────────────────
+
+export interface ChatMessage {
+  id: string;
+  senderId: string;
+  roomId: string;
+  content: string;
+  isRead: boolean;
+  createdAt: string;
+}
+
+export interface ChatRoom {
+  roomId: string;
+  userEmail: string;
+  userName: string | null;
+  lastMessage: string;
+  lastMessageAt: string;
+  unreadCount: number;
+}
