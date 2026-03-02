@@ -44,7 +44,7 @@ const OrderForm = ({ orderData, priceSummary, children }: OrderFormProps) => {
     ? 'Placing Order...'
     : isAuthenticated
       ? 'Place Order'
-      : 'Войти для заказа';
+      : 'Sign in to Order';
 
   return (
     <div>
@@ -59,19 +59,8 @@ const OrderForm = ({ orderData, priceSummary, children }: OrderFormProps) => {
         type="button"
         onClick={handleOrder}
         disabled={isLoading}
-        style={{
-          width: '100%',
-          marginTop: '1rem',
-          padding: '14px',
-          backgroundColor: isLoading ? '#1e3a70' : '#3566D1',
-          color: '#fff',
-          border: 'none',
-          borderRadius: '8px',
-          fontSize: '1rem',
-          fontWeight: 700,
-          cursor: isLoading ? 'not-allowed' : 'pointer',
-          transition: 'background-color 0.2s',
-        }}
+        className="service__summary-button"
+        style={{ opacity: isLoading ? 0.7 : 1, cursor: isLoading ? 'not-allowed' : 'pointer' }}
       >
         {buttonLabel}
       </button>

@@ -246,6 +246,22 @@ export const adminApi = {
   getTransactions: () => apiRequest<Transaction[]>('/admin/transactions'),
 };
 
+// ─── Payments ─────────────────────────────────────────────────────────────────
+
+export const paymentsApi = {
+  createCheckout: (orderId: string) =>
+    apiRequest<{ url: string; chargeId: string }>('/payments/checkout', {
+      method: 'POST',
+      body: { orderId },
+    }),
+
+  getTransactions: () =>
+    apiRequest<Transaction[]>('/payments/transactions'),
+
+  getTransaction: (id: string) =>
+    apiRequest<Transaction>(`/payments/transactions/${id}`),
+};
+
 // ─── Reviews ──────────────────────────────────────────────────────────────────
 
 export const reviewsApi = {

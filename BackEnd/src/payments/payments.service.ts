@@ -1,38 +1,35 @@
-import { Injectable, NotFoundException, BadRequestException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+  ForbiddenException,
+  Logger,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import * as crypto from 'crypto';
 import { TransactionEntity, PaymentMethod, TransactionType } from '../entities/transaction.entity';
 import { OrderEntity } from '../orders/orders.entity';
 import { PaymentStatus, OrderStatus } from '../enums/index';
 
-/**
- * Payments Service
- *
- * This service handles payment processing with Stripe.
- * For production, install: npm install stripe
- * Then uncomment Stripe integration code below.
- */
 @Injectable()
 export class PaymentsService {
-  // private stripe: Stripe;
+  private readonly logger = new Logger(PaymentsService.name);
+  private readonly apiKey = process.env.COINBASE_COMMERCE_API_KEY ?? '';
+  private readonly webhookSecret = process.env.COINBASE_COMMERCE_WEBHOOK_SECRET ?? '';
+  private readonly apiUrl = 'https://api.commerce.coinbase.com';
 
   constructor(
     @InjectRepository(TransactionEntity)
     private readonly transactionsRepository: Repository<TransactionEntity>,
     @InjectRepository(OrderEntity)
     private readonly ordersRepository: Repository<OrderEntity>,
-  ) {
-    // Initialize Stripe (uncomment when stripe package is installed)
-    // this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-    //   apiVersion: '2023-10-16',
-    // });
-  }
+  ) {}
 
   /**
-   * Create checkout session for an order
+   * Create Coinbase Commerce checkout charge for an order
    */
-  async createCheckoutSession(userId: string, orderId: string): Promise<any> {
-    // Find order
+  async createCheckoutSession(userId: string, orderId: string): Promise<{ url: string; chargeId: string }> {
     const order = await this.ordersRepository.findOne({
       where: { id: orderId },
       relations: ['user'],
@@ -50,12 +47,12 @@ export class PaymentsService {
       throw new BadRequestException('Order is not in PENDING status');
     }
 
-    // Create transaction record
+    // Create pending transaction record
     const transaction = this.transactionsRepository.create({
       userId,
       orderId,
       transactionType: TransactionType.ORDER_PAYMENT,
-      paymentMethod: PaymentMethod.STRIPE,
+      paymentMethod: PaymentMethod.CRYPTO,
       amount: order.price,
       currency: 'USD',
       status: PaymentStatus.PENDING,
@@ -63,92 +60,87 @@ export class PaymentsService {
 
     const savedTransaction = await this.transactionsRepository.save(transaction);
 
-    /**
-     * STRIPE INTEGRATION (Uncomment when stripe is installed)
-     *
-     * const session = await this.stripe.checkout.sessions.create({
-     *   payment_method_types: ['card'],
-     *   line_items: [
-     *     {
-     *       price_data: {
-     *         currency: 'usd',
-     *         product_data: {
-     *           name: `${order.gameCode} - ${order.serviceType}`,
-     *           description: order.description || 'Game boosting service',
-     *         },
-     *         unit_amount: Math.round(order.price * 100),
-     *       },
-     *       quantity: 1,
-     *     },
-     *   ],
-     *   mode: 'payment',
-     *   success_url: `${process.env.FRONTEND_URL}/orders/${orderId}/success`,
-     *   cancel_url: `${process.env.FRONTEND_URL}/orders/${orderId}/cancel`,
-     *   metadata: {
-     *     orderId,
-     *     transactionId: savedTransaction.id,
-     *   },
-     * });
-     *
-     * // Update transaction with session ID
-     * savedTransaction.sessionId = session.id;
-     * savedTransaction.externalId = session.payment_intent as string;
-     * await this.transactionsRepository.save(savedTransaction);
-     *
-     * return {
-     *   sessionId: session.id,
-     *   url: session.url,
-     * };
-     */
+    const frontendUrl = process.env.FRONTEND_URL ?? 'http://localhost:3000';
 
-    // Mock response for development (remove when Stripe is integrated)
+    const chargePayload = {
+      name: `${order.gameCode} — ${order.serviceType.replace('_', ' ')}`,
+      description: `${order.currentRank} → ${order.targetRank}`,
+      pricing_type: 'fixed_price',
+      local_price: {
+        amount: order.price.toFixed(2),
+        currency: 'USD',
+      },
+      metadata: {
+        orderId: order.id,
+        transactionId: savedTransaction.id,
+        userId,
+      },
+      redirect_url: `${frontendUrl}/orders/${orderId}/success`,
+      cancel_url: `${frontendUrl}/orders/${orderId}/cancel`,
+    };
+
+    const response = await fetch(`${this.apiUrl}/charges`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CC-Api-Key': this.apiKey,
+        'X-CC-Version': '2018-03-22',
+      },
+      body: JSON.stringify(chargePayload),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      this.logger.error(`Coinbase Commerce error: ${errorText}`);
+      throw new BadRequestException('Failed to create payment charge');
+    }
+
+    const data = await response.json() as { data: { id: string; hosted_url: string } };
+
+    savedTransaction.externalId = data.data.id;
+    await this.transactionsRepository.save(savedTransaction);
+
     return {
-      transactionId: savedTransaction.id,
-      sessionId: 'mock_session_id',
-      url: `http://localhost:3000/mock-payment?orderId=${orderId}`,
-      message: 'Stripe integration not configured. Install stripe package to enable.',
+      url: data.data.hosted_url,
+      chargeId: data.data.id,
     };
   }
 
   /**
-   * Handle Stripe webhook
+   * Handle Coinbase Commerce webhook
    */
-  async handleWebhook(signature: string, payload: any): Promise<void> {
-    /**
-     * STRIPE WEBHOOK HANDLING (Uncomment when stripe is installed)
-     *
-     * let event: Stripe.Event;
-     *
-     * try {
-     *   event = this.stripe.webhooks.constructEvent(
-     *     payload,
-     *     signature,
-     *     process.env.STRIPE_WEBHOOK_SECRET || '',
-     *   );
-     * } catch (err) {
-     *   throw new BadRequestException('Invalid webhook signature');
-     * }
-     *
-     * switch (event.type) {
-     *   case 'checkout.session.completed':
-     *     const session = event.data.object as Stripe.Checkout.Session;
-     *     await this.completePayment(
-     *       session.metadata?.transactionId || '',
-     *       session.payment_intent as string,
-     *     );
-     *     break;
-     *
-     *   case 'payment_intent.payment_failed':
-     *     const paymentIntent = event.data.object as Stripe.PaymentIntent;
-     *     await this.failPayment(
-     *       paymentIntent.id,
-     *       paymentIntent.last_payment_error?.message || 'Payment failed',
-     *     );
-     *     break;
-     * }
-     */
+  async handleWebhook(signature: string, rawBody: Buffer): Promise<void> {
+    if (!this.webhookSecret) {
+      this.logger.warn('COINBASE_COMMERCE_WEBHOOK_SECRET is not set');
+      return;
+    }
 
-    console.log('Webhook received (Stripe not configured):', signature);
+    const expectedSig = crypto
+      .createHmac('sha256', this.webhookSecret)
+      .update(rawBody)
+      .digest('hex');
+
+    if (signature !== expectedSig) {
+      throw new BadRequestException('Invalid webhook signature');
+    }
+
+    const event = JSON.parse(rawBody.toString()) as {
+      event: { type: string; data: { id: string; metadata: { transactionId: string } } };
+    };
+
+    const eventType = event.event.type;
+    this.logger.log(`Coinbase Commerce webhook: ${eventType}`);
+
+    if (eventType === 'charge:confirmed' || eventType === 'charge:resolved') {
+      const { transactionId } = event.event.data.metadata;
+      const chargeId = event.event.data.id;
+      await this.completePayment(transactionId, chargeId);
+    }
+
+    if (eventType === 'charge:failed') {
+      const chargeId = event.event.data.id;
+      await this.failPayment(chargeId, 'Charge failed');
+    }
   }
 
   /**
@@ -169,7 +161,6 @@ export class PaymentsService {
     transaction.completedAt = new Date();
     await this.transactionsRepository.save(transaction);
 
-    // Update order status
     if (transaction.orderId) {
       await this.ordersRepository.update(transaction.orderId, {
         paymentStatus: PaymentStatus.PAID,
@@ -179,7 +170,7 @@ export class PaymentsService {
   }
 
   /**
-   * Fail payment
+   * Fail payment by charge ID
    */
   async failPayment(externalId: string, errorMessage: string): Promise<void> {
     const transaction = await this.transactionsRepository.findOne({
@@ -194,7 +185,6 @@ export class PaymentsService {
     transaction.errorMessage = errorMessage;
     await this.transactionsRepository.save(transaction);
 
-    // Update order payment status
     if (transaction.orderId) {
       await this.ordersRepository.update(transaction.orderId, {
         paymentStatus: PaymentStatus.FAILED,
@@ -246,17 +236,6 @@ export class PaymentsService {
       throw new BadRequestException('Can only refund paid transactions');
     }
 
-    /**
-     * STRIPE REFUND (Uncomment when stripe is installed)
-     *
-     * if (transaction.externalId) {
-     *   await this.stripe.refunds.create({
-     *     payment_intent: transaction.externalId,
-     *   });
-     * }
-     */
-
-    // Create refund transaction
     const refund = this.transactionsRepository.create({
       userId: transaction.userId,
       orderId: transaction.orderId,
@@ -270,11 +249,9 @@ export class PaymentsService {
 
     await this.transactionsRepository.save(refund);
 
-    // Update original transaction
     transaction.status = PaymentStatus.REFUNDED;
     await this.transactionsRepository.save(transaction);
 
-    // Update order status
     if (transaction.orderId) {
       await this.ordersRepository.update(transaction.orderId, {
         paymentStatus: PaymentStatus.REFUNDED,

@@ -57,10 +57,10 @@ export class PaymentsController {
   @HttpCode(HttpStatus.OK)
   @ApiExcludeEndpoint()
   async handleWebhook(
-    @Headers('stripe-signature') signature: string,
+    @Headers('x-cc-webhook-signature') signature: string,
     @Req() req: RawBodyRequest<Request>,
   ): Promise<{ received: boolean }> {
-    await this.paymentsService.handleWebhook(signature, req.rawBody);
+    await this.paymentsService.handleWebhook(signature, req.rawBody ?? Buffer.alloc(0));
     return { received: true };
   }
 
