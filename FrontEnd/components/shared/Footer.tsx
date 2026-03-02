@@ -110,24 +110,24 @@ export const Footer = () => {
             </nav>
           </div>
 
-          {/* Services Section */}
+          {/* Quick Links Section */}
           <div className="footer__section">
-            <h3 className="footer__section-title">Services</h3>
+            <h3 className="footer__section-title">Quick Links</h3>
             <nav className="footer__nav">
-              <Link href="/services/rank-boost" className="footer__nav-link">
-                Rank Boosting
+              <Link href="/games/cs2/accounts" className="footer__nav-link">
+                CS2 Accounts
               </Link>
-              <Link href="/services/wins" className="footer__nav-link">
-                Win Boosting
+              <Link href="/games/dota2/accounts" className="footer__nav-link">
+                Dota 2 Accounts
               </Link>
-              <Link href="/services/placements" className="footer__nav-link">
-                Placement Matches
+              <Link href="/games/cs2/boost/faceit" className="footer__nav-link">
+                CS2 FACEIT Boost
               </Link>
-              <Link href="/services/coaching" className="footer__nav-link">
+              <Link href="/games/dota2/boost/rank" className="footer__nav-link">
+                Dota 2 MMR Boost
+              </Link>
+              <Link href="/games/cs2/coaching" className="footer__nav-link">
                 Coaching
-              </Link>
-              <Link href="/services/duo" className="footer__nav-link">
-                Duo Queue
               </Link>
             </nav>
           </div>

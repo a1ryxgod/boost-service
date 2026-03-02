@@ -1,0 +1,282 @@
+.hiw {
+  color: #EAEAEA;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Hero ─────────────────────────────────────── */
+.hiw__hero {
+  background: radial-gradient(ellipse at 50% 0%, rgba(168, 85, 247, 0.14) 0%, transparent 65%),
+              #0a0a0a;
+  padding: 5rem 1.5rem 4rem;
+  text-align: center;
+  border-bottom: 1px solid #1a1a2e;
+}
+
+.hiw__hero-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hiw__hero-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  padding: 0.375rem 1rem;
+  border-radius: 20px;
+  margin-bottom: 1.25rem;
+}
+
+.hiw__hero-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.5px;
+}
+
+@media (min-width: 768px) {
+  .hiw__hero-title { font-size: 3.25rem; }
+}
+
+.hiw__gradient {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 60%, #f97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hiw__hero-desc {
+  font-size: 1.0625rem;
+  color: #888899;
+  line-height: 1.7;
+}
+
+/* ── Steps ────────────────────────────────────── */
+.hiw__steps-section {
+  padding: 4rem 1.5rem;
+  background: #0a0a0a;
+}
+
+.hiw__steps-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.hiw__steps {
+  display: flex;
+  flex-direction: column;
+}
+
+.hiw__step {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.hiw__step-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 3rem;
+}
+
+.hiw__step-number {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+
+.hiw__step-line {
+  flex: 1;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(168,85,247,0.4), rgba(236,72,153,0.1));
+  margin: 0.375rem 0;
+  min-height: 2rem;
+}
+
+.hiw__step-content {
+  display: flex;
+  gap: 1.125rem;
+  align-items: flex-start;
+  padding-bottom: 2.5rem;
+  flex: 1;
+}
+
+.hiw__step-icon {
+  font-size: 1.625rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  background: #111118;
+  border: 1px solid #1e1e2e;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hiw__step-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.375rem;
+}
+
+.hiw__step-desc {
+  font-size: 0.9rem;
+  color: #888899;
+  line-height: 1.7;
+}
+
+/* ── Trust bar ────────────────────────────────── */
+.hiw__trust {
+  background: #0d0d16;
+  border-top: 1px solid #1a1a2e;
+  border-bottom: 1px solid #1a1a2e;
+}
+
+.hiw__trust-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2.5rem;
+  justify-content: center;
+}
+
+.hiw__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #9090a0;
+  font-weight: 500;
+}
+
+.hiw__trust-icon {
+  font-size: 1.125rem;
+}
+
+/* ── FAQ ──────────────────────────────────────── */
+.hiw__faq-section {
+  padding: 4rem 1.5rem;
+  background: #0a0a0a;
+}
+
+.hiw__faq-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.hiw__section-title {
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.hiw__faqs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hiw__faq {
+  background: #111118;
+  border: 1px solid #1e1e2e;
+  border-radius: 14px;
+  padding: 1.375rem 1.5rem;
+  transition: border-color 0.2s;
+}
+
+.hiw__faq:hover {
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+.hiw__faq-q {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.hiw__faq-a {
+  font-size: 0.875rem;
+  color: #888899;
+  line-height: 1.7;
+}
+
+/* ── CTA ──────────────────────────────────────── */
+.hiw__cta {
+  background: linear-gradient(135deg, rgba(168,85,247,0.1) 0%, rgba(236,72,153,0.07) 100%);
+  border-top: 1px solid rgba(168,85,247,0.15);
+  padding: 4rem 1.5rem;
+  text-align: center;
+}
+
+.hiw__cta-inner {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.hiw__cta-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.625rem;
+}
+
+.hiw__cta-desc {
+  color: #888899;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.hiw__cta-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hiw__cta-btn {
+  padding: 0.6875rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.hiw__cta-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.hiw__cta-btn--primary {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #fff;
+}
+
+.hiw__cta-btn--secondary {
+  background: transparent;
+  border: 1px solid #333345;
+  color: #EAEAEA;
+}

@@ -49,6 +49,13 @@ export function ChatWidget() {
     if (open) setUnread(0);
   }, [open]);
 
+  // Allow external trigger via custom event
+  useEffect(() => {
+    const handler = () => setOpen(true);
+    window.addEventListener('chatWidget:open', handler);
+    return () => window.removeEventListener('chatWidget:open', handler);
+  }, []);
+
   // Scroll to bottom on new messages
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });

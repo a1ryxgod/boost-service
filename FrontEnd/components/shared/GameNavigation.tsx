@@ -15,18 +15,24 @@ const GameNavigation = ({ gameSlug, className }: GameNavigationProps) => {
     return pathname?.includes(path);
   };
 
-  const boostHref = (gameSlug === 'dota2' || gameSlug === 'valorant')
-    ? `/games/${gameSlug}/boost/rank`
-    : `/games/${gameSlug}/boost/wins`;
-
   return (
     <nav className={className}>
-      <Link
-        href={boostHref}
-        className={`game-nav__link ${isActive('/boost') ? 'game-nav__link--active' : ''}`}
-      >
-        Boost
-      </Link>
+      {(gameSlug === 'cs2' || gameSlug === 'dota2') && (
+        <Link
+          href={`/games/${gameSlug}/accounts`}
+          className={`game-nav__link ${isActive('/accounts') ? 'game-nav__link--active' : ''}`}
+        >
+          Accounts
+        </Link>
+      )}
+      {gameSlug === 'dota2' && (
+        <Link
+          href={`/games/dota2/boost/rank`}
+          className={`game-nav__link ${isActive('/boost') ? 'game-nav__link--active' : ''}`}
+        >
+          MMR Boost
+        </Link>
+      )}
       <Link
         href={`/games/${gameSlug}/coaching`}
         className={`game-nav__link ${isActive('/coaching') ? 'game-nav__link--active' : ''}`}
@@ -39,14 +45,6 @@ const GameNavigation = ({ gameSlug, className }: GameNavigationProps) => {
           className={`game-nav__link ${isActive('/faceit') ? 'game-nav__link--active' : ''}`}
         >
           FACEIT
-        </Link>
-      )}
-      {(gameSlug === 'cs2' || gameSlug === 'dota2') && (
-        <Link
-          href={`/games/${gameSlug}/accounts`}
-          className={`game-nav__link ${isActive('/accounts') ? 'game-nav__link--active' : ''}`}
-        >
-          Accounts
         </Link>
       )}
     </nav>

@@ -32,14 +32,6 @@ const services = [
     popular: false,
   },
   {
-    title: 'Win Boosting',
-    href: '/games/cs2/boost/wins',
-    icon: '🎯',
-    description: 'Order a specific number of wins. Perfect for completing missions or climbing steadily.',
-    features: ['Choose number of wins', 'Play solo or duo', 'Fast completion'],
-    popular: false,
-  },
-  {
     title: 'Placement Matches',
     href: '/games/cs2/boost/placements',
     icon: '⚡',

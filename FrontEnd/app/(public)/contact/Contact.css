@@ -1,0 +1,303 @@
+.contact {
+  color: #EAEAEA;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Hero ─────────────────────────────────────── */
+.contact__hero {
+  background: radial-gradient(ellipse at 50% 0%, rgba(168, 85, 247, 0.14) 0%, transparent 65%),
+              #0a0a0a;
+  padding: 5rem 1.5rem 4rem;
+  text-align: center;
+  border-bottom: 1px solid #1a1a2e;
+}
+
+.contact__hero-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.contact__hero-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  padding: 0.375rem 1rem;
+  border-radius: 20px;
+  margin-bottom: 1.25rem;
+}
+
+.contact__hero-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.5px;
+}
+
+@media (min-width: 768px) {
+  .contact__hero-title { font-size: 3.25rem; }
+}
+
+.contact__gradient {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 60%, #f97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.contact__hero-desc {
+  font-size: 1.0625rem;
+  color: #888899;
+  line-height: 1.7;
+}
+
+/* ── Body ─────────────────────────────────────── */
+.contact__body {
+  background: #0a0a0a;
+  padding: 4rem 1.5rem;
+}
+
+.contact__body-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .contact__body-inner {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+/* ── Live Chat card (primary) ─────────────────── */
+.contact__chat-card {
+  background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(236,72,153,0.08));
+  border: 1px solid rgba(168,85,247,0.3);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact__chat-icon {
+  font-size: 3rem;
+  width: 5rem;
+  height: 5rem;
+  background: rgba(168,85,247,0.15);
+  border: 1px solid rgba(168,85,247,0.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact__chat-title {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.contact__chat-desc {
+  font-size: 0.9375rem;
+  color: #888899;
+  line-height: 1.65;
+}
+
+.contact__status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.contact__status-dot {
+  width: 8px;
+  height: 8px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+.contact__chat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.15s;
+  width: 100%;
+  justify-content: center;
+}
+
+.contact__chat-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.contact__chat-note {
+  font-size: 0.8125rem;
+  color: #555566;
+}
+
+/* ── Info cards column ────────────────────────── */
+.contact__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact__info-card {
+  background: #111118;
+  border: 1px solid #1e1e2e;
+  border-radius: 14px;
+  padding: 1.375rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: border-color 0.2s;
+}
+
+.contact__info-card:hover {
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+.contact__info-icon {
+  font-size: 1.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  background: rgba(168,85,247,0.1);
+  border: 1px solid rgba(168,85,247,0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact__info-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.contact__info-value {
+  font-size: 0.875rem;
+  color: #888899;
+  line-height: 1.5;
+}
+
+.contact__info-link {
+  color: #a855f7;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: opacity 0.15s;
+}
+
+.contact__info-link:hover {
+  opacity: 0.8;
+}
+
+/* ── Trust bar ────────────────────────────────── */
+.contact__trust {
+  background: #0d0d16;
+  border-top: 1px solid #1a1a2e;
+  border-bottom: 1px solid #1a1a2e;
+}
+
+.contact__trust-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2.5rem;
+  justify-content: center;
+}
+
+.contact__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #9090a0;
+  font-weight: 500;
+}
+
+.contact__trust-icon {
+  font-size: 1.125rem;
+}
+
+/* ── Login prompt (guest) ─────────────────────── */
+.contact__guest {
+  background: #111118;
+  border: 1px solid rgba(168,85,247,0.2);
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.contact__guest p {
+  font-size: 0.9rem;
+  color: #888899;
+  margin-bottom: 1rem;
+}
+
+.contact__guest-btns {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact__guest-btn {
+  padding: 0.625rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.contact__guest-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.contact__guest-btn--primary {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #fff;
+}
+
+.contact__guest-btn--secondary {
+  background: transparent;
+  border: 1px solid #333345;
+  color: #EAEAEA;
+}
