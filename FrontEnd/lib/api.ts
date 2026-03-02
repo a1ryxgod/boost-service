@@ -17,6 +17,9 @@ import type {
   CreateReviewRequest,
   AdminStats,
   ApiError,
+  ShopAccount,
+  CreateShopAccountRequest,
+  UpdateShopAccountRequest,
 } from '../types';
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
@@ -260,6 +263,29 @@ export const paymentsApi = {
 
   getTransaction: (id: string) =>
     apiRequest<Transaction>(`/payments/transactions/${id}`),
+};
+
+// ─── Shop Accounts ────────────────────────────────────────────────────────────
+
+export const shopAccountsApi = {
+  list: (gameCode?: string, all?: boolean) => {
+    const params = new URLSearchParams();
+    if (gameCode) params.set('gameCode', gameCode);
+    if (all) params.set('all', 'true');
+    const qs = params.toString();
+    return apiRequest<ShopAccount[]>(`/shop-accounts${qs ? `?${qs}` : ''}`, { auth: false });
+  },
+
+  getOne: (id: string) => apiRequest<ShopAccount>(`/shop-accounts/${id}`, { auth: false }),
+
+  create: (data: CreateShopAccountRequest) =>
+    apiRequest<ShopAccount>('/shop-accounts', { method: 'POST', body: data }),
+
+  update: (id: string, data: UpdateShopAccountRequest) =>
+    apiRequest<ShopAccount>(`/shop-accounts/${id}`, { method: 'PATCH', body: data }),
+
+  remove: (id: string) =>
+    apiRequest<void>(`/shop-accounts/${id}`, { method: 'DELETE' }),
 };
 
 // ─── Reviews ──────────────────────────────────────────────────────────────────

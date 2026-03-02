@@ -281,6 +281,55 @@ export interface AdminStats {
   };
 }
 
+// ─── Shop Accounts ────────────────────────────────────────────────────────────
+
+export interface ShopScreenshot {
+  gradient: string;
+  label: string;
+  url?: string;
+}
+
+export interface ShopAccount {
+  id: string;
+  gameCode: GameCode;
+  rank: string;
+  rankGroup: string;
+  rankIcon: string;
+  rankColor: string;
+  description: string | null;
+  price: number;
+  currency: string;
+  badge: string | null;
+  stats: Record<string, string>;
+  features: string[];
+  medals: string[];
+  screenshots: ShopScreenshot[];
+  isAvailable: boolean;
+  displayOrder: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateShopAccountRequest {
+  gameCode: GameCode;
+  rank: string;
+  rankGroup: string;
+  rankIcon?: string;
+  rankColor?: string;
+  description?: string;
+  price: number;
+  currency?: string;
+  badge?: string;
+  stats?: Record<string, string>;
+  features?: string[];
+  medals?: string[];
+  screenshots?: ShopScreenshot[];
+  isAvailable?: boolean;
+  displayOrder?: number;
+}
+
+export type UpdateShopAccountRequest = Partial<CreateShopAccountRequest>;
+
 // ─── API Helpers ──────────────────────────────────────────────────────────────
 
 export interface ApiError {
