@@ -37,7 +37,7 @@ export function AdminSidebar() {
   const content = (
     <aside className="sidebar">
       <Link href="/" className="sidebar__logo" onClick={close}>
-        <span className="sidebar__logo-text">BOOST SERVICE</span>
+        <span className="sidebar__logo-text">FANCY BOOST</span>
       </Link>
 
       <div className="sidebar__user">

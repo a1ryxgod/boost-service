@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Boost Service',
+    template: '%s | FANCY BOOST',
     default: 'Game Boosting Services | CS2, Dota 2, Valorant, LoL',
   },
   description: 'Professional boosting services for top competitive games. Rank, wins, and coaching by experienced players.',

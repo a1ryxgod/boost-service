@@ -72,7 +72,7 @@ export function DashboardSidebar() {
     <aside className="sidebar">
       {/* Logo / back to site */}
       <Link href="/" className="sidebar__logo" onClick={close}>
-        <span className="sidebar__logo-text">BOOST SERVICE</span>
+        <span className="sidebar__logo-text">FANCY BOOST</span>
       </Link>
 
       {/* User block */}

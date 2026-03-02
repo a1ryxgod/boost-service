@@ -36,12 +36,12 @@
 
 .header__logo-text {
     font-size: 1.5rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #4A90E2 0%, #3566D1 100%);
+    font-weight: 800;
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 60%, #f97316 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    letter-spacing: -0.5px;
+    letter-spacing: 1px;
 }
 
 /* Navigation */

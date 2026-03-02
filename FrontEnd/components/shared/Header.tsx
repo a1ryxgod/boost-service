@@ -17,7 +17,7 @@ export const Header = () => {
     <header className="header">
       <div className="header__container">
         <Link href="/" className="header__logo">
-          <span className="header__logo-text">BOOST SERVICE</span>
+          <span className="header__logo-text">FANCY BOOST</span>
         </Link>
 
         <nav className="header__nav">

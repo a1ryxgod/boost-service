@@ -10,7 +10,7 @@ export const Footer = () => {
         <div className="footer__grid">
           {/* Brand Section */}
           <div className="footer__brand">
-            <h2 className="footer__logo">BOOST SERVICE</h2>
+            <h2 className="footer__logo">FANCY BOOST</h2>
             <p className="footer__description">
               Professional gaming services for CS2, Dota 2, Valorant, and League of Legends.
               Fast, secure, and reliable boosting by top-tier players.
@@ -174,7 +174,7 @@ export const Footer = () => {
         {/* Footer Bottom */}
         <div className="footer__bottom">
           <p className="footer__copyright">
-            &copy; 2024 Boost Service. All rights reserved.
+            &copy; 2024 FANCY BOOST. All rights reserved.
           </p>
           <nav className="footer__bottom-links">
             <Link href="/privacy-policy" className="footer__bottom-link">
