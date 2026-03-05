@@ -1,5 +1,4 @@
 import { GameHero } from '@/components/shared/GameHero';
-import GameNavigation from '@/components/shared/GameNavigation';
 import { notFound } from 'next/navigation';
 import './GamePage.css';
 
@@ -45,11 +44,7 @@ export default async function GameLayout({ children, params }: { children: React
         className="game-hero"
         style={game.heroStyle}
       />
-      <GameNavigation
-        gameSlug={gameSlug}
-        className="game-nav"
-      />
-      <main className="game-content">
+<main className="game-content">
         {children}
       </main>
     </div>

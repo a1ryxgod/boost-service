@@ -1,5 +1,4 @@
 import { GameHero } from '@/components/shared/GameHero';
-import GameNavigation from '@/components/shared/GameNavigation';
 import './GamePage.css';
 
 const gameData = {
@@ -17,11 +16,7 @@ export default function LoLLayout({ children }: { children: React.ReactNode }) {
         className="game-hero"
         style={gameData.heroStyle}
       />
-      <GameNavigation
-        gameSlug="lol"
-        className="game-nav"
-      />
-      <main className="game-content">
+<main className="game-content">
         {children}
       </main>
     </div>
