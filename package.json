@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "dev": "cd FrontEnd && next dev",
-    "build": "cd FrontEnd && next build",
-    "start": "cd FrontEnd && next start",
-    "lint": "cd FrontEnd && next lint",
+    "dev": "cd FrontEnd && npm install && npm run dev",
+    "build": "cd FrontEnd && npm install && npm run build",
+    "start": "cd FrontEnd && npm run start",
+    "lint": "cd FrontEnd && npm run lint",
     "vercel-build": "cd FrontEnd && npm install && npm run build",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
