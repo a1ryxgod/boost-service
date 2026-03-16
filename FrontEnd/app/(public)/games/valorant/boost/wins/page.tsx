@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { WinsBoostCalculator } from '@/features/boost/components/WinsBoostCalculator';
+import { VALORANT_WINS } from '@/features/boost/config/valorant';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
@@ -22,9 +24,7 @@ export default function ValorantWinBoostPage() {
           </p>
         </div>
 
-        <div className="service__placeholder">
-          <p>Win boosting calculator coming soon...</p>
-        </div>
+        <WinsBoostCalculator config={VALORANT_WINS} />
 
         <section className="service__how-it-works">
           <div className="service__how-it-works-header">

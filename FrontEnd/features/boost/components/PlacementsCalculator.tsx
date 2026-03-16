@@ -1,25 +1,26 @@
 'use client';
 
-import { useFaceitCalculator } from '../hooks/useFaceitCalculator';
-import { FaceitEloSelector } from './FaceitLevelSelector';
+import { usePlacementsCalculator } from '../hooks/usePlacementsCalculator';
+import { PlacementGamesSelector } from './PlacementGamesSelector';
 import { DuoToggle } from './DuoToggle';
 import { OrderForm } from '@/features/order/components/OrderForm';
 import PriceSummary from '@/components/shared/PriceSummary';
-import { FaceitConfig } from '../types';
+import { PlacementsConfig } from '../types';
 import { GameCode, ServiceType } from '@/types';
 
-interface FaceitBoostCalculatorProps {
-  config: FaceitConfig;
+interface PlacementsCalculatorProps {
+  config: PlacementsConfig;
 }
 
-export function FaceitBoostCalculator({ config }: FaceitBoostCalculatorProps) {
-  const calculator = useFaceitCalculator(config);
+export function PlacementsCalculator({ config }: PlacementsCalculatorProps) {
+  const calculator = usePlacementsCalculator(config);
 
   const orderData = {
-    gameCode: GameCode.CS2,
-    serviceType: ServiceType.RANK_BOOST,
-    currentRank: `FACEIT Level ${calculator.currentLevel}`,
-    targetRank: `FACEIT Level ${calculator.desiredLevel}`,
+    gameCode: config.gameCode as GameCode,
+    serviceType: ServiceType.PLACEMENT,
+    currentRank: '',
+    targetRank: `${calculator.games} placement games`,
+    numberOfGames: calculator.games,
     isDuo: calculator.isDuo,
     price: calculator.price,
     currency: config.currency,
@@ -30,14 +31,10 @@ export function FaceitBoostCalculator({ config }: FaceitBoostCalculatorProps) {
       <section className="service__form-section">
         <OrderForm orderData={orderData}>
           <div className="service__form-content">
-            <FaceitEloSelector
+            <PlacementGamesSelector
               config={config}
-              currentElo={calculator.currentElo}
-              desiredElo={calculator.desiredElo}
-              currentLevel={calculator.currentLevel}
-              desiredLevel={calculator.desiredLevel}
-              onCurrentEloChange={calculator.setCurrentElo}
-              onDesiredEloChange={calculator.setDesiredElo}
+              games={calculator.games}
+              onGamesChange={calculator.setGames}
             />
             <DuoToggle
               isDuo={calculator.isDuo}

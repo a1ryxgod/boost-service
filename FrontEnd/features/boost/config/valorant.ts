@@ -1,4 +1,22 @@
-import { GameRankConfig } from '../types';
+import { GameRankConfig, WinsConfig, PlacementsConfig } from '../types';
+
+export const VALORANT_WINS: WinsConfig = {
+  gameCode: 'VALORANT',
+  gameName: 'Valorant',
+  minWins: 1,
+  maxWins: 50,
+  pricePerWin: 3.99,
+  currency: 'USD',
+};
+
+export const VALORANT_PLACEMENTS: PlacementsConfig = {
+  gameCode: 'VALORANT',
+  gameName: 'Valorant',
+  minGames: 1,
+  maxGames: 10,
+  pricePerGame: 5.99,
+  currency: 'USD',
+};
 
 export const VALORANT_RANKS: GameRankConfig = {
   gameCode: 'VALORANT',

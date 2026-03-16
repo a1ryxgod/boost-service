@@ -1,25 +1,26 @@
 'use client';
 
-import { useFaceitCalculator } from '../hooks/useFaceitCalculator';
-import { FaceitEloSelector } from './FaceitLevelSelector';
+import { useWinsCalculator } from '../hooks/useWinsCalculator';
+import { WinsSelector } from './WinsSelector';
 import { DuoToggle } from './DuoToggle';
 import { OrderForm } from '@/features/order/components/OrderForm';
 import PriceSummary from '@/components/shared/PriceSummary';
-import { FaceitConfig } from '../types';
+import { WinsConfig } from '../types';
 import { GameCode, ServiceType } from '@/types';
 
-interface FaceitBoostCalculatorProps {
-  config: FaceitConfig;
+interface WinsBoostCalculatorProps {
+  config: WinsConfig;
 }
 
-export function FaceitBoostCalculator({ config }: FaceitBoostCalculatorProps) {
-  const calculator = useFaceitCalculator(config);
+export function WinsBoostCalculator({ config }: WinsBoostCalculatorProps) {
+  const calculator = useWinsCalculator(config);
 
   const orderData = {
-    gameCode: GameCode.CS2,
-    serviceType: ServiceType.RANK_BOOST,
-    currentRank: `FACEIT Level ${calculator.currentLevel}`,
-    targetRank: `FACEIT Level ${calculator.desiredLevel}`,
+    gameCode: config.gameCode as GameCode,
+    serviceType: ServiceType.WIN_GAMES,
+    currentRank: '',
+    targetRank: `${calculator.wins} wins`,
+    numberOfGames: calculator.wins,
     isDuo: calculator.isDuo,
     price: calculator.price,
     currency: config.currency,
@@ -30,14 +31,10 @@ export function FaceitBoostCalculator({ config }: FaceitBoostCalculatorProps) {
       <section className="service__form-section">
         <OrderForm orderData={orderData}>
           <div className="service__form-content">
-            <FaceitEloSelector
+            <WinsSelector
               config={config}
-              currentElo={calculator.currentElo}
-              desiredElo={calculator.desiredElo}
-              currentLevel={calculator.currentLevel}
-              desiredLevel={calculator.desiredLevel}
-              onCurrentEloChange={calculator.setCurrentElo}
-              onDesiredEloChange={calculator.setDesiredElo}
+              wins={calculator.wins}
+              onWinsChange={calculator.setWins}
             />
             <DuoToggle
               isDuo={calculator.isDuo}

@@ -1,4 +1,4 @@
-import { GameRankConfig, FaceitConfig } from '../types';
+import { GameRankConfig, FaceitConfig, WinsConfig, PlacementsConfig } from '../types';
 
 export const CS2_RANKS: GameRankConfig = {
   gameCode: 'CS2',
@@ -25,6 +25,24 @@ export const CS2_RANKS: GameRankConfig = {
     { id: 'cs2_smfc',     name: 'Supreme Master First Class',  tier: 'Supreme',                      order: 15 },
     { id: 'cs2_ge',       name: 'Global Elite',                tier: 'Global Elite',                 order: 16 },
   ],
+};
+
+export const CS2_WINS: WinsConfig = {
+  gameCode: 'CS2',
+  gameName: 'Counter-Strike 2',
+  minWins: 1,
+  maxWins: 50,
+  pricePerWin: 4.99,
+  currency: 'USD',
+};
+
+export const CS2_PLACEMENTS: PlacementsConfig = {
+  gameCode: 'CS2',
+  gameName: 'Counter-Strike 2',
+  minGames: 1,
+  maxGames: 10,
+  pricePerGame: 6.99,
+  currency: 'USD',
 };
 
 export const CS2_FACEIT: FaceitConfig = {

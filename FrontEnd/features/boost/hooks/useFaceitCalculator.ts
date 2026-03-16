@@ -7,20 +7,25 @@ import { calculateFaceitBoostPrice, getEloLevel } from '../utils/calculatePrice'
 export function useFaceitCalculator(config: FaceitConfig) {
   const [currentElo, setCurrentElo] = useState(config.minElo);
   const [desiredElo, setDesiredElo] = useState(config.minElo + 200);
+  const [isDuo, setIsDuo] = useState(false);
 
   const price = useMemo(
-    () => calculateFaceitBoostPrice(config, currentElo, desiredElo),
-    [config, currentElo, desiredElo],
+    () => calculateFaceitBoostPrice(config, currentElo, desiredElo, isDuo),
+    [config, currentElo, desiredElo, isDuo],
   );
 
   const currentLevel = getEloLevel(config, currentElo);
   const desiredLevel = getEloLevel(config, desiredElo);
 
-  const options = useMemo(() => [
-    { label: 'Current ELO', value: `${currentElo} (Level ${currentLevel})` },
-    { label: 'Desired ELO', value: `${desiredElo} (Level ${desiredLevel})` },
-    { label: 'ELO Difference', value: `+${Math.max(0, desiredElo - currentElo)}` },
-  ], [currentElo, desiredElo, currentLevel, desiredLevel]);
+  const options = useMemo(() => {
+    const opts = [
+      { label: 'Current ELO', value: `${currentElo} (Level ${currentLevel})` },
+      { label: 'Desired ELO', value: `${desiredElo} (Level ${desiredLevel})` },
+      { label: 'ELO Difference', value: `+${Math.max(0, desiredElo - currentElo)}` },
+    ];
+    if (isDuo) opts.push({ label: 'Duo Queue', value: 'Yes (+40%)' });
+    return opts;
+  }, [currentElo, desiredElo, currentLevel, desiredLevel, isDuo]);
 
   const handleCurrentEloChange = (elo: number) => {
     const clamped = Math.max(config.minElo, Math.min(config.maxElo, elo));
@@ -40,11 +45,13 @@ export function useFaceitCalculator(config: FaceitConfig) {
     desiredElo,
     currentLevel,
     desiredLevel,
+    isDuo,
     price,
     options,
     serviceName: 'CS2 FACEIT Boost',
     setCurrentElo: handleCurrentEloChange,
     setDesiredElo: handleDesiredEloChange,
+    setIsDuo,
     config,
   };
 }

@@ -34,3 +34,21 @@ export interface MmrConfig {
   currency: string;
   ranks: { name: string; mmrMin: number; mmrMax: number }[];
 }
+
+export interface WinsConfig {
+  gameCode: string;
+  gameName: string;
+  minWins: number;
+  maxWins: number;
+  pricePerWin: number;
+  currency: string;
+}
+
+export interface PlacementsConfig {
+  gameCode: string;
+  gameName: string;
+  minGames: number;
+  maxGames: number;
+  pricePerGame: number;
+  currency: string;
+}

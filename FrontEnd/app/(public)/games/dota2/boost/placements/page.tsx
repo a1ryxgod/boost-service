@@ -1,42 +1,42 @@
 import type { Metadata } from 'next';
-import { PlacementsCalculator } from '@/features/boost/components/PlacementsCalculator';
-import { LOL_PLACEMENTS } from '@/features/boost/config/lol';
+import { Dota2PlacementsCalculator } from '@/features/boost/components/Dota2PlacementsCalculator';
+import { DOTA2_MMR } from '@/features/boost/config/dota2';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
 
 export const metadata: Metadata = {
-  title: 'League of Legends Placement Matches Boosting | Start Strong',
+  title: 'Dota 2 Calibration Matches Boosting | Start Strong',
   description:
-    'Have your LoL placement matches played by professionals. Secure a high starting rank for the new season.',
+    'Have your Dota 2 calibration matches played by professionals. Secure a high starting MMR for the new season.',
 };
 
-export default function LoLPlacementsBoostPage() {
+export default function Dota2PlacementsBoostPage() {
   return (
     <div className="service">
       <div className="service__container">
         <div className="service__header">
           <h1 className="service__title">
-            League of Legends Placement Matches
+            Dota 2 Calibration Matches
           </h1>
           <p className="service__description">
-            Start the season with a strong advantage. Our pro LoL players will play your placement matches to aim for the best possible start.
+            Start the season with a strong advantage. Our pro Dota 2 players will play your calibration matches to aim for the highest possible MMR.
           </p>
         </div>
 
-        <PlacementsCalculator config={LOL_PLACEMENTS} />
+        <Dota2PlacementsCalculator mmrConfig={DOTA2_MMR} />
 
         <section className="service__how-it-works">
           <div className="service__how-it-works-header">
             <h2 className="service__how-it-works-title">
-              How Placements Work
+              How Calibration Works
             </h2>
           </div>
           <div className="service__steps">
             <div className="service__step">
               <div className="service__step-number">1</div>
               <h3 className="service__step-title">Select Games</h3>
-              <p className="service__step-description">Choose the number of LoL placement games you need played.</p>
+              <p className="service__step-description">Choose the number of Dota 2 calibration games you need played.</p>
             </div>
             <div className="service__step">
               <div className="service__step-number">2</div>
@@ -46,12 +46,12 @@ export default function LoLPlacementsBoostPage() {
             <div className="service__step">
               <div className="service__step-number">3</div>
               <h3 className="service__step-title">Pro Player Assigned</h3>
-              <p className="service__step-description">A top-tier LoL player starts on your placement matches.</p>
+              <p className="service__step-description">A top-tier Dota 2 player starts on your calibration matches.</p>
             </div>
             <div className="service__step">
               <div className="service__step-number">4</div>
-              <h3 className="service__step-title">Get Your Rank</h3>
-              <p className="service__step-description">We notify you once done. Discover your new starting LoL rank!</p>
+              <h3 className="service__step-title">Get Your MMR</h3>
+              <p className="service__step-description">We notify you once done. Discover your new starting Dota 2 MMR!</p>
             </div>
           </div>
         </section>
@@ -59,7 +59,7 @@ export default function LoLPlacementsBoostPage() {
         <section className="service__faq">
           <div className="service__faq-header">
             <h2 className="service__faq-title">
-              Placement Matches FAQ
+              Calibration Matches FAQ
             </h2>
           </div>
           <div className="service__faq-content">

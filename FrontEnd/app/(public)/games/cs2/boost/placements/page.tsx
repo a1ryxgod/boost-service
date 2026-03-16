@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { PlacementsCalculator } from '@/features/boost/components/PlacementsCalculator';
+import { CS2_PLACEMENTS } from '@/features/boost/config/cs2';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
@@ -22,9 +24,7 @@ export default function CS2PlacementsBoostPage() {
           </p>
         </div>
 
-        <div className="service__placeholder">
-          <p>Placement matches calculator coming soon...</p>
-        </div>
+        <PlacementsCalculator config={CS2_PLACEMENTS} />
 
         <section className="service__how-it-works">
           <div className="service__how-it-works-header">

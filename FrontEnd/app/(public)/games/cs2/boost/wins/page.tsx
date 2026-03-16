@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { WinsBoostCalculator } from '@/features/boost/components/WinsBoostCalculator';
+import { CS2_WINS } from '@/features/boost/config/cs2';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
@@ -22,9 +24,7 @@ export default function CS2WinBoostPage() {
           </p>
         </div>
 
-        <div className="service__placeholder">
-          <p>Win boosting calculator coming soon...</p>
-        </div>
+        <WinsBoostCalculator config={CS2_WINS} />
 
         <section className="service__how-it-works">
           <div className="service__how-it-works-header">

@@ -1,4 +1,22 @@
-import { GameRankConfig } from '../types';
+import { GameRankConfig, WinsConfig, PlacementsConfig } from '../types';
+
+export const LOL_WINS: WinsConfig = {
+  gameCode: 'LOL',
+  gameName: 'League of Legends',
+  minWins: 1,
+  maxWins: 50,
+  pricePerWin: 2.99,
+  currency: 'USD',
+};
+
+export const LOL_PLACEMENTS: PlacementsConfig = {
+  gameCode: 'LOL',
+  gameName: 'League of Legends',
+  minGames: 1,
+  maxGames: 10,
+  pricePerGame: 4.99,
+  currency: 'USD',
+};
 
 export const LOL_RANKS: GameRankConfig = {
   gameCode: 'LOL',

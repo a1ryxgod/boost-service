@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { ValorantPlacementsCalculator } from '@/features/boost/components/ValorantPlacementsCalculator';
+import { VALORANT_RANKS } from '@/features/boost/config/valorant';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
@@ -22,9 +24,7 @@ export default function ValorantPlacementsBoostPage() {
           </p>
         </div>
 
-        <div className="service__placeholder">
-          <p>Placement matches calculator coming soon...</p>
-        </div>
+        <ValorantPlacementsCalculator config={VALORANT_RANKS} />
 
         <section className="service__how-it-works">
           <div className="service__how-it-works-header">

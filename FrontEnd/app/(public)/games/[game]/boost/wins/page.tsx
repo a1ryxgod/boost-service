@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import { WinsBoostCalculator } from '@/features/boost/components/WinsBoostCalculator';
+import { getWinsConfig } from '@/features/boost/config/games';
+import { notFound } from 'next/navigation';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
@@ -9,22 +12,26 @@ export const metadata: Metadata = {
     'Purchase wins, played by professional boosters. Secure, fast, and reliable service to improve your stats.',
 };
 
-export default function WinBoostPage() {
+export default function WinBoostPage({ params }: { params: { game: string } }) {
+  const config = getWinsConfig(params.game);
+
+  if (!config) {
+    notFound();
+  }
+
   return (
     <div className="service">
       <div className="service__container">
         <div className="service__header">
           <h1 className="service__title">
-            Win Boosting
+            {config.gameName} Win Boosting
           </h1>
           <p className="service__description">
             Select the number of wins you want. Our professionals will secure them for you.
           </p>
         </div>
 
-        <div className="service__placeholder">
-          <p>Win boosting calculator coming soon...</p>
-        </div>
+        <WinsBoostCalculator config={config} />
 
         <section className="service__how-it-works">
           <div className="service__how-it-works-header">

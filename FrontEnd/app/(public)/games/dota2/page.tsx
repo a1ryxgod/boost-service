@@ -30,6 +30,14 @@ const services = [
     popular: true,
   },
   {
+    title: 'Calibration Matches',
+    href: '/games/dota2/boost/placements',
+    icon: '🎯',
+    description: 'Have your calibration games played by a professional to secure the highest possible starting MMR.',
+    features: ['Up to 10 games', 'Pro Dota 2 players', 'Max starting MMR'],
+    popular: false,
+  },
+  {
     title: 'Account Shop',
     href: '/games/dota2/accounts',
     icon: '🛒',

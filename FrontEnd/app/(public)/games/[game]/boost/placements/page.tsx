@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import { PlacementsCalculator } from '@/features/boost/components/PlacementsCalculator';
+import { getPlacementsConfig } from '@/features/boost/config/games';
+import { notFound } from 'next/navigation';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
 import '../../ServicePage.css';
@@ -9,22 +12,26 @@ export const metadata: Metadata = {
     'Have your placement matches played by professionals. Secure a high starting rank for the new season.',
 };
 
-export default function PlacementsBoostPage() {
+export default function PlacementsBoostPage({ params }: { params: { game: string } }) {
+  const config = getPlacementsConfig(params.game);
+
+  if (!config) {
+    notFound();
+  }
+
   return (
     <div className="service">
       <div className="service__container">
         <div className="service__header">
           <h1 className="service__title">
-            Placement Matches
+            {config.gameName} Placement Matches
           </h1>
           <p className="service__description">
             Start the season with a strong advantage. Our pro players will play your placement matches to aim for the best possible start.
           </p>
         </div>
 
-        <div className="service__placeholder">
-          <p>Placement matches calculator coming soon...</p>
-        </div>
+        <PlacementsCalculator config={config} />
 
         <section className="service__how-it-works">
           <div className="service__how-it-works-header">

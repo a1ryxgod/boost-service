@@ -1,4 +1,13 @@
-import { MmrConfig } from '../types';
+import { MmrConfig, PlacementsConfig } from '../types';
+
+export const DOTA2_PLACEMENTS: PlacementsConfig = {
+  gameCode: 'DOTA2',
+  gameName: 'Dota 2',
+  minGames: 1,
+  maxGames: 10,
+  pricePerGame: 5.49,
+  currency: 'USD',
+};
 
 export const DOTA2_MMR: MmrConfig = {
   gameCode: 'DOTA2',
