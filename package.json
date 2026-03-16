@@ -4,14 +4,10 @@
     "build": "cd FrontEnd && next build",
     "start": "cd FrontEnd && next start",
     "lint": "cd FrontEnd && next lint",
-    "vercel-build": "cd FrontEnd && npm install && next build",
+    "vercel-build": "cd FrontEnd && npm install && npm run build",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
     "docker:build": "docker compose build"
   },
-  "dependencies": {
-    "next": "^16.1.6",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
-  }
+  "dependencies": {}
 }
