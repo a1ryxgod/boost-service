@@ -56,8 +56,13 @@ const services = [
   },
 ];
 
-export default function GameOverviewPage({ params }: { params: { game: string } }) {
-  const game = gameData[params.game];
+export async function generateStaticParams() {
+  return Object.keys(gameData).map((game) => ({ game }));
+}
+
+export default async function GameOverviewPage({ params }: { params: Promise<{ game: string }> }) {
+  const { game: gameSlug } = await params;
+  const game = gameData[gameSlug];
 
   if (!game) {
     notFound();
@@ -76,7 +81,7 @@ export default function GameOverviewPage({ params }: { params: { game: string } 
           {services.map((service) => (
             <Link
               key={service.title}
-              href={`/games/${params.game}${service.href}`}
+              href={`/games/${gameSlug}${service.href}`}
               className={`game-overview__card ${service.popular ? 'game-overview__card--popular' : ''}`}
             >
               {service.popular && (
