@@ -1,5 +1,19 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import './GameOverview.css';
+
+export const metadata: Metadata = {
+  title: 'Dota 2 Boosting Services | MMR Boost, Coaching & Accounts',
+  description:
+    'Professional Dota 2 boosting services. MMR boost from Herald to Immortal, win boosting, coaching sessions, and pre-calibrated Dota 2 accounts. Fast & guaranteed.',
+  openGraph: {
+    title: 'Dota 2 Boosting Services | FANCY BOOST',
+    description:
+      'Dota 2 MMR boost, coaching, and accounts. Herald to Immortal by 8000+ MMR players.',
+    url: '/games/dota2',
+  },
+  alternates: { canonical: '/games/dota2' },
+};
 
 const gameData = {
   name: 'Dota 2',

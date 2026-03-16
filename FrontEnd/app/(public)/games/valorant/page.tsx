@@ -1,5 +1,19 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import './GameOverview.css';
+
+export const metadata: Metadata = {
+  title: 'Valorant Boosting Services | Rank Boost, Placements & Coaching',
+  description:
+    'Professional Valorant boosting services. Rank boost from Iron to Radiant, placement match boosting, duo queue, and coaching by Radiant players. Safe & fast delivery.',
+  openGraph: {
+    title: 'Valorant Boosting Services | FANCY BOOST',
+    description:
+      'Valorant rank boost, placements, duo queue, and coaching. Climb to Radiant with verified pro players.',
+    url: '/games/valorant',
+  },
+  alternates: { canonical: '/games/valorant' },
+};
 
 const gameData = {
   name: 'Valorant',

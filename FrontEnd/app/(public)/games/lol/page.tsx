@@ -1,5 +1,19 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import './GameOverview.css';
+
+export const metadata: Metadata = {
+  title: 'League of Legends Boosting | LoL Rank Boost, Coaching & More',
+  description:
+    'Professional League of Legends boosting services. LoL rank boost from Iron to Challenger, win boosting, placement matches, and coaching by high-ELO players.',
+  openGraph: {
+    title: 'League of Legends Boosting Services | FANCY BOOST',
+    description:
+      'LoL rank boost, win boosting, placements, and coaching. Iron to Challenger by Grandmaster+ players.',
+    url: '/games/lol',
+  },
+  alternates: { canonical: '/games/lol' },
+};
 
 const gameData = {
   name: 'League of Legends',

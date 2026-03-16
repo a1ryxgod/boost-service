@@ -1,5 +1,19 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import './GameOverview.css';
+
+export const metadata: Metadata = {
+  title: 'CS2 Boosting Services | Rank, FACEIT, Coaching & Accounts',
+  description:
+    'Professional Counter-Strike 2 boosting services. CS2 rank boost, FACEIT level boost up to Level 10, placement matches, coaching, and pre-ranked CS2 accounts. Fast & secure.',
+  openGraph: {
+    title: 'CS2 Boosting Services | FANCY BOOST',
+    description:
+      'CS2 rank boost, FACEIT boost, placement matches, coaching, and accounts. Fast delivery by Global Elite players.',
+    url: '/games/cs2',
+  },
+  alternates: { canonical: '/games/cs2' },
+};
 
 const gameData = {
   name: 'Counter-Strike 2',

@@ -1,6 +1,20 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import './HomePage.css';
+
+export const metadata: Metadata = {
+  title: 'Professional Game Boosting Services | CS2, Valorant, LoL, Dota 2',
+  description:
+    'FANCY BOOST — Professional game boosting for CS2, Valorant, League of Legends, and Dota 2. Rank boost, FACEIT boost, coaching, and pre-ranked accounts. Fast, safe, and guaranteed results.',
+  openGraph: {
+    title: 'Professional Game Boosting Services | FANCY BOOST',
+    description:
+      'Fast, safe rank boosting for CS2, Valorant, LoL, and Dota 2. Verified pro players. 10,000+ orders completed.',
+    url: '/',
+  },
+  alternates: { canonical: '/' },
+};
 
 const games = [
   { name: 'Counter-Strike 2', href: '/games/cs2', img: '/images/CS2image.jpg' },
@@ -104,7 +118,7 @@ export default function HomePage() {
           </p>
         </div>
         <div className="home__games-grid">
-          {games.map((game) => (
+          {games.map((game, index) => (
             <Link href={game.href} key={game.name} className="home__game-card">
               <div className="home__game-card-image">
                 <Image
@@ -114,6 +128,7 @@ export default function HomePage() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="home__game-card-img"
                   style={{ objectFit: 'cover' }}
+                  priority={index === 0}
                 />
                 <div className="home__game-card-overlay"></div>
                 <div className="home__game-card-content">

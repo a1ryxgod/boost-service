@@ -1,9 +1,19 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { FAQSchema } from '@/components/seo/JsonLd';
 import './HowItWorks.css';
 
 export const metadata: Metadata = {
   title: 'How It Works',
+  description:
+    'Learn how FANCY BOOST works in 6 simple steps. Choose your service, configure your order, and let our pro players handle the rest. Safe, fast, and guaranteed.',
+  openGraph: {
+    title: 'How It Works | FANCY BOOST',
+    description:
+      '6 simple steps from order to achievement. Safe, fast game boosting by verified top-tier players.',
+    url: '/how-it-works',
+  },
+  alternates: { canonical: '/how-it-works' },
 };
 
 const steps = [
@@ -77,6 +87,7 @@ const faqs = [
 export default function HowItWorksPage() {
   return (
     <div className="hiw">
+      <FAQSchema items={faqs.map((f) => ({ question: f.q, answer: f.a }))} />
 
       {/* Hero */}
       <section className="hiw__hero">

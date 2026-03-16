@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Private routes — do not index
+Disallow: /overview
+Disallow: /overview/
+Disallow: /orders
+Disallow: /orders/
+Disallow: /settings
+Disallow: /settings/
+Disallow: /admin
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+
+Sitemap: https://fancyboost.com/sitemap.xml

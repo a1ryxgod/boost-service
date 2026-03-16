@@ -3,6 +3,15 @@ import './About.css';
 
 export const metadata: Metadata = {
   title: 'About Us',
+  description:
+    'FANCY BOOST was founded by top-ranked competitive players to provide fast, safe, and reliable game boosting services for CS2, Valorant, League of Legends, and Dota 2.',
+  openGraph: {
+    title: 'About Us | FANCY BOOST',
+    description:
+      'Founded by top-ranked players. Professional game boosting for CS2, Valorant, LoL, and Dota 2.',
+    url: '/about',
+  },
+  alternates: { canonical: '/about' },
 };
 
 const stats = [

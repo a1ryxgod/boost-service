@@ -48,32 +48,34 @@ async function bootstrap(): Promise<void> {
   // Global exception filter
   app.useGlobalFilters(new HttpExceptionFilter());
 
-  // Swagger documentation
-  const config = new DocumentBuilder()
-    .setTitle('Boost Service API')
-    .setDescription('Production-ready API for game boosting marketplace')
-    .setVersion('1.0')
-    .addBearerAuth()
-    .addTag('Auth', 'Authentication endpoints')
-    .addTag('Profile', 'User profile management')
-    .addTag('Orders', 'Order management')
-    .addTag('Games', 'Games catalog')
-    .addTag('Services', 'Boosting services')
-    .addTag('Payments', 'Payment processing')
-    .addTag('Reviews', 'Reviews and ratings')
-    .addTag('Admin', 'Administrative operations')
-    .build();
+  // Swagger documentation (disabled in production)
+  if (appConfig.env !== 'production') {
+    const config = new DocumentBuilder()
+      .setTitle('Boost Service API')
+      .setDescription('Production-ready API for game boosting marketplace')
+      .setVersion('1.0')
+      .addBearerAuth()
+      .addTag('Auth', 'Authentication endpoints')
+      .addTag('Profile', 'User profile management')
+      .addTag('Orders', 'Order management')
+      .addTag('Games', 'Games catalog')
+      .addTag('Services', 'Boosting services')
+      .addTag('Payments', 'Payment processing')
+      .addTag('Reviews', 'Reviews and ratings')
+      .addTag('Admin', 'Administrative operations')
+      .build();
 
-  const document = SwaggerModule.createDocument(app, config);
+    const document = SwaggerModule.createDocument(app, config);
 
-  SwaggerModule.setup('docs', app, document, {
-    useGlobalPrefix: false,
-    swaggerOptions: {
-      persistAuthorization: true,
-      tagsSorter: 'alpha',
-      operationsSorter: 'alpha',
-    },
-  });
+    SwaggerModule.setup('docs', app, document, {
+      useGlobalPrefix: false,
+      swaggerOptions: {
+        persistAuthorization: true,
+        tagsSorter: 'alpha',
+        operationsSorter: 'alpha',
+      },
+    });
+  }
 
   const port = appConfig.port;
   await app.listen(port);
