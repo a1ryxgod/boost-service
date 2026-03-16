@@ -9,6 +9,7 @@ import './DashboardSidebar.css';
 const NAV_ITEMS = [
   { href: '/overview', label: 'Overview', icon: '⊞' },
   { href: '/orders', label: 'My Orders', icon: '📋' },
+  { href: '/become-booster', label: 'Become a Booster', icon: '🚀' },
   { href: '/settings', label: 'Settings', icon: '⚙' },
 ];
 

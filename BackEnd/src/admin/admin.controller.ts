@@ -6,6 +6,7 @@ import {
   Param,
   Query,
   Body,
+  Request,
   UseGuards,
   ParseUUIDPipe,
   ParseEnumPipe,
@@ -31,7 +32,10 @@ import { ReviewEntity } from '../entities/review.entity';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
-import { UserRole, UserStatus, OrderStatus } from '../enums/index';
+import { UserRole, UserStatus, OrderStatus, ApplicationStatus } from '../enums/index';
+import { BoosterApplicationsService } from '../booster-applications/booster-applications.service';
+import { BoosterApplicationEntity } from '../booster-applications/booster-application.entity';
+import { ReviewApplicationDto } from '../booster-applications/dto/submit-application.dto';
 
 @ApiTags('Admin')
 @ApiBearerAuth()
@@ -39,7 +43,10 @@ import { UserRole, UserStatus, OrderStatus } from '../enums/index';
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles(UserRole.ADMIN)
 export class AdminController {
-  constructor(private readonly adminService: AdminService) {}
+  constructor(
+    private readonly adminService: AdminService,
+    private readonly boosterApplicationsService: BoosterApplicationsService,
+  ) {}
 
   @Get('users')
   @ApiOperation({ summary: 'Get all users (admin only)' })
@@ -186,6 +193,30 @@ export class AdminController {
     @Body() dto: AssignOrderDto,
   ): Promise<OrderEntity> {
     return this.adminService.assignOrder(id, dto.boosterId);
+  }
+
+  @Get('booster-applications')
+  @ApiOperation({ summary: 'Get all booster applications (admin only)' })
+  @ApiQuery({ name: 'status', required: false, enum: ApplicationStatus })
+  @ApiResponse({ status: 200, type: [BoosterApplicationEntity] })
+  async getBoosterApplications(
+    @Query('status') status?: ApplicationStatus,
+  ): Promise<BoosterApplicationEntity[]> {
+    return this.boosterApplicationsService.findAll(status);
+  }
+
+  @Patch('booster-applications/:id')
+  @ApiOperation({ summary: 'Approve or reject a booster application' })
+  @ApiParam({ name: 'id', description: 'Application ID' })
+  @ApiResponse({ status: 200, type: BoosterApplicationEntity })
+  @ApiResponse({ status: 404, description: 'Application not found' })
+  @ApiResponse({ status: 400, description: 'Already reviewed' })
+  async reviewBoosterApplication(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() dto: ReviewApplicationDto,
+    @Request() req: any,
+  ): Promise<BoosterApplicationEntity> {
+    return this.boosterApplicationsService.review(id, req.user.id, dto);
   }
 
   @Get('statistics')

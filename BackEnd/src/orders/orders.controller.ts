@@ -153,6 +153,21 @@ export class OrdersController {
     return this.ordersService.updateStatus(id, dto, req.user.id, req.user.role);
   }
 
+  @Patch(':id/cancel')
+  @UseGuards(RolesGuard)
+  @Roles(UserRole.CUSTOMER)
+  @ApiOperation({ summary: 'Cancel order (customer only, PENDING or PAID status)' })
+  @ApiParam({ name: 'id', description: 'Order UUID' })
+  @ApiResponse({ status: 200, description: 'Order cancelled successfully', type: OrderResponseDto })
+  @ApiResponse({ status: 400, description: 'Order cannot be cancelled in current status' })
+  @ApiResponse({ status: 403, description: 'Forbidden - can only cancel own orders' })
+  async cancelOrder(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Request() req: JwtRequest,
+  ): Promise<OrderEntity> {
+    return this.ordersService.cancelOrder(id, req.user.id);
+  }
+
   @Patch(':id/assign')
   @UseGuards(RolesGuard)
   @Roles(UserRole.BOOSTER)

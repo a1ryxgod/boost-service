@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Patch,
+  Post,
   Delete,
   Body,
   Param,
@@ -26,13 +27,19 @@ import { SessionEntity } from '../entities/session.entity';
 import { OrderEntity } from '../orders/orders.entity';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { JwtRequest } from '../auth/strategies/jwt-access.strategy';
+import { BoosterApplicationsService } from '../booster-applications/booster-applications.service';
+import { BoosterApplicationEntity } from '../booster-applications/booster-application.entity';
+import { SubmitApplicationDto } from '../booster-applications/dto/submit-application.dto';
 
 @ApiTags('Profile')
 @ApiBearerAuth()
 @Controller({ path: 'profile', version: '1' })
 @UseGuards(JwtAuthGuard)
 export class ProfileController {
-  constructor(private readonly profileService: ProfileService) {}
+  constructor(
+    private readonly profileService: ProfileService,
+    private readonly boosterApplicationsService: BoosterApplicationsService,
+  ) {}
 
   @Get()
   @ApiOperation({ summary: 'Get current user profile' })
@@ -125,5 +132,26 @@ export class ProfileController {
   })
   async getStatistics(@Request() req: JwtRequest): Promise<any> {
     return this.profileService.getStatistics(req.user.id);
+  }
+
+  @Post('booster-application')
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Submit a booster application' })
+  @ApiResponse({ status: 201, description: 'Application submitted', type: BoosterApplicationEntity })
+  @ApiResponse({ status: 409, description: 'Pending application already exists' })
+  async submitBoosterApplication(
+    @Request() req: JwtRequest,
+    @Body() dto: SubmitApplicationDto,
+  ): Promise<BoosterApplicationEntity> {
+    return this.boosterApplicationsService.submit(req.user.id, dto);
+  }
+
+  @Get('booster-application')
+  @ApiOperation({ summary: 'Get my booster application status' })
+  @ApiResponse({ status: 200, description: 'Application found', type: BoosterApplicationEntity })
+  async getMyBoosterApplication(
+    @Request() req: JwtRequest,
+  ): Promise<BoosterApplicationEntity | null> {
+    return this.boosterApplicationsService.findMyApplication(req.user.id);
   }
 }

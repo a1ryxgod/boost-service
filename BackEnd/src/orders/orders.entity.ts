@@ -73,6 +73,12 @@ export class OrderEntity {
   @Column({ type: 'numeric', precision: 10, scale: 2, default: 0, transformer: MoneyTransformer })
   commission!: number;
 
+  @Column({ type: 'numeric', precision: 10, scale: 2, default: 0, transformer: MoneyTransformer })
+  discount!: number;
+
+  @Column({ type: 'uuid', name: 'promo_code_id', nullable: true, default: null })
+  promoCodeId!: string | null;
+
   @Column({ type: 'text', nullable: true, default: null })
   notes!: string | null;
 

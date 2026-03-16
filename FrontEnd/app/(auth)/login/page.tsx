@@ -82,6 +82,12 @@ const LoginPage = () => {
           </button>
         </form>
 
+        <div className="auth__footer" style={{ marginTop: '1rem' }}>
+          <Link href="/forgot-password" className="auth__footer-link">
+            Forgot your password?
+          </Link>
+        </div>
+
         <div className="auth__footer">
           Don&apos;t have an account?{' '}
           <Link href="/register" className="auth__footer-link">

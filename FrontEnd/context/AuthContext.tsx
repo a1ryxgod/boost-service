@@ -66,8 +66,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [],
   );
 
-  const getRedirectPath = (role: string) =>
-    role === 'ADMIN' ? '/admin/dashboard' : '/overview';
+  const getRedirectPath = (role: string) => {
+    if (role === 'ADMIN') return '/admin/dashboard';
+    if (role === 'BOOSTER') return '/booster/dashboard';
+    return '/overview';
+  };
 
   const login = useCallback(
     async (email: string, password: string) => {

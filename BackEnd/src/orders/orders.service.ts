@@ -1,4 +1,4 @@
-import { Injectable, HttpException, HttpStatus, ForbiddenException, UnauthorizedException } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, FindOptionsWhere } from 'typeorm';
 import { OrderEntity } from './orders.entity';
@@ -7,6 +7,8 @@ import { UpdateOrderStatusDto } from './dto/update-order.dto';
 import { QueryOrdersDto } from './dto/query-orders.dto';
 import { OrderListResponseDto, OrderStatsDto } from './dto/order-response.dto';
 import { OrderStatus, PaymentStatus, UserRole } from '../enums';
+import { PromoCodesService } from '../promo-codes/promo-codes.service';
+import { NotificationsGateway } from '../notifications/notifications.gateway';
 
 /**
  * State machine — допустимые переходы статуса заказа.
@@ -32,11 +34,25 @@ export class OrdersService {
   constructor(
     @InjectRepository(OrderEntity)
     private readonly ordersRepository: Repository<OrderEntity>,
+    private readonly promoCodesService: PromoCodesService,
+    private readonly notificationsGateway: NotificationsGateway,
   ) {}
 
   async create(userId: string, dto: CreateOrderDto): Promise<OrderEntity> {
-    // Calculate commission (10% of price)
-    const commission = dto.price * 0.10;
+    let finalPrice = dto.price;
+    let discount = 0;
+    let promoCodeId: string | null = null;
+
+    // Apply promo code if provided
+    if (dto.promoCode) {
+      const result = await this.promoCodesService.applyCode(dto.promoCode, dto.price);
+      finalPrice = result.finalPrice;
+      discount = result.discount;
+      promoCodeId = result.promoCodeId;
+    }
+
+    // Calculate commission (10% of final price)
+    const commission = finalPrice * 0.10;
 
     const order = this.ordersRepository.create({
       userId,
@@ -45,12 +61,14 @@ export class OrdersService {
       currentRank: dto.currentRank,
       targetRank: dto.targetRank,
       isDuo: dto.isDuo ?? false,
-      price: dto.price,
+      price: finalPrice,
       currency: dto.currency,
       notes: dto.notes ?? null,
       status: OrderStatus.PENDING,
       paymentStatus: PaymentStatus.PENDING,
       commission,
+      discount,
+      promoCodeId,
     });
 
     return this.ordersRepository.save(order);
@@ -213,7 +231,51 @@ export class OrdersService {
 
     order.status = dto.status;
 
-    return this.ordersRepository.save(order);
+    const saved = await this.ordersRepository.save(order);
+
+    // Notify order owner via WebSocket
+    const event = { orderId: saved.id, newStatus: saved.status, gameCode: saved.gameCode as string, serviceType: saved.serviceType as string };
+    this.notificationsGateway.notifyOrderStatusChanged(saved.userId, event);
+
+    // Notify booster if assigned
+    if (saved.boosterId) {
+      this.notificationsGateway.notifyOrderStatusChanged(saved.boosterId, event);
+    }
+
+    return saved;
+  }
+
+  async cancelOrder(orderId: string, userId: string): Promise<OrderEntity> {
+    const order = await this.findById(orderId);
+
+    // Only the order owner can cancel
+    if (order.userId !== userId) {
+      throw new ForbiddenException('You can only cancel your own orders');
+    }
+
+    // Can only cancel PENDING or PAID orders (not yet in progress)
+    const cancellableStatuses = [OrderStatus.PENDING, OrderStatus.PAID];
+    if (!cancellableStatuses.includes(order.status)) {
+      throw new HttpException(
+        `Order cannot be cancelled in "${order.status}" status. Only PENDING or PAID orders can be cancelled.`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    order.status = OrderStatus.CANCELLED;
+
+    // If order was paid, mark for refund
+    if (order.paymentStatus === PaymentStatus.PAID) {
+      order.paymentStatus = PaymentStatus.REFUNDED;
+    }
+
+    const saved = await this.ordersRepository.save(order);
+
+    // Notify via WebSocket
+    const event = { orderId: saved.id, newStatus: saved.status, gameCode: saved.gameCode as string, serviceType: saved.serviceType as string };
+    this.notificationsGateway.notifyOrderStatusChanged(saved.userId, event);
+
+    return saved;
   }
 
   async assignToBooster(orderId: string, boosterId: string): Promise<OrderEntity> {

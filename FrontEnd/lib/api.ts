@@ -22,6 +22,8 @@ import type {
   UpdateShopAccountRequest,
   ChatMessage,
   ChatRoom,
+  BoosterApplication,
+  SubmitApplicationRequest,
 } from '../types';
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
@@ -152,6 +154,30 @@ export const authApi = {
       method: 'POST',
       body: { sessionId },
     }),
+
+  verifyEmail: (token: string) =>
+    apiRequest<{ message: string }>('/auth/verify-email', {
+      method: 'POST',
+      body: { token },
+      auth: false,
+    }),
+
+  resendVerification: () =>
+    apiRequest<{ message: string }>('/auth/resend-verification', { method: 'POST' }),
+
+  forgotPassword: (email: string) =>
+    apiRequest<{ message: string }>('/auth/forgot-password', {
+      method: 'POST',
+      body: { email },
+      auth: false,
+    }),
+
+  resetPassword: (token: string, password: string) =>
+    apiRequest<{ message: string }>('/auth/reset-password', {
+      method: 'POST',
+      body: { token, password },
+      auth: false,
+    }),
 };
 
 // ─── Profile ──────────────────────────────────────────────────────────────────
@@ -192,15 +218,27 @@ export const ordersApi = {
   getById: (id: string) => apiRequest<Order>(`/orders/${id}`),
 
   cancel: (id: string) =>
-    apiRequest<Order>(`/orders/${id}/status`, {
-      method: 'PATCH',
-      body: { status: 'CANCELLED' },
-    }),
+    apiRequest<Order>(`/orders/${id}/cancel`, { method: 'PATCH' }),
 
   getStats: () => apiRequest<OrderStats>('/orders/stats'),
+
+  validatePromoCode: (code: string) =>
+    apiRequest<{ valid: boolean; discountType?: string; discountValue?: number; message?: string }>(
+      `/promo-codes/validate/${encodeURIComponent(code)}`,
+    ),
   getAvailable: () => apiRequest<Order[]>('/orders/booster/available'),
   assignToSelf: (id: string) =>
     apiRequest<Order>(`/orders/${id}/assign`, { method: 'PATCH' }),
+};
+
+// ─── Booster ──────────────────────────────────────────────────────────────────
+
+export const boosterApi = {
+  getAvailableOrders: () => apiRequest<Order[]>('/booster/available-orders'),
+  getMyOrders: () => apiRequest<Order[]>('/booster/my-orders'),
+  getStats: () =>
+    apiRequest<{ completedOrders: number; activeOrders: number; totalEarnings: number; rating: number | null }>('/booster/stats'),
+  getEarnings: () => apiRequest<Transaction[]>('/booster/earnings'),
 };
 
 // ─── Admin ────────────────────────────────────────────────────────────────────
@@ -249,6 +287,29 @@ export const adminApi = {
     }),
 
   getTransactions: () => apiRequest<Transaction[]>('/admin/transactions'),
+
+  getBoosterApplications: (status?: string) => {
+    const qs = status ? `?status=${status}` : '';
+    return apiRequest<BoosterApplication[]>(`/admin/booster-applications${qs}`);
+  },
+
+  reviewBoosterApplication: (id: string, action: 'APPROVED' | 'REJECTED', adminNote?: string) =>
+    apiRequest<BoosterApplication>(`/admin/booster-applications/${id}`, {
+      method: 'PATCH',
+      body: { action, adminNote },
+    }),
+};
+
+// ─── Booster Applications ─────────────────────────────────────────────────────
+
+export const applicationApi = {
+  submit: (dto: SubmitApplicationRequest) =>
+    apiRequest<BoosterApplication>('/profile/booster-application', {
+      method: 'POST',
+      body: dto,
+    }),
+
+  getMy: () => apiRequest<BoosterApplication | null>('/profile/booster-application'),
 };
 
 // ─── Payments ─────────────────────────────────────────────────────────────────

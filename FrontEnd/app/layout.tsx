@@ -81,20 +81,20 @@ export default function RootLayout({
         <AuthProvider>{children}</AuthProvider>
 
         {GA_ID && process.env.NODE_ENV === 'production' && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_ID}');
-              `}
-            </Script>
-          </>
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+              j.src='https://www.googletagmanager.com/gtag/js?id='+i;
+              f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GA_ID}');
+              window.dataLayer=window.dataLayer||[];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js',new Date());
+              gtag('config','${GA_ID}');
+            `}
+          </Script>
         )}
       </body>
     </html>

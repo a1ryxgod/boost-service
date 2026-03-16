@@ -1,5 +1,6 @@
-import { DashboardSidebar } from '../../components/shared/DashboardSidebar';
+import { SmartSidebar } from '../../components/shared/SmartSidebar';
 import { ChatWidget } from '../../components/chat/ChatWidget';
+import { OrderNotificationsProvider } from '../../components/shared/OrderNotificationsProvider';
 import './Dashboard.css';
 
 export default function UserDashboardLayout({
@@ -9,9 +10,10 @@ export default function UserDashboardLayout({
 }) {
   return (
     <div className="dashboard">
-      <DashboardSidebar />
+      <SmartSidebar />
       <main className="dashboard__main">{children}</main>
       <ChatWidget />
+      <OrderNotificationsProvider />
     </div>
   );
 }

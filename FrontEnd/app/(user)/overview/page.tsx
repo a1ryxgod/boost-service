@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '../../../context/AuthContext';
-import { profileApi, ordersApi } from '../../../lib/api';
+import { profileApi, ordersApi, authApi } from '../../../lib/api';
 import { ORDER_STATUS_LABELS, ORDER_STATUS_COLORS, GAME_LABELS } from '../../../lib/constants';
 import type { UserStats, Order } from '../../../types';
 import './OverviewPage.css';
@@ -53,6 +53,17 @@ const OverviewPage = () => {
   const [stats, setStats] = useState<UserStats | null>(null);
   const [recentOrders, setRecentOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [resendStatus, setResendStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
+
+  const handleResendVerification = async () => {
+    setResendStatus('sending');
+    try {
+      await authApi.resendVerification();
+      setResendStatus('sent');
+    } catch {
+      setResendStatus('idle');
+    }
+  };
 
   useEffect(() => {
     const load = async () => {
@@ -85,6 +96,43 @@ const OverviewPage = () => {
 
   return (
     <div className="overview">
+      {/* Email verification banner */}
+      {user && !user.emailVerified && (
+        <div style={{
+          background: 'rgba(245, 166, 35, 0.08)',
+          border: '1px solid rgba(245, 166, 35, 0.3)',
+          borderRadius: '10px',
+          padding: '0.875rem 1.25rem',
+          marginBottom: '1.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '1rem',
+          flexWrap: 'wrap',
+        }}>
+          <span style={{ color: '#F5A623', fontSize: '0.9375rem' }}>
+            ⚠️ Please verify your email address to secure your account.
+          </span>
+          <button
+            onClick={handleResendVerification}
+            disabled={resendStatus !== 'idle'}
+            style={{
+              background: 'transparent',
+              border: '1px solid #F5A623',
+              color: '#F5A623',
+              borderRadius: '6px',
+              padding: '0.375rem 0.875rem',
+              fontSize: '0.875rem',
+              cursor: resendStatus !== 'idle' ? 'default' : 'pointer',
+              opacity: resendStatus !== 'idle' ? 0.6 : 1,
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {resendStatus === 'sending' ? 'Sending...' : resendStatus === 'sent' ? 'Email sent!' : 'Resend verification'}
+          </button>
+        </div>
+      )}
+
       {/* Header */}
       <div className="overview__header">
         <div>

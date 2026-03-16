@@ -74,4 +74,10 @@ export class CreateOrderDto {
   @IsString()
   @MaxLength(1024)
   notes?: string;
+
+  @ApiPropertyOptional({ description: 'Promo code to apply discount', example: 'SAVE10' })
+  @IsOptional()
+  @IsString()
+  @MaxLength(32)
+  promoCode?: string;
 }

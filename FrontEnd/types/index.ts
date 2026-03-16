@@ -150,6 +150,7 @@ export interface Order {
   status: OrderStatus;
   paymentStatus: PaymentStatus;
   price: number;
+  currency: string;
   commission: number;
   notes: string | null;
   credentials: Record<string, string> | null;
@@ -171,6 +172,7 @@ export interface CreateOrderRequest {
   price: number;
   currency: string;
   notes?: string;
+  promoCode?: string;
 }
 
 export interface OrderListResponse {
@@ -367,4 +369,41 @@ export interface ChatRoom {
   lastMessage: string;
   lastMessageAt: string;
   unreadCount: number;
+}
+
+// ─── Booster Applications ─────────────────────────────────────────────────────
+
+export enum ApplicationStatus {
+  PENDING = 'PENDING',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
+}
+
+export interface BoosterApplication {
+  id: string;
+  userId: string;
+  user?: User;
+  games: GameCode[];
+  mainGame: string;
+  currentRank: string;
+  peakRank: string | null;
+  yearsExperience: number;
+  motivation: string;
+  profileLink: string | null;
+  status: ApplicationStatus;
+  adminNote: string | null;
+  reviewedBy: string | null;
+  reviewedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SubmitApplicationRequest {
+  games: GameCode[];
+  mainGame: string;
+  currentRank: string;
+  peakRank?: string;
+  yearsExperience: number;
+  motivation: string;
+  profileLink?: string;
 }

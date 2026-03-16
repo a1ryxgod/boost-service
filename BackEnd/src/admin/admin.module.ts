@@ -6,6 +6,7 @@ import { UserEntity } from '../users.entity';
 import { OrderEntity } from '../orders/orders.entity';
 import { TransactionEntity } from '../entities/transaction.entity';
 import { ReviewEntity } from '../entities/review.entity';
+import { BoosterApplicationsModule } from '../booster-applications/booster-applications.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ReviewEntity } from '../entities/review.entity';
       TransactionEntity,
       ReviewEntity,
     ]),
+    BoosterApplicationsModule,
   ],
   controllers: [AdminController],
   providers: [AdminService],

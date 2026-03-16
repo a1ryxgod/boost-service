@@ -41,3 +41,14 @@ export enum ServiceType {
   DUO_BOOST = 'DUO_BOOST',
   ACCOUNT_PURCHASE = 'ACCOUNT_PURCHASE',
 }
+
+export enum DiscountType {
+  PERCENT = 'PERCENT',
+  FIXED = 'FIXED',
+}
+
+export enum ApplicationStatus {
+  PENDING = 'PENDING',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
+}

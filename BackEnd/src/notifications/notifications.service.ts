@@ -114,6 +114,44 @@ export class NotificationsService {
   }
 
   /**
+   * Send email verification link
+   */
+  async sendVerificationEmail(user: UserEntity, token: string): Promise<void> {
+    const verifyUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/verify-email?token=${token}`;
+    console.log(`[EMAIL] Email verification to ${user.email}`);
+    console.log(`[EMAIL] Verify URL: ${verifyUrl}`);
+
+    await this.sendEmail(
+      user.email,
+      'Verify your FANCY BOOST email',
+      `<h1>Welcome to FANCY BOOST!</h1>
+      <p>Please verify your email address by clicking the link below:</p>
+      <a href="${verifyUrl}" style="background:#7B61FF;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;display:inline-block;">Verify Email</a>
+      <p>This link expires in 24 hours.</p>
+      <p>If you did not create an account, you can safely ignore this email.</p>`,
+    );
+  }
+
+  /**
+   * Send password reset link
+   */
+  async sendPasswordResetEmail(user: UserEntity, token: string): Promise<void> {
+    const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/reset-password?token=${token}`;
+    console.log(`[EMAIL] Password reset to ${user.email}`);
+    console.log(`[EMAIL] Reset URL: ${resetUrl}`);
+
+    await this.sendEmail(
+      user.email,
+      'Reset your FANCY BOOST password',
+      `<h1>Password Reset Request</h1>
+      <p>You requested a password reset. Click the link below to set a new password:</p>
+      <a href="${resetUrl}" style="background:#7B61FF;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;display:inline-block;">Reset Password</a>
+      <p>This link expires in 1 hour.</p>
+      <p>If you did not request a password reset, you can safely ignore this email.</p>`,
+    );
+  }
+
+  /**
    * Send welcome email
    */
   async sendWelcomeEmail(user: UserEntity): Promise<void> {

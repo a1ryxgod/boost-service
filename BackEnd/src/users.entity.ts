@@ -67,6 +67,16 @@ export class UserEntity {
   @Column({ name: 'email_verified_at', type: 'timestamp', nullable: true })
   emailVerifiedAt!: Date | null;
 
+  @Column({ name: 'email_verification_token', type: 'varchar', length: 64, nullable: true })
+  emailVerificationToken!: string | null;
+
+  // Password reset
+  @Column({ name: 'password_reset_token', type: 'varchar', length: 64, nullable: true })
+  passwordResetToken!: string | null;
+
+  @Column({ name: 'password_reset_expires', type: 'timestamp', nullable: true })
+  passwordResetExpires!: Date | null;
+
   // Timestamps
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;
