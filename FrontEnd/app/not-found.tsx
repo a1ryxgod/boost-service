@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: '404 — Page Not Found',
@@ -58,7 +57,7 @@ export default function NotFound() {
         Let&apos;s get you back on track.
       </p>
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-        <Link
+        <a
           href="/"
           style={{
             padding: '0.75rem 1.75rem',
@@ -71,8 +70,8 @@ export default function NotFound() {
           }}
         >
           Back to Home
-        </Link>
-        <Link
+        </a>
+        <a
           href="/games"
           style={{
             padding: '0.75rem 1.75rem',
@@ -85,7 +84,7 @@ export default function NotFound() {
           }}
         >
           Browse Games
-        </Link>
+        </a>
       </div>
     </div>
   );

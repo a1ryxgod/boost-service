@@ -1,12 +1,21 @@
 import type { Metadata } from 'next';
 import { FAQ } from '@/components/shared/FAQ';
 import { CTA } from '@/components/shared/CTA';
+import { CoachingPlans } from '../../../../../features/order/components/CoachingPlans';
+import { GameCode } from '../../../../../types';
 import '../ServicePage.css';
 import './Coaching.css';
 
 export const metadata: Metadata = {
   title: 'Game Coaching | Learn from Professional Players',
   description: 'Improve your skills with personalized coaching from top-tier players.',
+};
+
+const GAME_CODE_MAP: Record<string, GameCode> = {
+  cs2: GameCode.CS2,
+  dota2: GameCode.DOTA2,
+  valorant: GameCode.VALORANT,
+  lol: GameCode.LOL,
 };
 
 const plans = [
@@ -28,7 +37,10 @@ const plans = [
   },
 ];
 
-export default function CoachingPage() {
+export default async function CoachingPage({ params }: { params: Promise<{ game: string }> }) {
+  const { game } = await params;
+  const gameCode = GAME_CODE_MAP[game.toLowerCase()] ?? GameCode.CS2;
+
   return (
     <div className="service">
       <div className="service__container">
@@ -39,26 +51,7 @@ export default function CoachingPage() {
           </p>
         </div>
 
-        <div className="coaching__plans">
-          {plans.map((plan) => (
-            <div
-              key={plan.title}
-              className={`coaching__card ${plan.popular ? 'coaching__card--popular' : ''}`}
-            >
-              {plan.popular && <span className="coaching__card-badge">Best Value</span>}
-              <h3 className="coaching__card-title">{plan.title}</h3>
-              <div className="coaching__card-price">
-                <span className="coaching__card-price-value">${plan.price}</span>
-              </div>
-              <ul className="coaching__card-features">
-                {plan.features.map((f) => (
-                  <li key={f} className="coaching__card-feature">{f}</li>
-                ))}
-              </ul>
-              <button className="coaching__card-button">Select Plan</button>
-            </div>
-          ))}
-        </div>
+        <CoachingPlans gameCode={gameCode} plans={plans} />
 
         <section className="service__how-it-works">
           <div className="service__how-it-works-header">
