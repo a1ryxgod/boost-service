@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { DiscordIcon, TwitterIcon, InstagramIcon, YoutubeIcon } from './SocialIcons';
+import { Logo } from './Logo';
 import './Footer.css';
 
 export const Footer = () => {
@@ -10,7 +11,9 @@ export const Footer = () => {
         <div className="footer__grid">
           {/* Brand Section */}
           <div className="footer__brand">
-            <h2 className="footer__logo">FANCY BOOST</h2>
+            <Link href="/" style={{ textDecoration: 'none', marginBottom: '1rem' }}>
+              <Logo />
+            </Link>
             <p className="footer__description">
               Professional gaming services for CS2, Dota 2, Valorant, and League of Legends.
               Fast, secure, and reliable boosting by top-tier players.

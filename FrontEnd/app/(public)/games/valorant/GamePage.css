@@ -1,11 +1,11 @@
 /* Game Page Layout — Purple Dark Theme */
 .game-layout {
-    --accent-color: #7C3AED;
+    --accent-color: #FFFFFF;
 }
 
 .game-layout--cs2     { --accent-color: #8B5CF6; }
-.game-layout--dota2   { --accent-color: #7C3AED; }
-.game-layout--valorant { --accent-color: #A78BFA; }
+.game-layout--dota2   { --accent-color: #FFFFFF; }
+.game-layout--valorant { --accent-color: #FFFFFF; }
 .game-layout--lol     { --accent-color: #9061F9; }
 
 /* Game Hero Section */

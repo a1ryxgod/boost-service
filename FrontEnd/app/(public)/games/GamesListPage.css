@@ -1,60 +1,48 @@
 /* ================================
-   GAMES LIST PAGE — PURPLE DARK THEME
+   GAMES LIST PAGE — ELITE V2 THEME
    ================================ */
 
 .games-list {
-    font-family: 'Inter', sans-serif;
-    color: #EAEAEA;
-    padding: 4rem 1.5rem;
+    font-family: 'Outfit', sans-serif;
+    color: #EDEDED;
+    background-color: #000000;
+    padding: 6rem 1.5rem 8rem;
     min-height: 60vh;
 }
 
 .games-list__container {
-    max-width: 1280px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
 /* Header */
 .games-list__header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 }
 
 .games-list__title {
-    font-size: 2.5rem;
-    font-weight: 800;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, #fff 0%, #A78BFA 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-@media (min-width: 768px) {
-    .games-list__title {
-        font-size: 3.5rem;
-    }
+    color: #FFFFFF;
+    letter-spacing: -0.03em;
 }
 
 .games-list__subtitle {
-    font-size: 1.125rem;
-    color: #888899;
-    max-width: 700px;
+    font-size: 1.15rem;
+    color: #8A8A8A;
+    max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
-}
-
-@media (min-width: 768px) {
-    .games-list__subtitle {
-        font-size: 1.25rem;
-    }
+    font-weight: 300;
 }
 
 /* Grid */
 .games-list__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
     margin-top: 3rem;
 }
 
@@ -67,112 +55,87 @@
 @media (min-width: 1024px) {
     .games-list__grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 2.5rem;
     }
 }
 
 /* Game Card */
 .games-list__card {
-    background-color: #0f0f18;
-    border-radius: 14px;
+    background-color: #050505;
+    border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: all 0.4s ease;
     text-decoration: none;
     color: inherit;
-    border: 1px solid #1e1e2e;
+    border: 1px solid rgba(255, 255, 255, 0.04);
     display: flex;
     flex-direction: column;
+    transform: translateZ(0);
 }
 
 .games-list__card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 14px 44px rgba(124, 58, 237, 0.35);
-    border-color: rgba(124, 58, 237, 0.4);
+    border-color: rgba(255, 255, 255, 0.12);
+    background-color: #0A0A0A;
 }
 
 .games-list__card-image {
     position: relative;
-    height: 200px;
-    background-color: #1e1e2e;
+    height: 240px;
+    background-color: #000000;
     overflow: hidden;
 }
 
-@media (min-width: 1024px) {
-    .games-list__card-image {
-        height: 240px;
-    }
-}
-
 .games-list__card-img {
-    transition: transform 0.5s ease;
+    transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+    filter: grayscale(100%) brightness(0.7);
 }
 
 .games-list__card:hover .games-list__card-img {
-    transform: scale(1.1);
+    transform: scale(1.05);
+    filter: grayscale(0%) brightness(1);
 }
 
 .games-list__card-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.3) 0%,
-        rgba(0, 0, 0, 0.75) 100%
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.9) 100%
     );
     z-index: 1;
-    transition: background 0.3s ease;
-}
-
-.games-list__card:hover .games-list__card-overlay {
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.3) 0%,
-        rgba(92, 30, 180, 0.55) 100%
-    );
 }
 
 .games-list__card-content {
-    padding: 1.5rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    z-index: 2;
 }
 
 .games-list__card-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 0.75rem;
-    transition: color 0.3s ease;
-}
-
-@media (min-width: 1024px) {
-    .games-list__card-title {
-        font-size: 1.375rem;
-    }
-}
-
-.games-list__card:hover .games-list__card-title {
-    color: #A78BFA;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
 }
 
 .games-list__card-description {
-    font-size: 0.875rem;
-    color: #888899;
+    font-size: 0.95rem;
+    color: #8A8A8A;
     line-height: 1.6;
     flex-grow: 1;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
 }
 
 .games-list__card-cta {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #7C3AED;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #A0A0A0;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.05em;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -180,13 +143,12 @@
 }
 
 .games-list__card:hover .games-list__card-cta {
-    gap: 0.75rem;
-    color: #C4B5FD;
+    color: #FFFFFF;
 }
 
 .games-list__card-cta::after {
     content: '→';
-    font-size: 1rem;
+    font-size: 1.1rem;
     transition: transform 0.3s ease;
 }
 

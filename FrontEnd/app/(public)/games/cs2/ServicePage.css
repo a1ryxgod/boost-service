@@ -1,6 +1,6 @@
 /* Service Page Layout — Purple Dark Theme */
 .service {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Outfit', sans-serif;
     color: #EAEAEA;
     padding: 3rem 1rem;
 }
@@ -42,7 +42,7 @@
     background: linear-gradient(145deg, #111118, #0d0d16);
     border-radius: 14px;
     padding: 2rem;
-    border: 1px solid #1e1e2e;
+    border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .service__form-content { display: flex; flex-direction: column; gap: 2rem; }
@@ -69,7 +69,7 @@
     background: linear-gradient(145deg, #111118, #0d0d16);
     border-radius: 14px;
     padding: 2rem;
-    border: 1px solid #1e1e2e;
+    border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .service__summary-title {
@@ -116,7 +116,7 @@
 .service__summary-button {
     width: 100%;
     padding: 0.875rem 1.5rem;
-    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+    background: #FFFFFF; color: #000000;
     color: white;
     border: none;
     border-radius: 10px;
@@ -160,7 +160,7 @@
     padding: 1.5rem;
     background: linear-gradient(145deg, #111118, #0d0d16);
     border-radius: 14px;
-    border: 1px solid #1e1e2e;
+    border: 1px solid rgba(255, 255, 255, 0.04);
     transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
@@ -173,7 +173,7 @@
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
-    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+    background: #FFFFFF; color: #000000;
     color: white;
     font-weight: 700;
     font-size: 1.25rem;

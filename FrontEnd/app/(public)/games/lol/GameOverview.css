@@ -80,7 +80,7 @@
 /* Service Card */
 .game-overview__card {
     background: linear-gradient(145deg, #111118, #0d0d16);
-    border: 1px solid #1e1e2e;
+    border: 1px solid rgba(255, 255, 255, 0.04);
     border-radius: 14px;
     padding: 2rem;
     text-decoration: none;
@@ -194,7 +194,7 @@
 
 .game-overview__card:hover .game-overview__card-cta {
     gap: 0.75rem;
-    color: #C4B5FD;
+    color: #FFFFFF;
 }
 
 .game-overview__card-cta::after {
@@ -222,8 +222,8 @@
     top: 1rem;
     right: 1rem;
     padding: 0.25rem 0.75rem;
-    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
-    color: #fff;
+    background: #FFFFFF;
+    color: #000000;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;

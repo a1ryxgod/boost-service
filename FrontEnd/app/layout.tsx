@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Outfit } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import { AuthProvider } from '../context/AuthContext';
 import { OrganizationSchema } from '../components/seo/JsonLd';
 
-const inter = Inter({ subsets: ['latin'] });
+const outfit = Outfit({ subsets: ['latin'] });
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -76,7 +76,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-neutral-900 text-neutral-100`}>
+      <body className={`${outfit.className} bg-neutral-900 text-neutral-100`}>
         <OrganizationSchema />
         <AuthProvider>{children}</AuthProvider>
 

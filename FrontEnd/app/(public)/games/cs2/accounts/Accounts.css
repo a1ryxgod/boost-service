@@ -3,7 +3,7 @@
    ================================ */
 
 .accounts {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Outfit', sans-serif;
   color: #EAEAEA;
   padding: 3rem 1rem;
 }
@@ -55,7 +55,7 @@
   border-radius: 20px;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #C4B5FD;
+  color: #FFFFFF;
 }
 
 /* Grid */
@@ -81,7 +81,7 @@
 /* Account Card */
 .accounts__card {
   background: linear-gradient(145deg, #111118, #0d0d16);
-  border: 1px solid #1e1e2e;
+  border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 14px;
   padding: 1.75rem;
   position: relative;
@@ -113,8 +113,8 @@
   top: 1rem;
   right: 1rem;
   padding: 0.2rem 0.65rem;
-  background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
-  color: #fff;
+  background: #FFFFFF;
+    color: #000000;
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -199,7 +199,7 @@
   height: 1.1rem;
   border-radius: 50%;
   background: rgba(124, 58, 237, 0.15);
-  color: #7C3AED;
+  color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -219,7 +219,7 @@
 .accounts__card-price-amount {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #A78BFA;
+  color: #FFFFFF;
 }
 
 .accounts__card-price-currency {
@@ -238,8 +238,8 @@
 .accounts__card-button {
   flex: 1;
   padding: 0.6875rem 1rem;
-  background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
-  color: #fff;
+  background: #FFFFFF;
+    color: #000000;
   border: none;
   border-radius: 8px;
   font-size: 0.875rem;
@@ -263,7 +263,7 @@
   flex: 1;
   padding: 0.6875rem 1rem;
   background: transparent;
-  color: #A78BFA;
+  color: #FFFFFF;
   border: 1px solid rgba(124, 58, 237, 0.4);
   border-radius: 8px;
   font-size: 0.875rem;
@@ -325,7 +325,7 @@
 .accounts__order-total-value {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #A78BFA;
+  color: #FFFFFF;
 }
 
 /* ================================
@@ -421,7 +421,7 @@
   border-radius: 12px;
   overflow: hidden;
   aspect-ratio: 16 / 9;
-  border: 1px solid #1e1e2e;
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .accounts__gallery-img {
@@ -509,7 +509,7 @@
 }
 
 .accounts__gallery-thumb--active {
-  border-color: #7C3AED;
+  border-color: #FFFFFF;
 }
 
 .accounts__gallery-thumb-inner {
@@ -582,7 +582,7 @@
 
 .accounts__modal-stat {
   background: rgba(255,255,255,0.03);
-  border: 1px solid #1e1e2e;
+  border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 10px;
   padding: 0.75rem;
   display: flex;
@@ -633,7 +633,7 @@
   height: 1.25rem;
   border-radius: 50%;
   background: rgba(124, 58, 237, 0.15);
-  color: #7C3AED;
+  color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -675,7 +675,7 @@
 .accounts__modal-price-amount {
   font-size: 2.25rem;
   font-weight: 700;
-  color: #A78BFA;
+  color: #FFFFFF;
 }
 
 .accounts__modal-price-currency {
@@ -686,8 +686,8 @@
 .accounts__modal-buy-btn {
   width: 100%;
   padding: 0.9375rem;
-  background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
-  color: #fff;
+  background: #FFFFFF;
+    color: #000000;
   border: none;
   border-radius: 10px;
   font-size: 1rem;
@@ -738,7 +738,7 @@
   padding: 1.5rem;
   background: linear-gradient(145deg, #111118, #0d0d16);
   border-radius: 14px;
-  border: 1px solid #1e1e2e;
+  border: 1px solid rgba(255, 255, 255, 0.04);
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
@@ -754,7 +754,7 @@
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+  background: #FFFFFF; color: #000000;
   color: white;
   font-weight: 700;
   font-size: 1.25rem;

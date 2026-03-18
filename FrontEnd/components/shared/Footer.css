@@ -1,26 +1,39 @@
 /* ================================
-   FOOTER COMPONENT
+   FOOTER COMPONENT - ELITE V2
    ================================ */
 
 .footer {
-    background-color: #0D0D0D;
-    border-top: 1px solid #282828;
-    font-family: 'Inter', sans-serif;
+    background-color: #000000;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    font-family: 'Outfit', sans-serif;
     margin-top: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    z-index: 10;
 }
 
 .footer__container {
-    max-width: 1280px;
+    max-width: 1320px;
     margin: 0 auto;
-    padding: 3rem 1.5rem 2rem;
+    padding: 4rem 2rem 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 /* Footer Grid */
 .footer__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2.5rem;
-    margin-bottom: 2.5rem;
+    gap: 3rem;
+    margin-bottom: 4rem;
 }
 
 @media (min-width: 640px) {
@@ -32,7 +45,7 @@
 @media (min-width: 1024px) {
     .footer__grid {
         grid-template-columns: 2fr 1fr 1fr 1fr;
-        gap: 3rem;
+        gap: 4rem;
     }
 }
 
@@ -40,52 +53,42 @@
 .footer__brand {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-}
-
-.footer__logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, #a855f7 0%, #ec4899 60%, #f97316 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: 1px;
-    margin-bottom: 0.5rem;
+    gap: 1.5rem;
 }
 
 .footer__description {
-    font-size: 0.95rem;
-    color: #A0A0A0;
-    line-height: 1.6;
+    font-size: 1rem;
+    color: #8A8A8A;
+    line-height: 1.7;
     max-width: 320px;
+    font-weight: 300;
 }
 
 .footer__social {
     display: flex;
-    gap: 0.75rem;
+    gap: 1rem;
     margin-top: 0.5rem;
 }
 
 .footer__social-link {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #1A1A1A;
-    border: 1px solid #282828;
-    border-radius: 8px;
-    color: #A0A0A0;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    color: #EDEDED;
     text-decoration: none;
     font-size: 1.125rem;
     transition: all 0.3s ease;
 }
 
 .footer__social-link:hover {
-    background-color: rgba(74, 144, 226, 0.15);
-    border-color: #4A90E2;
-    color: #4A90E2;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
     transform: translateY(-2px);
 }
 
@@ -93,69 +96,58 @@
 .footer__section {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
 .footer__section-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #FFFFFF;
     margin-bottom: 0.5rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.1em;
 }
 
 .footer__nav {
     display: flex;
     flex-direction: column;
-    gap: 0.625rem;
+    gap: 0.75rem;
 }
 
 .footer__nav-link {
     font-size: 0.95rem;
-    color: #A0A0A0;
+    color: #8A8A8A;
     text-decoration: none;
     transition: all 0.3s ease;
     width: fit-content;
+    font-weight: 300;
 }
 
 .footer__nav-link:hover {
-    color: #fff;
-    transform: translateX(4px);
+    color: #FFFFFF;
 }
 
 /* Games Section */
 .footer__games {
     display: flex;
     flex-direction: column;
-    gap: 0.625rem;
+    gap: 0.75rem;
 }
 
 .footer__game-link {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
     font-size: 0.95rem;
-    color: #A0A0A0;
+    color: #8A8A8A;
     text-decoration: none;
     transition: all 0.3s ease;
     width: fit-content;
+    font-weight: 300;
 }
 
 .footer__game-link:hover {
-    color: #fff;
-    transform: translateX(4px);
-}
-
-.footer__game-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 4px;
-    background-color: #282828;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
+    color: #FFFFFF;
 }
 
 .footer__game-icon-wrapper {
@@ -167,17 +159,25 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    background-color: #050505;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .footer__game-icon-img {
     object-fit: cover;
     border-radius: 4px;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.footer__game-link:hover .footer__game-icon-img {
+    filter: grayscale(0%);
 }
 
 /* Footer Bottom */
 .footer__bottom {
     padding-top: 2rem;
-    border-top: 1px solid #282828;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -194,8 +194,9 @@
 }
 
 .footer__copyright {
-    font-size: 0.875rem;
-    color: #707070;
+    font-size: 0.85rem;
+    color: #555555;
+    font-weight: 300;
 }
 
 .footer__bottom-links {
@@ -212,14 +213,15 @@
 }
 
 .footer__bottom-link {
-    font-size: 0.875rem;
-    color: #A0A0A0;
+    font-size: 0.85rem;
+    color: #555555;
     text-decoration: none;
     transition: color 0.3s ease;
+    font-weight: 300;
 }
 
 .footer__bottom-link:hover {
-    color: #fff;
+    color: #EDEDED;
 }
 
 /* Trust Badges */
@@ -235,43 +237,16 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 0.75rem;
-    background-color: #1A1A1A;
-    border: 1px solid #282828;
-    border-radius: 6px;
-    font-size: 0.875rem;
-    color: #A0A0A0;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 99px;
+    font-size: 0.85rem;
+    color: #8A8A8A;
+    font-weight: 400;
 }
 
 .footer__trust-icon {
-    color: #4A90E2;
+    color: #FFFFFF;
     font-size: 1rem;
-}
-
-/* Payment Methods */
-.footer__payment-methods {
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-}
-
-.footer__payment-icon {
-    width: 2.5rem;
-    height: 1.75rem;
-    background-color: #1A1A1A;
-    border: 1px solid #282828;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    color: #A0A0A0;
-    transition: all 0.3s ease;
-}
-
-.footer__payment-icon:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-color: #3a3a3a;
 }

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { Logo } from './Logo';
 import './Header.css';
 
 export const Header = () => {
@@ -16,8 +17,8 @@ export const Header = () => {
   return (
     <header className="header">
       <div className="header__container">
-        <Link href="/" className="header__logo">
-          <span className="header__logo-text">FANCY BOOST</span>
+        <Link href="/" className="header__logo" style={{ textDecoration: 'none' }}>
+          <Logo />
         </Link>
 
         <nav className="header__nav">

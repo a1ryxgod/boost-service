@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: column;
     background: linear-gradient(145deg, #111118, #0d0d16);
-    border: 1px solid #1e1e2e;
+    border: 1px solid rgba(255, 255, 255, 0.04);
     border-radius: 14px;
     padding: 2rem;
     transition: transform 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -45,8 +45,8 @@
     left: 50%;
     transform: translateX(-50%);
     padding: 0.3rem 1rem;
-    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
-    color: #fff;
+    background: #FFFFFF;
+    color: #000000;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -110,12 +110,12 @@
     width: 100%;
     padding: 0.75rem 1.25rem;
     background-color: transparent;
-    color: #A78BFA;
+    color: #FFFFFF;
     border: 1px solid rgba(124, 58, 237, 0.4);
     border-radius: 10px;
     font-size: 0.95rem;
     font-weight: 600;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Outfit', sans-serif;
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -123,11 +123,11 @@
 .coaching__card-button:hover {
     border-color: rgba(124, 58, 237, 0.7);
     background-color: rgba(124, 58, 237, 0.1);
-    color: #C4B5FD;
+    color: #FFFFFF;
 }
 
 .coaching__card--popular .coaching__card-button {
-    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+    background: #FFFFFF; color: #000000;
     border-color: transparent;
     color: #fff;
     box-shadow: 0 4px 18px rgba(124, 58, 237, 0.4);
