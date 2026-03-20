@@ -51,10 +51,10 @@
 
 /* Service Form Section */
 .service__form-section {
-    background-color: #1A1A1A;
+    background-color: #050505;
     border-radius: 12px;
     padding: 2rem;
-    border: 1px solid #282828;
+    border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .service__form-content {
@@ -89,10 +89,10 @@
 }
 
 .service__summary-card {
-    background-color: #1A1A1A;
+    background-color: #050505;
     border-radius: 12px;
     padding: 2rem;
-    border: 1px solid #282828;
+    border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .service__summary-title {
@@ -108,7 +108,7 @@
     gap: 1rem;
     margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid #282828;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.04);
 }
 
 .service__summary-item {
@@ -149,19 +149,21 @@
 .service__summary-button {
     width: 100%;
     padding: 0.875rem 1.5rem;
-    background-color: var(--accent-color, #3566D1);
-    color: white;
+    background: #FFFFFF;
+    color: #000000;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.08);
 }
 
 .service__summary-button:hover {
     transform: translateY(-2px);
-    filter: brightness(1.1);
+    filter: brightness(1.12);
+    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.08);
 }
 
 /* How It Works Section */
@@ -214,7 +216,7 @@
     padding: 1.5rem;
     background-color: rgba(26, 26, 26, 0.5);
     border-radius: 12px;
-    border: 1px solid #282828;
+    border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .service__step-number {
@@ -224,7 +226,7 @@
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
-    background-color: var(--accent-color, #3566D1);
+    background-color: #000000;
     color: white;
     font-weight: 700;
     font-size: 1.25rem;
