@@ -157,7 +157,7 @@ export class AuthService {
     const accessToken = this.jwtService.sign(
       { ...payload, type: 'access' },
       {
-        secret: process.env.JWT_SECRET || 'your-secret-key-change-in-production',
+        secret: process.env.JWT_SECRET || process.env.JWT_ACCESS_SECRET || 'your-secret-key-change-in-production',
         expiresIn: '30m',
       },
     );

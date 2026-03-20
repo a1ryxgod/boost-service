@@ -9,7 +9,9 @@ export const databaseConfig: TypeOrmModuleOptions = {
   password: process.env.DB_PASS || 'admin',
   database: process.env.DB_NAME || 'boost_service',
   autoLoadEntities: true,
-  synchronize: process.env.NODE_ENV !== 'production',
+  synchronize: process.env.DB_SYNCHRONIZE === 'true' || process.env.NODE_ENV !== 'production',
   logging: process.env.NODE_ENV === 'development',
-  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
+  ssl: (process.env.DB_SSL === 'true' || !!process.env.DATABASE_URL) 
+    ? { rejectUnauthorized: false } 
+    : false,
 };

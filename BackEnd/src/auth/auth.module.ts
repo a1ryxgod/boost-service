@@ -15,7 +15,7 @@ import { NotificationsModule } from '../notifications/notifications.module';
     TypeOrmModule.forFeature([UserEntity, SessionEntity]),
     PassportModule.register({ defaultStrategy: 'jwt-access' }),
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'your-secret-key-change-in-production',
+      secret: process.env.JWT_SECRET || process.env.JWT_ACCESS_SECRET || 'your-secret-key-change-in-production',
       signOptions: { expiresIn: '30m' },
     }),
     NotificationsModule,
