@@ -11,6 +11,8 @@ export const databaseConfig: TypeOrmModuleOptions = {
   autoLoadEntities: true,
   synchronize: process.env.DB_SYNCHRONIZE === 'true' || process.env.NODE_ENV !== 'production',
   logging: process.env.NODE_ENV === 'development',
+  migrations: [__dirname + '/../migrations/*.{ts,js}'],
+  migrationsRun: process.env.NODE_ENV === 'production',
   ssl: (process.env.DB_SSL === 'true' || !!process.env.DATABASE_URL) 
     ? { rejectUnauthorized: false } 
     : false,
