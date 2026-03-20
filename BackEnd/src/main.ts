@@ -20,11 +20,19 @@ import { appConfig } from './config/app.config';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule);
-
+  console.log('--- Production Debug Logs ---');
   console.log(`[Config] NODE_ENV: ${process.env.NODE_ENV}`);
-  console.log(`[Config] CORS Origins: ${JSON.stringify(appConfig.cors.origin)}`);
-  console.log(`[Config] Port: ${appConfig.port}`);
+  console.log(`[Config] CORS_ORIGIN from env: ${process.env.CORS_ORIGIN}`);
+  console.log(`[Config] CORS Origins in appConfig: ${JSON.stringify(appConfig.cors.origin)}`);
+  console.log(`[Config] Port: ${process.env.PORT || appConfig.port}`);
+  console.log(`[Config] DB_HOST: ${process.env.DB_HOST}`);
+  console.log(`[Config] DATABASE_URL present: ${!!process.env.DATABASE_URL}`);
+  if (process.env.DATABASE_URL) {
+    console.log(`[Config] DATABASE_URL (masked): ${process.env.DATABASE_URL.substring(0, 15)}...`);
+  }
+  console.log('---------------------------');
+
+  const app = await NestFactory.create(AppModule);
 
   // CORS configuration
   app.enableCors({
