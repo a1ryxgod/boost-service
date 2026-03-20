@@ -1,3 +1,17 @@
+import * as dotenv from 'dotenv';
+import * as path from 'path';
+import * as fs from 'fs';
+
+// Load environment variables
+const envPath = path.resolve(process.cwd(), '.env.production');
+const defaultEnvPath = path.resolve(process.cwd(), '.env');
+
+if (fs.existsSync(envPath)) {
+  dotenv.config({ path: envPath });
+} else if (fs.existsSync(defaultEnvPath)) {
+  dotenv.config({ path: defaultEnvPath });
+}
+
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { AppModule } from './app.module';
@@ -8,12 +22,16 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
 
+  console.log(`[Config] NODE_ENV: ${process.env.NODE_ENV}`);
+  console.log(`[Config] CORS Origins: ${JSON.stringify(appConfig.cors.origin)}`);
+  console.log(`[Config] Port: ${appConfig.port}`);
+
   // CORS configuration
   app.enableCors({
     origin: appConfig.cors.origin,
     credentials: appConfig.cors.credentials,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'X-Requested-With'],
   });
 
   // Security headers (helmet alternative using native headers)
