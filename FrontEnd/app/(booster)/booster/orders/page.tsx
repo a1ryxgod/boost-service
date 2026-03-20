@@ -13,10 +13,12 @@ export default function BoosterOrdersPage() {
   const [availableOrders, setAvailableOrders] = useState<Order[]>([]);
   const [myOrders, setMyOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [assigningId, setAssigningId] = useState<string | null>(null);
 
   const load = async () => {
     setIsLoading(true);
+    setError(null);
     try {
       const [available, mine] = await Promise.all([
         boosterApi.getAvailableOrders(),
@@ -24,8 +26,8 @@ export default function BoosterOrdersPage() {
       ]);
       setAvailableOrders(available);
       setMyOrders(mine);
-    } catch {
-      // silently fail
+    } catch (err: any) {
+      setError(err.message || 'Failed to load orders. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -72,7 +74,12 @@ export default function BoosterOrdersPage() {
         </button>
       </div>
 
-      {isLoading ? (
+      {error ? (
+        <div className="bp__error">
+          <p>{error}</p>
+          <button onClick={load} className="bp__btn-pickup">Try Again</button>
+        </div>
+      ) : isLoading ? (
         <p className="bp__loading">Loading…</p>
       ) : orders.length === 0 ? (
         <div className="bp__empty">

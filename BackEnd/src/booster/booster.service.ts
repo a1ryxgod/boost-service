@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IsNull, Repository } from 'typeorm';
 import { OrderEntity } from '../orders/orders.entity';
 import { UserEntity } from '../users.entity';
 import { TransactionEntity } from '../entities/transaction.entity';
@@ -27,7 +27,7 @@ export class BoosterService {
 
   async getAvailableOrders(): Promise<OrderEntity[]> {
     return this.ordersRepository.find({
-      where: { status: OrderStatus.PAID, boosterId: null as any },
+      where: { status: OrderStatus.PAID, boosterId: IsNull() },
       order: { createdAt: 'ASC' },
       relations: ['user'],
     });
@@ -59,7 +59,7 @@ export class BoosterService {
     const earningsResult = await this.ordersRepository
       .createQueryBuilder('order')
       .select('SUM(order.price - order.commission)', 'earnings')
-      .where('order.booster_id = :boosterId', { boosterId })
+      .where('order.boosterId = :boosterId', { boosterId })
       .andWhere('order.status = :status', { status: OrderStatus.COMPLETED })
       .getRawOne();
 

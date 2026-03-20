@@ -25,22 +25,26 @@ export default function BoosterDashboardPage() {
   const [stats, setStats] = useState<BoosterStats | null>(null);
   const [activeOrders, setActiveOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const load = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const [statsData, myOrders] = await Promise.all([
+        boosterApi.getStats(),
+        boosterApi.getMyOrders(),
+      ]);
+      setStats(statsData);
+      setActiveOrders(myOrders.filter((o) => o.status === 'ASSIGNED' || o.status === 'IN_PROGRESS'));
+    } catch (err: any) {
+      setError(err.message || 'Failed to load dashboard data. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const load = async () => {
-      try {
-        const [statsData, myOrders] = await Promise.all([
-          boosterApi.getStats(),
-          boosterApi.getMyOrders(),
-        ]);
-        setStats(statsData);
-        setActiveOrders(myOrders.filter((o) => o.status === 'ASSIGNED' || o.status === 'IN_PROGRESS'));
-      } catch {
-        // silently fail
-      } finally {
-        setIsLoading(false);
-      }
-    };
     load();
   }, []);
 
@@ -56,7 +60,14 @@ export default function BoosterDashboardPage() {
         </Link>
       </div>
 
-      {/* Stats */}
+      {error ? (
+        <div className="bp__error">
+          <p>{error}</p>
+          <button onClick={load} className="bp__btn-pickup">Try Again</button>
+        </div>
+      ) : (
+        <>
+          {/* Stats */}
       <div className="bp__stats">
         {STAT_CARDS(stats, isLoading).map((card) => (
           <div className="bp__stat" key={card.label} style={{ '--stat-color': card.color } as React.CSSProperties}>
@@ -114,6 +125,8 @@ export default function BoosterDashboardPage() {
           </div>
         )}
       </div>
-    </div>
-  );
+    </>
+  )}
+</div>
+);
 }
