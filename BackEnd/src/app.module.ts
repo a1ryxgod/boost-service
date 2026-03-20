@@ -19,6 +19,7 @@ import { ChatModule } from './chat/chat.module';
 import { PromoCodesModule } from './promo-codes/promo-codes.module';
 import { BoosterModule } from './booster/booster.module';
 import { BoosterApplicationsModule } from './booster-applications/booster-applications.module';
+import { HealthController } from './health.controller';
 
 @Module({
   imports: [
@@ -51,5 +52,6 @@ import { BoosterApplicationsModule } from './booster-applications/booster-applic
     BoosterModule,
     BoosterApplicationsModule,
   ],
+  controllers: [HealthController],
 })
 export class AppModule {}
