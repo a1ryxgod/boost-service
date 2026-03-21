@@ -35,6 +35,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const loadUser = useCallback(async () => {
     const token = TokenStorage.getAccess();
     if (!token) {
+      // If LocalStorage token is missing but user is on a protected route (due to desynced cookies)
+      const protectedPaths = ['/overview', '/orders', '/settings', '/admin', '/booster', '/become-booster'];
+      if (typeof window !== 'undefined' && protectedPaths.some(p => window.location.pathname.startsWith(p))) {
+        document.cookie = 'boost_access_token=; path=/; max-age=0';
+        document.cookie = 'boost_user_role=; path=/; max-age=0';
+        window.location.href = '/login';
+        return;
+      }
       setIsLoading(false);
       return;
     }
@@ -42,9 +50,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const profile = await profileApi.get();
       setUser(profile);
-    } catch {
+    } catch (e) {
       TokenStorage.clear();
+      document.cookie = 'boost_access_token=; path=/; max-age=0';
+      document.cookie = 'boost_user_role=; path=/; max-age=0';
       setUser(null);
+      
+      // If we are on a protected route, redirect to login
+      const protectedPaths = ['/overview', '/orders', '/settings', '/admin', '/booster', '/become-booster'];
+      if (typeof window !== 'undefined' && protectedPaths.some(p => window.location.pathname.startsWith(p))) {
+        window.location.href = '/login';
+      }
     } finally {
       setIsLoading(false);
     }
